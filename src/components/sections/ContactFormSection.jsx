@@ -52,8 +52,8 @@ const ContactFormSection = ({ content, onUpdate }) => {
           'name': formData.name,
           'email': formData.email,
           'message': formData.message,
-          'consent-data': formData.consentData.toString(),
-          'consent-privacy': formData.consentPrivacy.toString()
+          'consentData': formData.consentData.toString(),
+          'consentPrivacy': formData.consentPrivacy.toString()
         }).toString()
       });
       if (response.ok) {
