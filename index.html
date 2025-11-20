@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="description" content="Naturopathe à Vacqueyras (84), Alaïs Tavernier vous accompagne vers le bien-être : bilan de vitalité, nutrition, gestion du stress et massage assis. Prenez rendez-vous en ligne." />
+  <meta name="keywords" content="naturopathe Vacqueyras, naturopathie Vaucluse, massage bien-être Vacqueyras, bilan de vitalité, rééquilibrage alimentaire, gestion du stress" />
+  <title>Alaïs Tavernier - Naturopathe & Massage Bien-être | Vacqueyras</title>
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Google tag (gtag.js) - Remplacer GA_MEASUREMENT_ID par votre ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+
+  <!-- Preconnect pour optimiser le chargement des images -->
+  <link rel="preconnect" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com">
+  <link rel="dns-prefetch" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com">
+  
+  <!-- Preload des images critiques -->
+  <link rel="preload" as="image" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png">
+  <link rel="preload" as="image" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924366935-2B.png">
+  <link rel="preload" as="image" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924373768-3B.png">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  
+  <!-- Script Netlify Identity -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://alais-tavernier-naturopathe.netlify.app/sitemap.xml
+
+# Disallow admin access to crawlers
+Disallow: /admin/
+Disallow: /_netlify/
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /prestations
+Allow: /naturopathie
+Allow: /massage-assis
+Allow: /contact
+Allow: /mentions-legales
+Allow: /cgu
