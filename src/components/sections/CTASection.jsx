@@ -15,10 +15,10 @@ const CTASection = ({ content, onUpdate }) => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-[#95a58d] to-[#7a8471] relative overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="py-10 sm:py-12 lg:py-16 bg-gradient-to-r from-[#95a58d] to-[#7a8471] relative overflow-hidden px-4 sm:px-6 lg:px-8">
       <StaticDragonfly
         type={2}
-        className="absolute top-6 sm:top-8 lg:top-16 left-4 sm:left-8 lg:left-16 w-12 sm:w-16 lg:w-24 h-12 sm:h-16 lg:h-24 opacity-50 sm:opacity-65 filter brightness-0 invert hidden md:block"
+        className="absolute top-6 sm:top-8 lg:top-12 left-4 sm:left-8 lg:left-12 w-12 sm:w-16 lg:w-24 h-12 sm:h-16 lg:h-24 opacity-50 sm:opacity-65 filter brightness-0 invert hidden md:block"
       />
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div

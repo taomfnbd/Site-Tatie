@@ -36,7 +36,7 @@ const HeroSection = ({ content, onUpdate }) => {
         type={1}
         className="absolute top-16 sm:top-20 lg:top-32 right-4 sm:right-10 lg:right-20 w-16 sm:w-20 lg:w-28 h-16 sm:h-20 lg:h-28 opacity-60 sm:opacity-80 hidden sm:block"
       />
-      <div className="relative max-w-7xl mx-auto py-12 sm:py-16 lg:py-20 w-full">
+      <div className="relative max-w-7xl mx-auto py-10 sm:py-12 lg:py-16 w-full">
         <div className="flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

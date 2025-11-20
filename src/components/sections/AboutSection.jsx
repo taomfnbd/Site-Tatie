@@ -19,7 +19,7 @@ const AboutSection = ({ content, onUpdate }) => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white relative px-4 sm:px-6 lg:px-8">
+    <section className="py-10 sm:py-12 lg:py-16 bg-white relative px-4 sm:px-6 lg:px-8">
       <StaticDragonfly
         type={3}
         className="absolute top-12 sm:top-16 lg:top-24 right-4 sm:right-8 lg:right-16 w-12 sm:w-16 lg:w-24 h-12 sm:h-16 lg:h-24 opacity-60 sm:opacity-75 hidden md:block"
@@ -30,7 +30,7 @@ const AboutSection = ({ content, onUpdate }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-8 sm:mb-12"
         >
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-light text-stone-800 mb-4 tracking-wide">
             <EditableText
@@ -54,7 +54,7 @@ const AboutSection = ({ content, onUpdate }) => {
             className="text-sm sm:text-base lg:text-lg text-stone-600 max-w-2xl mx-auto font-light"
           />
         </motion.div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-12 sm:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
