@@ -58,7 +58,7 @@ export const initialSiteContent = {
         "type": "hero",
         "content": {
           "firstName": "Alaïs",
-          "lastName": "Taavernier",
+          "lastName": "Tavernier",
           "profession": "Naturopathe",
           "subtitle": "Massage bien-être",
           "description": "Éducatrice de la santé, je vous accompagne pour que vous deveniez autonome et acteur de votre bien-être.",
