@@ -1,5 +1,4 @@
-const fetch = require('node-fetch');
-
+// Node 18+ a fetch natif, pas besoin de require
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
