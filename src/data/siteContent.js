@@ -319,13 +319,6 @@ export const initialSiteContent = {
             "address": "729 route de Sarrians<br />84190 Vacqueyras"
           }
         }
-      },
-      {
-        "id": "contact-form",
-        "type": "contact_form",
-        "content": {
-          "title": "Envoyez-moi un message"
-        }
       }
     ],
     "legal-notice": [
