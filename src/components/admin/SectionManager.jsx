@@ -174,13 +174,8 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
 
       {/* Bouton ajouter à la fin */}
       {isEditMode && (
-        <div className="h-0 relative group flex justify-center items-center z-20" style={{ transform: 'translateY(-50%)' }}>
-          <div className="absolute inset-x-0 h-8 flex items-center justify-center cursor-pointer">
-             <div className="absolute inset-x-0 h-[1px] bg-[#95a58d] opacity-0 group-hover:opacity-50 transition-opacity"></div>
-             <div className="opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:scale-110">
-               <AddSectionButton onClick={() => handleAddSectionClick(sections.length)} />
-             </div>
-          </div>
+        <div className="py-6 flex justify-center relative z-20">
+          <AddSectionButton onClick={() => handleAddSectionClick(sections.length)} />
         </div>
       )}
 
