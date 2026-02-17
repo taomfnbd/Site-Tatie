@@ -37,6 +37,18 @@ const SEOHead = () => {
         description: 'Prenez rendez-vous avec Alaïs Tavernier à Vacqueyras. Téléphone : 07.81.66.09.29. Horaires : Lundi, Jeudi 9h-17h, Samedi 9h-12h.',
         keywords: 'contact naturopathe Vacqueyras, rendez-vous, horaires consultation, téléphone naturopathe',
         canonicalUrl: 'https://alais-tavernier-naturopathe.fr/contact'
+      },
+      '/mentions-legales': {
+        title: 'Mentions Légales - Alaïs Tavernier Naturopathe',
+        description: 'Mentions légales du site alais-tavernier-naturopathe.fr. Informations sur l\'éditeur, l\'hébergeur et les conditions d\'utilisation.',
+        keywords: 'mentions légales, naturopathe Vacqueyras',
+        canonicalUrl: 'https://alais-tavernier-naturopathe.fr/mentions-legales'
+      },
+      '/cgu': {
+        title: 'Conditions Générales d\'Utilisation - Alaïs Tavernier Naturopathe',
+        description: 'Conditions générales d\'utilisation du site alais-tavernier-naturopathe.fr. Droits et obligations des utilisateurs.',
+        keywords: 'CGU, conditions générales, naturopathe Vacqueyras',
+        canonicalUrl: 'https://alais-tavernier-naturopathe.fr/cgu'
       }
     };
 

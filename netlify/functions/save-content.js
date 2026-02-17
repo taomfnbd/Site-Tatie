@@ -4,10 +4,13 @@ exports.handler = async (event, context) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  // Vérifier l'authentification (mot de passe admin simple via header ou body)
-  // Pour simplifier, on suppose que l'interface admin protège l'accès.
-  // Mais idéalement, il faudrait un token JWT ou autre.
-  
+  // Vérifier l'authentification via token
+  const authHeader = event.headers['authorization'] || event.headers['Authorization'];
+  const expectedToken = process.env.ADMIN_API_TOKEN;
+  if (!expectedToken || !authHeader || authHeader !== `Bearer ${expectedToken}`) {
+    return { statusCode: 401, body: JSON.stringify({ error: 'Non autorisé' }) };
+  }
+
   const { content } = JSON.parse(event.body);
   
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;

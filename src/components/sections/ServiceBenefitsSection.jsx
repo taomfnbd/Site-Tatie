@@ -2,11 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import EditableText from '../admin/EditableText';
 import SafeIcon from '../../common/SafeIcon';
+import { useEditMode } from '../../contexts/EditModeContext';
 import * as FiIcons from 'react-icons/fi';
 
 const { FiCheckCircle } = FiIcons;
 
 const ServiceBenefitsSection = ({ content, onUpdate }) => {
+  const { isEditMode } = useEditMode();
   const data = {
     title: 'Bienfaits',
     benefits: [
@@ -39,8 +41,8 @@ const ServiceBenefitsSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
       className="mb-16 relative"
@@ -56,8 +58,8 @@ const ServiceBenefitsSection = ({ content, onUpdate }) => {
           {data.benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               className="flex items-start space-x-3 p-2 group"
@@ -66,24 +68,28 @@ const ServiceBenefitsSection = ({ content, onUpdate }) => {
               <span className="text-stone-700 leading-relaxed font-light text-sm w-full">
                 <EditableText value={benefit} onChange={(val) => updateBenefit(index, val)} element="span" />
               </span>
-              <button 
-                onClick={() => removeBenefit(index)}
-                className="text-red-400 opacity-0 group-hover:opacity-100 hover:text-red-600 transition-opacity"
-                title="Supprimer ce bienfait"
-              >
-                ×
-              </button>
+              {isEditMode && (
+                <button
+                  onClick={() => removeBenefit(index)}
+                  className="text-red-400 opacity-0 group-hover:opacity-100 hover:text-red-600 transition-opacity"
+                  title="Supprimer ce bienfait"
+                >
+                  ×
+                </button>
+              )}
             </motion.div>
           ))}
         </div>
-        <div className="text-center mt-6">
-          <button 
-            onClick={addBenefit}
-            className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d] rounded-full px-4 py-2 hover:bg-green-50 transition-colors"
-          >
-            + Ajouter un bienfait
-          </button>
-        </div>
+        {isEditMode && (
+          <div className="text-center mt-6">
+            <button
+              onClick={addBenefit}
+              className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d] rounded-full px-4 py-2 hover:bg-green-50 transition-colors"
+            >
+              + Ajouter un bienfait
+            </button>
+          </div>
+        )}
       </div>
     </motion.div>
   );

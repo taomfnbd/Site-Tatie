@@ -15,10 +15,16 @@ export const updatePageSEO = (pageData) => {
   updateMetaTag('og:title', title, 'property');
   updateMetaTag('og:description', description, 'property');
   updateMetaTag('og:url', canonicalUrl || window.location.href, 'property');
-  
+  updateMetaTag('og:type', 'website', 'property');
+  updateMetaTag('og:image', 'https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png', 'property');
+  updateMetaTag('og:locale', 'fr_FR', 'property');
+  updateMetaTag('og:site_name', 'Alaïs Tavernier - Naturopathe', 'property');
+
   // Twitter Cards
+  updateMetaTag('twitter:card', 'summary_large_image', 'name');
   updateMetaTag('twitter:title', title, 'name');
   updateMetaTag('twitter:description', description, 'name');
+  updateMetaTag('twitter:image', 'https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png', 'name');
   
   // Canonical URL
   updateCanonicalUrl(canonicalUrl);
@@ -57,10 +63,10 @@ export const getStructuredData = () => {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://alais-tavernier-naturopathe.netlify.app",
+    "@id": "https://alais-tavernier-naturopathe.fr",
     "name": "Alaïs Tavernier - Naturopathe",
     "description": "Naturopathe et praticienne en massage bien-être à Vacqueyras. Consultations personnalisées, massage assis, rééquilibrage alimentaire.",
-    "url": "https://alais-tavernier-naturopathe.netlify.app",
+    "url": "https://alais-tavernier-naturopathe.fr",
     "telephone": "+33781660929",
     "email": "contact@alais-tavernier.fr",
     "address": {

@@ -23,8 +23,8 @@ const ServiceCTASection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
       className="bg-gradient-to-r from-[#95a58d] to-[#7a8471] rounded-2xl p-8 lg:p-10 text-white relative overflow-hidden"

@@ -82,8 +82,8 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
          
          {/* Contact Direct */}
          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="space-y-8 lg:col-span-2" // Pleine largeur si pas de form à côté
@@ -180,8 +180,8 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
       {/* Ligne 2: Horaires, Paiement, Infos */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="bg-white rounded-xl p-8 shadow-sm relative overflow-hidden border border-stone-100"
@@ -243,8 +243,8 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="bg-white rounded-xl p-8 shadow-sm relative overflow-hidden border border-stone-100"
@@ -282,8 +282,8 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-amber-50 border border-amber-200 rounded-xl p-8 relative overflow-hidden"
@@ -323,8 +323,8 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
         {/* Ligne 3: Instagram + Map */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="bg-white rounded-xl p-8 shadow-sm relative overflow-hidden border border-stone-100"
@@ -368,8 +368,8 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="bg-gradient-to-br from-green-25 to-stone-25 rounded-xl p-8 text-center relative overflow-hidden border border-stone-100"

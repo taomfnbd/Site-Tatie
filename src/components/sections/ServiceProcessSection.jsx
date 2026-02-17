@@ -54,8 +54,8 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
       className="mb-16 relative"
@@ -76,19 +76,21 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden border border-stone-100 group"
             >
-              <button 
+              {isEditMode && (
+              <button
                 onClick={() => removeStep(index)}
                 className="absolute top-2 right-2 text-red-400 opacity-0 group-hover:opacity-100 hover:text-red-600 transition-opacity z-10"
                 title="Supprimer cette étape"
               >
                 ×
               </button>
+            )}
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 bg-[#95a58d] text-white rounded-lg flex items-center justify-center font-semibold text-lg">
                   {index + 1}
@@ -139,14 +141,16 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
           );
         })}
       </div>
-      <div className="text-center mt-4">
-        <button 
-          onClick={addStep}
-          className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d] rounded-full px-4 py-2 hover:bg-green-50 transition-colors"
-        >
-          + Ajouter une étape
-        </button>
-      </div>
+      {isEditMode && (
+        <div className="text-center mt-4">
+          <button
+            onClick={addStep}
+            className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d] rounded-full px-4 py-2 hover:bg-green-50 transition-colors"
+          >
+            + Ajouter une étape
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };

@@ -26,8 +26,8 @@ const AboutSection = ({ content, onUpdate }) => {
       />
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="text-center mb-8 sm:mb-12"
@@ -56,8 +56,8 @@ const AboutSection = ({ content, onUpdate }) => {
         </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="bg-gradient-to-br from-green-25 to-stone-25 rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden border border-stone-100"
@@ -70,8 +70,8 @@ const AboutSection = ({ content, onUpdate }) => {
             />
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"

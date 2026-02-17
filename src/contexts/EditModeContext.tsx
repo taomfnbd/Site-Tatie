@@ -24,8 +24,8 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Vérifier le mot de passe
   const login = (password: string): boolean => {
     // @ts-ignore
-    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'alaiselisa1';
-    console.log('[EditModeContext] login - password match:', password === correctPassword);
+    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+    if (!correctPassword) return false;
     if (password === correctPassword) {
       setIsAuthenticated(true);
       sessionStorage.setItem('admin_auth', 'true');
@@ -33,7 +33,6 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       // Activer immédiatement le mode édition si ?admin est présent
       const params = new URLSearchParams(window.location.search);
       if (params.has('admin')) {
-        console.log('[EditModeContext] login - Activating edit mode immediately');
         setIsEditMode(true);
       }
 
@@ -64,14 +63,12 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Vérifier l'authentification au chargement
   useEffect(() => {
     const authStored = sessionStorage.getItem('admin_auth');
-    console.log('[EditModeContext] Initial load - authStored:', authStored);
     if (authStored === 'true') {
       setIsAuthenticated(true);
 
       // Si déjà authentifié et ?admin présent, activer le mode édition
       const params = new URLSearchParams(window.location.search);
       if (params.has('admin')) {
-        console.log('[EditModeContext] Initial load - Activating edit mode');
         setIsEditMode(true);
       }
     }
@@ -84,13 +81,9 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const params = new URLSearchParams(window.location.search);
       const hasAdminParam = params.has('admin');
 
-      console.log('[EditModeContext] checkAdminParam - hasAdmin:', hasAdminParam, 'isAuth:', isAuthenticated);
-
       if (hasAdminParam && isAuthenticated) {
-        console.log('[EditModeContext] Setting isEditMode to TRUE');
         setIsEditMode(true);
       } else if (!hasAdminParam) {
-        console.log('[EditModeContext] No admin param, setting isEditMode to FALSE');
         setIsEditMode(false);
       }
     };
@@ -101,9 +94,6 @@ export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     window.addEventListener('popstate', checkAdminParam);
     return () => window.removeEventListener('popstate', checkAdminParam);
   }, [isAuthenticated]);
-
-  // Log de l'état actuel à chaque render
-  console.log('[EditModeContext] Rendering with isEditMode:', isEditMode, 'isAuthenticated:', isAuthenticated);
 
   return (
     <EditModeContext.Provider

@@ -122,13 +122,24 @@ const Header = () => {
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden"
-            >
+            <>
+              {/* Backdrop overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 bg-black/30 z-40 lg:hidden"
+                onClick={() => setIsMenuOpen(false)}
+                aria-hidden="true"
+              />
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="lg:hidden overflow-hidden relative z-50 bg-white"
+              >
               <div className="py-4 space-y-2 border-t border-stone-100">
                 {headerData.links.map((item, index) => (
                   <Link
@@ -157,6 +168,7 @@ const Header = () => {
                 </div>
               </div>
             </motion.div>
+            </>
           )}
         </AnimatePresence>
       </nav>

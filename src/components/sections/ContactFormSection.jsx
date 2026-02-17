@@ -72,8 +72,8 @@ const ContactFormSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm relative overflow-hidden border border-stone-100 mb-8"
     >
@@ -90,6 +90,8 @@ const ContactFormSection = ({ content, onUpdate }) => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3"
+          role="alert"
+          aria-live="polite"
         >
           <SafeIcon icon={FiCheck} className="text-green-500 flex-shrink-0" />
           <span className="text-green-700 text-sm">
@@ -103,6 +105,8 @@ const ContactFormSection = ({ content, onUpdate }) => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3"
+          role="alert"
+          aria-live="assertive"
         >
           <SafeIcon icon={FiAlertCircle} className="text-red-500 flex-shrink-0" />
           <span className="text-red-700 text-sm">{errorMessage}</span>

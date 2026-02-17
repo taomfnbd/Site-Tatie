@@ -189,6 +189,7 @@ const Footer = () => {
                   onClick={handleInstagramClick}
                   className="w-8 sm:w-9 h-8 sm:h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 cursor-pointer group"
                   title={`Instagram @${footerData.social.instagram}`}
+                  aria-label={`Suivez-moi sur Instagram @${footerData.social.instagram}`}
                 >
                   <SafeIcon icon={FiInstagram} className="text-xs sm:text-sm group-hover:scale-110 transition-transform" />
                 </button>
@@ -202,7 +203,6 @@ const Footer = () => {
             value={footerData.legal.copyright} 
             onChange={(v) => updateField('legal.copyright', v)} 
             element="p" 
-            style={{color: 'rgb(156,163,175)'}} 
             className="text-gray-400 text-xs sm:text-sm"
           />
           <div className="mt-2 text-xs sm:text-sm text-gray-400 space-x-2 sm:space-x-4">

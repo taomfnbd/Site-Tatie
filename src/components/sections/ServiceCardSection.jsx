@@ -45,8 +45,8 @@ const ServiceCardSection = ({ content, onUpdate }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className={`bg-gradient-to-br ${data.gradient} rounded-2xl p-8 lg:p-10 hover:shadow-lg transition-all duration-300 relative overflow-hidden border border-stone-100`}

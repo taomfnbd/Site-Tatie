@@ -1,18 +1,20 @@
-import React, { Suspense, useState, useEffect } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import LoadingSpinner from './components/LoadingSpinner';
 import SEOHead from './components/SEOHead';
 import CookieConsent from './components/CookieConsent';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Services from './pages/Services';
-import Naturopathy from './pages/Naturopathy';
-import Massage from './pages/Massage';
-import Contact from './pages/Contact';
-import LegalNotice from './pages/LegalNotice';
-import TermsOfService from './pages/TermsOfService';
+
+// Code splitting : chargement paresseux des pages
+const Home = lazy(() => import('./pages/Home'));
+const Services = lazy(() => import('./pages/Services'));
+const Naturopathy = lazy(() => import('./pages/Naturopathy'));
+const Massage = lazy(() => import('./pages/Massage'));
+const Contact = lazy(() => import('./pages/Contact'));
+const LegalNotice = lazy(() => import('./pages/LegalNotice'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 
 // Nouveau système CMS
 import { EditModeProvider, useEditMode } from './contexts/EditModeContext';

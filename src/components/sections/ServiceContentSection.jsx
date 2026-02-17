@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
+import { useEditMode } from '../../contexts/EditModeContext';
 
 const ServiceContentSection = ({ content, onUpdate }) => {
+  const { isEditMode } = useEditMode();
   const data = {
     title: 'Titre de la section',
     paragraphs: [
@@ -34,8 +36,8 @@ const ServiceContentSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.2 }}
       className="bg-gradient-to-br from-stone-25 to-green-25 rounded-2xl p-8 lg:p-10 mb-16 relative border border-stone-100"
     >
@@ -56,21 +58,25 @@ const ServiceContentSection = ({ content, onUpdate }) => {
               allowHTML={true}
               className="text-base text-stone-700 leading-relaxed font-light"
             />
-            <button 
-              onClick={() => removeParagraph(index)}
-              className="absolute -right-8 top-0 text-red-400 opacity-0 group-hover:opacity-100 hover:text-red-600 transition-opacity"
-              title="Supprimer ce paragraphe"
-            >
-              ×
-            </button>
+            {isEditMode && (
+              <button
+                onClick={() => removeParagraph(index)}
+                className="absolute -right-8 top-0 text-red-400 opacity-0 group-hover:opacity-100 hover:text-red-600 transition-opacity"
+                title="Supprimer ce paragraphe"
+              >
+                ×
+              </button>
+            )}
           </div>
         ))}
-        <button 
-          onClick={addParagraph}
-          className="text-sm text-[#95a58d] hover:text-[#7a8471] mt-2 opacity-50 hover:opacity-100 transition-opacity"
-        >
-          + Ajouter un paragraphe
-        </button>
+        {isEditMode && (
+          <button
+            onClick={addParagraph}
+            className="text-sm text-[#95a58d] hover:text-[#7a8471] mt-2 opacity-50 hover:opacity-100 transition-opacity"
+          >
+            + Ajouter un paragraphe
+          </button>
+        )}
       </div>
     </motion.div>
   );
