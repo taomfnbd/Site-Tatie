@@ -61,7 +61,7 @@ export const initialSiteContent = {
           "lastName": "Tavernier",
           "profession": "Naturopathe",
           "subtitle": "Massage bien-être",
-          "description": "Éducatrice de la santé, je vous accompagne pour que vous deveniez autonome et acteur de votre bien-être.",
+          "description": "Éducatrice de la santé, je vous accompagne pour que vous deveniez autonome et acteur de votre bien-être. ,",
           "quote": "La force qui est en chacun de nous est notre plus grand médecin",
           "quoteAuthor": "Hippocrate"
         }
