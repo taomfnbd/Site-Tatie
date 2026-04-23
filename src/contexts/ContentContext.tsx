@@ -214,7 +214,10 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     // Appel à la fonction Netlify
     const response = await fetch('/.netlify/functions/save-content', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${import.meta.env.VITE_ADMIN_API_SECRET || ''}`,
+      },
       body: JSON.stringify({ content: data })
     });
 
