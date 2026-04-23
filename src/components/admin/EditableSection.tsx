@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEditMode } from '../../contexts/EditModeContext';
+import ConfirmModal from './ConfirmModal';
 
 interface EditableSectionProps {
   children: React.ReactNode;
@@ -31,6 +32,7 @@ export const EditableSection: React.FC<EditableSectionProps> = ({
 }) => {
   const { isEditMode } = useEditMode();
   const [isHovered, setIsHovered] = useState(false);
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
 
   // Si pas en mode édition, afficher juste le contenu
   if (!isEditMode) {
@@ -110,11 +112,7 @@ export const EditableSection: React.FC<EditableSectionProps> = ({
 
               {/* Supprimer */}
               <button
-                onClick={() => {
-                  if (window.confirm('Voulez-vous vraiment supprimer cette section ?')) {
-                    onDelete();
-                  }
-                }}
+                onClick={() => setIsDeleteConfirmOpen(true)}
                 className="w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded shadow-lg transition-all flex items-center justify-center"
                 title="Supprimer cette section"
               >
@@ -137,6 +135,19 @@ export const EditableSection: React.FC<EditableSectionProps> = ({
 
       {/* Contenu de la section */}
       {children}
+
+      <ConfirmModal
+        isOpen={isDeleteConfirmOpen}
+        title="Supprimer la section"
+        message="Cette section sera retirée de la page. Cette action peut être annulée avant publication en rechargeant la page sans enregistrer."
+        confirmLabel="Supprimer"
+        confirmVariant="danger"
+        onConfirm={() => {
+          onDelete();
+          setIsDeleteConfirmOpen(false);
+        }}
+        onCancel={() => setIsDeleteConfirmOpen(false)}
+      />
     </div>
   );
 };

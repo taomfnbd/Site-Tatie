@@ -2,10 +2,12 @@
 // TOOLBAR ADMIN (comme Webflow/WordPress)
 // Barre flottante en haut du site en mode édition
 // =====================================================
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useEditMode } from '../../contexts/EditModeContext';
 import { useContent } from '../../contexts/ContentContext';
 import { motion } from 'framer-motion';
+import ConfirmModal from './ConfirmModal';
+import ToastContainer, { type ToastItem } from './ToastContainer';
 
 export const AdminToolbar: React.FC = () => {
   const { isEditMode, disableEditMode, logout } = useEditMode();
@@ -13,35 +15,95 @@ export const AdminToolbar: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [confirmAction, setConfirmAction] = useState<null | 'publish' | 'logout'>(null);
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
 
-  const handleSave = async () => {
+  const addToast = useCallback((message: string, type: ToastItem['type']) => {
+    const id =
+      typeof crypto !== 'undefined' && 'randomUUID' in crypto
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+    setToasts((prev) => [...prev, { id, message, type }]);
+    window.setTimeout(() => {
+      setToasts((prev) => prev.filter((toast) => toast.id !== id));
+    }, type === 'error' ? 5000 : 3000);
+  }, []);
+
+  const removeToast = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  }, []);
+
+  const handleSave = useCallback(async () => {
     setIsSaving(true);
     setSaveStatus('idle');
 
     try {
       await saveAllChanges();
-      // Note: Si publishToGitHub est configuré, on pourrait l'appeler ici aussi.
-      // Pour l'instant on sépare pour éviter les commits trop fréquents.
       setSaveStatus('success');
+      addToast('Brouillon enregistré localement.', 'success');
       setTimeout(() => setSaveStatus('idle'), 2000);
     } catch (error) {
       console.error('Erreur sauvegarde:', error);
       setSaveStatus('error');
+      addToast('Erreur pendant l’enregistrement local.', 'error');
       setTimeout(() => setSaveStatus('idle'), 3000);
     } finally {
       setIsSaving(false);
     }
-  };
+  }, [addToast, saveAllChanges]);
 
   const handlePreview = () => {
     disableEditMode();
+    addToast('Mode aperçu activé.', 'info');
   };
 
   const handleLogout = () => {
-    if (window.confirm('Voulez-vous vraiment vous déconnecter ?')) {
-      logout();
+    if (hasUnsavedChanges) {
+      setConfirmAction('logout');
+      return;
     }
+    logout();
   };
+
+  const handlePublish = useCallback(async () => {
+    setIsPublishing(true);
+    try {
+      await publishToGitHub();
+      addToast('Publication lancée. Netlify va redéployer le site.', 'success');
+    } catch (error) {
+      console.error('Erreur publication:', error);
+      const message = error instanceof Error ? error.message : 'Erreur lors de la publication';
+      addToast(message, 'error');
+    } finally {
+      setIsPublishing(false);
+      setConfirmAction(null);
+    }
+  }, [addToast, publishToGitHub]);
+
+  useEffect(() => {
+    if (!isEditMode) return undefined;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const isCtrlOrCmd = event.ctrlKey || event.metaKey;
+      if (!isCtrlOrCmd || event.key.toLowerCase() !== 's') return;
+
+      event.preventDefault();
+
+      if (!hasUnsavedChanges || isSaving) return;
+      void handleSave();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleSave, hasUnsavedChanges, isEditMode, isSaving]);
+
+  const statusLabel = useMemo(() => {
+    if (isPublishing) return 'Publication en cours';
+    if (isSaving) return 'Enregistrement en cours';
+    if (hasUnsavedChanges) return 'Modifications non sauvegardées';
+    return 'Aucun changement en attente';
+  }, [hasUnsavedChanges, isPublishing, isSaving]);
 
   if (!isEditMode) return null;
 
@@ -142,24 +204,12 @@ export const AdminToolbar: React.FC = () => {
               title="Télécharger la configuration (JSON)"
             >
               <span>📥</span>
+              <span className="hidden sm:inline">Exporter</span>
             </button>
 
             {/* Bouton Publier */}
             <button
-              onClick={async () => {
-                if (confirm('Voulez-vous publier les modifications en ligne ? Cela peut prendre quelques minutes.')) {
-                  setIsPublishing(true);
-                  try {
-                    await publishToGitHub();
-                    alert('✅ Modifications publiées avec succès ! Le site sera mis à jour dans quelques instants.');
-                  } catch (e) {
-                    console.error(e);
-                    alert('❌ Erreur lors de la publication. Vérifiez la configuration GitHub.');
-                  } finally {
-                    setIsPublishing(false);
-                  }
-                }
-              }}
+              onClick={() => setConfirmAction('publish')}
               disabled={isPublishing}
               className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-2 ${
                 isPublishing ? 'bg-purple-700 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-700'
@@ -205,11 +255,11 @@ export const AdminToolbar: React.FC = () => {
         <div className="bg-stone-800 px-4 py-2 text-xs text-stone-400 border-t border-stone-700">
           <div className="flex items-center justify-between">
             <div>
-              💡 <span className="font-medium text-stone-300">Astuce :</span> Cliquez
-              directement sur les textes et images pour les modifier
+              <span className="font-medium text-stone-300">État :</span> {statusLabel}
             </div>
             <div>
-              Page : <span className="font-medium text-white">{window.location.pathname}</span>
+              <span className="hidden md:inline">Raccourci : </span>
+              <span className="font-medium text-white">Ctrl/Cmd + S</span>
             </div>
           </div>
         </div>
@@ -217,6 +267,32 @@ export const AdminToolbar: React.FC = () => {
 
       {/* Spacer pour ne pas cacher le contenu */}
       <div className="h-[88px]" />
+
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
+
+      <ConfirmModal
+        isOpen={confirmAction === 'publish'}
+        title="Publier le site"
+        message="Les modifications vont être envoyées sur GitHub puis redéployées sur Netlify. Continuer ?"
+        confirmLabel="Publier"
+        onConfirm={() => {
+          void handlePublish();
+        }}
+        onCancel={() => setConfirmAction(null)}
+      />
+
+      <ConfirmModal
+        isOpen={confirmAction === 'logout'}
+        title="Se déconnecter"
+        message="Des modifications locales ne sont pas encore enregistrées. Voulez-vous quand même vous déconnecter ?"
+        confirmLabel="Se déconnecter"
+        confirmVariant="danger"
+        onConfirm={() => {
+          logout();
+          setConfirmAction(null);
+        }}
+        onCancel={() => setConfirmAction(null)}
+      />
     </>
   );
 };
