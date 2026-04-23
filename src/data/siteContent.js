@@ -86,6 +86,19 @@ export const initialSiteContent = {
         }
       }
     ],
+    "about": [
+      {
+        "id": "about-page-main",
+        "type": "about",
+        "content": {
+          "titlePrefix": "À",
+          "title": "propos",
+          "subtitle": "Mon parcours et ma vision de la naturopathie",
+          "content": "Après plusieurs années dans le domaine de la santé, j'ai découvert la naturopathie et son approche préventive et naturelle. Formée à l'école Aesculape d'Aix-en-Provence, j'ai acquis une solide expertise en nutrition, phytothérapie, aromathérapie et techniques de bien-être. Ma mission : vous accompagner avec bienveillance dans votre recherche d'équilibre et de vitalité.",
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/1.svg"
+        }
+      }
+    ],
     "services": [
       {
         "id": "services-header-1",

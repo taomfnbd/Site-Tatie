@@ -6,7 +6,7 @@ const About = () => {
   return (
     <SectionManager
       pageKey="about"
-      defaultSections={initialSiteContent.pages.about || initialSiteContent.pages.home || []}
+      defaultSections={initialSiteContent.pages.about || []}
     />
   );
 };
