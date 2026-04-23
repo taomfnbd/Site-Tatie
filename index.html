@@ -8,23 +8,11 @@
   <meta name="keywords" content="naturopathe Vacqueyras, naturopathie Vaucluse, massage bien-être Vacqueyras, bilan de vitalité, rééquilibrage alimentaire, gestion du stress" />
   <title>Alaïs Tavernier - Naturopathe & Massage Bien-être | Vacqueyras</title>
 
-  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- Google tag (gtag.js) - Décommenter et remplacer GA_MEASUREMENT_ID par votre ID réel -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID');
-  </script> -->
-
-  <!-- Preconnect pour optimiser le chargement des images -->
   <link rel="preconnect" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com">
   <link rel="dns-prefetch" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com">
-  
-  <!-- Preload des images critiques -->
+
   <link rel="preload" as="image" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png">
   <link rel="preload" as="image" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924366935-2B.png">
   <link rel="preload" as="image" href="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924373768-3B.png">
@@ -32,8 +20,7 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
-  
-  <!-- Formulaire caché pour Netlify Forms detection -->
+
   <form name="contact" netlify netlify-honeypot="bot-field" hidden>
     <input type="text" name="name" />
     <input type="email" name="email" />
@@ -42,7 +29,6 @@
     <input type="checkbox" name="consentPrivacy" />
   </form>
 
-  <!-- Script Netlify Identity -->
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {

@@ -1,17 +1,13 @@
-// Utilitaires SEO pour optimiser le référencement
 export const updatePageSEO = (pageData) => {
   const { title, description, keywords, canonicalUrl } = pageData;
 
-  // Mettre à jour le titre
   if (title) {
     document.title = title;
   }
 
-  // Mettre à jour ou créer les meta tags
   updateMetaTag('description', description);
   updateMetaTag('keywords', keywords);
-  
-  // Open Graph
+
   updateMetaTag('og:title', title, 'property');
   updateMetaTag('og:description', description, 'property');
   updateMetaTag('og:url', canonicalUrl || window.location.href, 'property');
@@ -20,45 +16,42 @@ export const updatePageSEO = (pageData) => {
   updateMetaTag('og:locale', 'fr_FR', 'property');
   updateMetaTag('og:site_name', 'Alaïs Tavernier - Naturopathe', 'property');
 
-  // Twitter Cards
   updateMetaTag('twitter:card', 'summary_large_image', 'name');
   updateMetaTag('twitter:title', title, 'name');
   updateMetaTag('twitter:description', description, 'name');
   updateMetaTag('twitter:image', 'https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png', 'name');
-  
-  // Canonical URL
+
   updateCanonicalUrl(canonicalUrl);
 };
 
 const updateMetaTag = (name, content, attribute = 'name') => {
   if (!content) return;
-  
+
   let meta = document.querySelector(`meta[${attribute}="${name}"]`);
-  
+
   if (!meta) {
     meta = document.createElement('meta');
     meta.setAttribute(attribute, name);
     document.head.appendChild(meta);
   }
-  
+
   meta.setAttribute('content', content);
 };
 
 const updateCanonicalUrl = (url) => {
   if (!url) return;
-  
+
   let canonical = document.querySelector('link[rel="canonical"]');
-  
+
   if (!canonical) {
     canonical = document.createElement('link');
     canonical.setAttribute('rel', 'canonical');
     document.head.appendChild(canonical);
   }
-  
+
   canonical.setAttribute('href', url);
 };
 
-// Données structurées JSON-LD pour le SEO local
 export const getStructuredData = () => {
   return {
     "@context": "https://schema.org",
@@ -86,7 +79,7 @@ export const getStructuredData = () => {
       "Th 09:00-17:00",
       "Sa 09:00-12:00"
     ],
-    "priceRange": "€€",
+    "priceRange": "EUR",
     "image": "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png",
     "logo": "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png",
     "sameAs": [

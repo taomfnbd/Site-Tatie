@@ -32,3 +32,10 @@ dist-ssr
 
 # Tina
 .tina/__generated__
+
+# Tina admin build
+public/admin
+
+
+# Local Netlify folder
+.netlify
