@@ -4,9 +4,7 @@ import { motion } from 'framer-motion';
 import SafeIcon from '../../common/SafeIcon';
 import EditableText from '../admin/EditableText';
 import EditableImage from '../admin/EditableImage';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiLeaf, FiHeart, FiClock, FiEuro } = FiIcons;
+import { FiFeather, FiHeart, FiClock, FiCreditCard } from 'react-icons/fi';
 
 const ServicesListSection = ({ content, onUpdate }) => {
   const data = {
@@ -123,7 +121,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
               <div className="lg:col-span-2 space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-14 h-14 flex items-center justify-center bg-white rounded-xl shadow-sm border border-stone-100">
-                    <SafeIcon icon={FiLeaf} className="text-[#95a58d] text-2xl" />
+                    <SafeIcon icon={FiFeather} className="text-[#95a58d] text-2xl" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-medium text-stone-800 tracking-wide">
@@ -170,7 +168,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
               {/* Tarifs Naturopathie */}
               <div className="bg-white/80 rounded-xl p-6 space-y-4 relative border border-stone-100">
                  <h3 className="text-lg font-medium text-stone-800 flex items-center space-x-2">
-                  <SafeIcon icon={FiEuro} className="text-[#95a58d]" />
+                  <SafeIcon icon={FiCreditCard} className="text-[#95a58d]" />
                   <span>Tarifs</span>
                 </h3>
                 <div className="border-b border-stone-200 pb-3">

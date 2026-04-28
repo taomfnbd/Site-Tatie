@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { useEditMode } from '../../contexts/EditModeContext';
-import ImageUploadModal from './ImageUploadModal';
+
+const ImageUploadModal = lazy(() => import('./ImageUploadModal'));
 
 interface EditableImageProps {
   src: string;
@@ -48,13 +49,17 @@ const EditableImage: React.FC<EditableImageProps> = ({
         )}
       </div>
 
-      <ImageUploadModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        currentSrc={src}
-        currentAlt={alt}
-        onSave={handleSave}
-      />
+      {isEditMode && isModalOpen && (
+        <Suspense fallback={null}>
+          <ImageUploadModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            currentSrc={src}
+            currentAlt={alt}
+            onSave={handleSave}
+          />
+        </Suspense>
+      )}
     </>
   );
 };

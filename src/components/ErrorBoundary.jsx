@@ -1,9 +1,7 @@
 import React from 'react';
 import SafeIcon from '../common/SafeIcon';
 import DragonflyImage from '../common/DragonflyImage';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiAlertTriangle, FiRefreshCw, FiHome } = FiIcons;
+import { FiAlertTriangle, FiRefreshCw, FiHome } from 'react-icons/fi';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

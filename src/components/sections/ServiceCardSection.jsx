@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SafeIcon from '../../common/SafeIcon';
 import EditableText from '../admin/EditableText';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiLeaf, FiHeart, FiClock, FiEuro, FiStar } = FiIcons;
+import { FiFeather, FiHeart, FiClock, FiCreditCard, FiStar } from 'react-icons/fi';
 
 // Mapping pour choisir l'icône
 const ICONS = {
-  'leaf': FiLeaf,
+  'leaf': FiFeather,
   'heart': FiHeart,
   'star': FiStar,
 };
@@ -40,7 +38,7 @@ const ServiceCardSection = ({ content, onUpdate }) => {
     onUpdate({ ...data, [field]: value });
   };
 
-  const IconComponent = ICONS[data.iconType] || FiLeaf;
+  const IconComponent = ICONS[data.iconType] || FiFeather;
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
@@ -116,7 +114,7 @@ const ServiceCardSection = ({ content, onUpdate }) => {
 
           <div className="bg-white/80 rounded-xl p-6 space-y-4 relative border border-stone-100">
             <h3 className="text-lg font-medium text-stone-800 flex items-center space-x-2">
-              <SafeIcon icon={FiEuro} className="text-[#95a58d]" />
+              <SafeIcon icon={FiCreditCard} className="text-[#95a58d]" />
               <span>Tarifs</span>
             </h3>
 

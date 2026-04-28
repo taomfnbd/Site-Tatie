@@ -4,9 +4,7 @@ import { motion } from 'framer-motion';
 import SafeIcon from '../../common/SafeIcon';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiCalendar, FiMail } = FiIcons;
+import { FiCalendar, FiMail } from 'react-icons/fi';
 
 const HeroSection = ({ content, onUpdate }) => {
   // Valeurs par défaut si le contenu est vide

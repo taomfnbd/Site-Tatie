@@ -4,9 +4,7 @@ import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
 import SafeIcon from '../../common/SafeIcon';
 import { useEditMode } from '../../contexts/EditModeContext';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiClock, FiEuro } = FiIcons;
+import { FiClock } from 'react-icons/fi';
 
 const ServiceProcessSection = ({ content, onUpdate }) => {
   const { isEditMode } = useEditMode();

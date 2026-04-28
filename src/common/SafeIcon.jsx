@@ -1,11 +1,10 @@
 import React from 'react';
-import * as FiIcons from 'react-icons/fi';
 import { FiAlertTriangle } from 'react-icons/fi';
 
-const SafeIcon = ({ icon, name, ...props }) => {
+const SafeIcon = ({ icon, ...props }) => {
   let IconComponent;
   try {
-    IconComponent = icon || (name && FiIcons[`Fi${name}`]);
+    IconComponent = icon;
   } catch (e) {
     IconComponent = null;
   }

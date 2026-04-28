@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import EditableText from '../admin/EditableText';
 import SafeIcon from '../../common/SafeIcon';
 import { useEditMode } from '../../contexts/EditModeContext';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiCheckCircle } = FiIcons;
+import { FiCheckCircle } from 'react-icons/fi';
 
 const ServiceBenefitsSection = ({ content, onUpdate }) => {
   const { isEditMode } = useEditMode();

@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
 import SafeIcon from '../../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiCheck, FiAlertCircle, FiInfo, FiSend } = FiIcons;
+import { FiCheck, FiAlertCircle, FiInfo, FiSend } from 'react-icons/fi';
 
 const ContactFormSection = ({ content, onUpdate }) => {
   const data = {

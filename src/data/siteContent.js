@@ -184,8 +184,8 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que la naturopathie ?",
           "paragraphs": [
+            "La naturopathie est une approche de bien-être globale qui aide à soutenir la vitalité par l'alimentation, l'hygiène de vie, la gestion du stress et l'écoute du corps. Elle ne remplace pas un suivi médical, un diagnostic ou un traitement prescrit par un professionnel de santé.",
             "Le naturopathe est un <strong>éducateur de santé</strong>. Il accompagne son client à comprendre le fonctionnement de son organisme, à devenir autonome et acteur de son bien-être.",
-            "Son rôle est de révéler en chacun sa propre capacité d'auto-guérison.",
             "J'accompagne chaque personne à retrouver vitalité et harmonie grâce à une approche naturelle et globale de la santé : alimentation, émotions, rythme de vie et équilibre intérieur.",
             "La naturopathie s'adresse à toute personne souhaitant améliorer son bien-être, retrouver vitalité et équilibre au naturel : enfants, adolescents, adultes.",
             "Chaque accompagnement est personnalisé selon votre mode de vie, vos besoins et votre rythme."
@@ -231,6 +231,32 @@ export const initialSiteContent = {
         }
       },
       {
+        "id": "naturo-faq",
+        "type": "faq",
+        "content": {
+          "title": "Questions fréquentes sur la naturopathie",
+          "intro": "Des réponses courtes pour savoir si cet accompagnement correspond à votre besoin avant de prendre rendez-vous.",
+          "items": [
+            {
+              "question": "À quoi sert un bilan de vitalité ?",
+              "answer": "Le bilan de vitalité permet d'identifier vos habitudes, votre rythme de vie, votre alimentation, votre niveau de stress et vos besoins prioritaires afin de proposer des conseils naturels personnalisés."
+            },
+            {
+              "question": "La naturopathie remplace-t-elle un médecin ?",
+              "answer": "Non. La naturopathie est une approche complémentaire de bien-être. Elle ne pose pas de diagnostic, ne prescrit pas de traitement et ne remplace jamais une consultation médicale."
+            },
+            {
+              "question": "Combien de temps dure une première consultation ?",
+              "answer": "La première consultation dure environ 1h30. Elle comprend un échange approfondi et un bilan de vitalité pour construire un accompagnement adapté."
+            },
+            {
+              "question": "Quels sujets peut-on aborder en consultation ?",
+              "answer": "Les consultations peuvent aborder la digestion, l'alimentation, la fatigue, le stress, le sommeil, la peau, les cycles féminins et les changements de rythme de vie."
+            }
+          ]
+        }
+      },
+      {
         "id": "naturo-cta",
         "type": "service_cta",
         "content": {
@@ -258,6 +284,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que le massage assis ?",
           "paragraphs": [
+            "Le massage assis est une technique de détente courte, pratiquée habillé, qui cible principalement le dos, la nuque, les épaules, les bras et les mains. Il vise à relâcher les tensions et à offrir une pause bien-être accessible.",
             "Le massage assis est un <strong>enchaînement précis</strong> composé de pressions et d'étirements. Il est pratiqué <strong>habillé et sans huile</strong>, ce qui le rend particulièrement pratique et accessible.",
             "Cette technique permet une <strong>détente immédiate</strong> en ciblant les zones où s'accumulent le plus souvent les tensions : nuque, épaules, dos."
           ]
@@ -296,6 +323,32 @@ export const initialSiteContent = {
             "Stimule l'énergie et la vitalité",
             "Procure une détente immédiate",
             "Soulage les douleurs musculaires"
+          ]
+        }
+      },
+      {
+        "id": "massage-faq",
+        "type": "faq",
+        "content": {
+          "title": "Questions fréquentes sur le massage assis",
+          "intro": "Les informations essentielles pour préparer votre séance de massage assis à Vacqueyras.",
+          "items": [
+            {
+              "question": "Faut-il se déshabiller pour un massage assis ?",
+              "answer": "Non. Le massage assis se pratique habillé, sans huile, sur une chaise de massage adaptée."
+            },
+            {
+              "question": "Combien de temps dure la séance ?",
+              "answer": "La séance de massage assis dure environ 30 minutes. Elle cible les zones de tension les plus fréquentes : dos, nuque, épaules, bras et mains."
+            },
+            {
+              "question": "À qui s'adresse le massage assis ?",
+              "answer": "Le massage assis s'adresse aux personnes qui souhaitent une pause détente rapide, notamment en cas de stress, de tensions musculaires ou de besoin de récupération."
+            },
+            {
+              "question": "Quel est le tarif d'un massage assis ?",
+              "answer": "Le tarif d'une séance complète de massage assis est de 30 euros."
+            }
           ]
         }
       },

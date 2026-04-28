@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SafeIcon from '../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiInfo, FiX, FiCheck } = FiIcons;
+import { FiInfo, FiX, FiCheck } from 'react-icons/fi';
 
 const CookieConsent = () => {
   const [showConsent, setShowConsent] = useState(false);

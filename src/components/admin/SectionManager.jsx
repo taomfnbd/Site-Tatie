@@ -1,45 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { useContent } from '../../contexts/ContentContext';
 import { useEditMode } from '../../contexts/EditModeContext';
-import EditableSection from './EditableSection';
-import AddSectionButton from './AddSectionButton';
-import SectionLibraryModal from './SectionLibraryModal';
-import HeroSection from '../sections/HeroSection';
-import AboutSection from '../sections/AboutSection';
-import CTASection from '../sections/CTASection';
-import ServicesListSection from '../sections/ServicesListSection';
-import ServicesHeaderSection from '../sections/ServicesHeaderSection';
-import ServiceCardSection from '../sections/ServiceCardSection';
-import ServiceHeroSection from '../sections/ServiceHeroSection';
-import ServiceContentSection from '../sections/ServiceContentSection';
-import ServiceProcessSection from '../sections/ServiceProcessSection';
-import ServiceProcessCardsSection from '../sections/ServiceProcessCardsSection';
-import ServiceBenefitsSection from '../sections/ServiceBenefitsSection';
-import ServiceCTASection from '../sections/ServiceCTASection';
-import ContactHeroSection from '../sections/ContactHeroSection';
-import ContactFormSection from '../sections/ContactFormSection';
-import ContactDetailsSection from '../sections/ContactDetailsSection';
-import LegalContentSection from '../sections/LegalContentSection';
+
+const EditableSection = lazy(() => import('./EditableSection'));
+const AddSectionButton = lazy(() => import('./AddSectionButton'));
+const SectionLibraryModal = lazy(() => import('./SectionLibraryModal'));
 
 // Mapping des types de sections vers leurs composants React
 const SECTION_COMPONENTS = {
-  'hero': HeroSection,
-  'about': AboutSection,
-  'cta': CTASection,
-  'services_list': ServicesListSection,
-  'services_header': ServicesHeaderSection,
-  'service_card': ServiceCardSection,
-  'service_hero': ServiceHeroSection,
-  'service_content': ServiceContentSection,
-  'service_process': ServiceProcessSection,
-  'service_process_cards': ServiceProcessCardsSection,
-  'service_benefits': ServiceBenefitsSection,
-  'service_cta': ServiceCTASection,
-  'contact_hero': ContactHeroSection,
-  'contact_form': ContactFormSection,
-  'contact_details': ContactDetailsSection,
-  'legal_content': LegalContentSection,
+  'hero': lazy(() => import('../sections/HeroSection')),
+  'about': lazy(() => import('../sections/AboutSection')),
+  'cta': lazy(() => import('../sections/CTASection')),
+  'services_list': lazy(() => import('../sections/ServicesListSection')),
+  'services_header': lazy(() => import('../sections/ServicesHeaderSection')),
+  'service_card': lazy(() => import('../sections/ServiceCardSection')),
+  'service_hero': lazy(() => import('../sections/ServiceHeroSection')),
+  'service_content': lazy(() => import('../sections/ServiceContentSection')),
+  'service_process': lazy(() => import('../sections/ServiceProcessSection')),
+  'service_process_cards': lazy(() => import('../sections/ServiceProcessCardsSection')),
+  'service_benefits': lazy(() => import('../sections/ServiceBenefitsSection')),
+  'service_cta': lazy(() => import('../sections/ServiceCTASection')),
+  'contact_hero': lazy(() => import('../sections/ContactHeroSection')),
+  'contact_form': lazy(() => import('../sections/ContactFormSection')),
+  'contact_details': lazy(() => import('../sections/ContactDetailsSection')),
+  'legal_content': lazy(() => import('../sections/LegalContentSection')),
+  'faq': lazy(() => import('../sections/FAQSection')),
 };
+
+const SectionFallback = () => <div className="min-h-24" aria-hidden="true" />;
 
 const SectionManager = ({ pageKey, defaultSections = [] }) => {
   const { getPageSections, updatePageSections } = useContent();
@@ -136,54 +124,69 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
           return <div key={section.id} className="p-4 bg-red-100 text-red-800">Type de section inconnu: {section.type}</div>;
         }
 
+        const renderedSection = (
+          <Suspense fallback={<SectionFallback />}>
+            <Component
+              content={section.content}
+              onUpdate={(newContent) => handleUpdateSection(index, newContent)}
+            />
+          </Suspense>
+        );
+
+        if (!isEditMode) {
+          return <React.Fragment key={section.id}>{renderedSection}</React.Fragment>;
+        }
+
         return (
           <React.Fragment key={section.id}>
-            {/* Zone d'insertion avant la section (visible seulement en mode édition) */}
-            {isEditMode && (
-              <div className="relative h-2 group">
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                  <button 
-                    onClick={() => handleAddSectionClick(index)}
-                    className="bg-[#95a58d] text-white text-xs px-2 py-1 rounded-full shadow-sm transform hover:scale-110 transition-transform"
-                  >
-                    + Ajouter une section ici
-                  </button>
-                </div>
-                <div className="absolute inset-x-0 top-1/2 h-[1px] bg-[#95a58d] opacity-0 group-hover:opacity-50"></div>
+            <div className="relative h-2 group">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                <button
+                  onClick={() => handleAddSectionClick(index)}
+                  className="bg-[#95a58d] text-white text-xs px-2 py-1 rounded-full shadow-sm transform hover:scale-110 transition-transform"
+                >
+                  + Ajouter une section ici
+                </button>
               </div>
-            )}
+              <div className="absolute inset-x-0 top-1/2 h-[1px] bg-[#95a58d] opacity-0 group-hover:opacity-50"></div>
+            </div>
 
-            <EditableSection
-              sectionIndex={index}
-              sectionType={section.type}
-              canMoveUp={index > 0}
-              canMoveDown={index < sections.length - 1}
-              onMoveUp={() => handleMoveUp(index)}
-              onMoveDown={() => handleMoveDown(index)}
-              onDelete={() => handleDelete(index)}
-              onDuplicate={() => handleDuplicate(index)}
-            >
-              <Component 
-                content={section.content} 
-                onUpdate={(newContent) => handleUpdateSection(index, newContent)} 
-              />
-            </EditableSection>
+            <Suspense fallback={renderedSection}>
+              <EditableSection
+                sectionIndex={index}
+                sectionType={section.type}
+                canMoveUp={index > 0}
+                canMoveDown={index < sections.length - 1}
+                onMoveUp={() => handleMoveUp(index)}
+                onMoveDown={() => handleMoveDown(index)}
+                onDelete={() => handleDelete(index)}
+                onDuplicate={() => handleDuplicate(index)}
+              >
+                {renderedSection}
+              </EditableSection>
+            </Suspense>
           </React.Fragment>
         );
       })}
 
       {/* Bouton ajouter à la fin */}
       {isEditMode && (
-        <div className="py-6 flex justify-center relative z-20">
-          <AddSectionButton onClick={() => handleAddSectionClick(sections.length)} />
-        </div>
+        <Suspense fallback={null}>
+          <div className="py-6 flex justify-center relative z-20">
+            <AddSectionButton onClick={() => handleAddSectionClick(sections.length)} />
+          </div>
+        </Suspense>
       )}
 
-      <SectionLibraryModal
-        isOpen={isLibraryOpen}
-        onClose={() => setIsLibraryOpen(false)}
-        onSelect={handleAddSectionSelect}
-      />
+      {isEditMode && isLibraryOpen && (
+        <Suspense fallback={null}>
+          <SectionLibraryModal
+            isOpen={isLibraryOpen}
+            onClose={() => setIsLibraryOpen(false)}
+            onSelect={handleAddSectionSelect}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };

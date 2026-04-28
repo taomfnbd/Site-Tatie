@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
 import SafeIcon from '../../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiPhone, FiMapPin, FiCalendar, FiInfo, FiInstagram, FiExternalLink } = FiIcons;
+import { FiPhone, FiMapPin, FiCalendar, FiInfo, FiInstagram, FiExternalLink } from 'react-icons/fi';
 
 const ContactDetailsSection = ({ content, onUpdate }) => {
   const data = {

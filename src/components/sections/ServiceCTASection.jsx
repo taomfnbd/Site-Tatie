@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
 import SafeIcon from '../../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiClock } = FiIcons;
+import { FiClock } from 'react-icons/fi';
 
 const ServiceCTASection = ({ content, onUpdate }) => {
   const data = {

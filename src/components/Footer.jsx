@@ -4,9 +4,7 @@ import SafeIcon from '../common/SafeIcon';
 import DragonflyImage from '../common/DragonflyImage';
 import EditableText from './admin/EditableText';
 import { useContent } from '../contexts/ContentContext';
-import * as FiIcons from 'react-icons/fi';
-
-const {FiPhone, FiMail, FiMapPin, FiInstagram, FiCalendar} = FiIcons;
+import { FiPhone, FiMapPin, FiInstagram, FiCalendar } from 'react-icons/fi';
 
 const Footer = () => {
   const { globalContent, updateGlobalContent } = useContent();
