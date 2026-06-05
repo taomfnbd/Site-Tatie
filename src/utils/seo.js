@@ -37,6 +37,14 @@ export const seoConfig = {
       "naturopathie Vacqueyras, bilan de vitalité, troubles digestifs, gestion stress, rééquilibrage alimentaire",
     canonicalUrl: `${SITE_URL}/#/naturopathie`,
   },
+  "/reflexologie": {
+    title: "Réflexologie à Vacqueyras | Séance de détente naturelle",
+    description:
+      "Séance de réflexologie à Vacqueyras : stimulation des zones réflexes pour détente, gestion du stress, sommeil et vitalité. Première séance 1h.",
+    keywords:
+      "réflexologie Vacqueyras, réflexologie plantaire, détente naturelle, gestion stress, troubles du sommeil, bien-être Vaucluse",
+    canonicalUrl: `${SITE_URL}/#/reflexologie`,
+  },
   "/massage-assis": {
     title: "Massage assis à Vacqueyras | Séance détente 30 min",
     description:
@@ -245,6 +253,20 @@ const localBusiness = {
         priceCurrency: "EUR",
         itemOffered: { "@id": `${SITE_URL}/massage-assis#service` },
       },
+      {
+        "@type": "Offer",
+        name: "Réflexologie - Première séance",
+        price: "60",
+        priceCurrency: "EUR",
+        itemOffered: { "@id": `${SITE_URL}/reflexologie#service` },
+      },
+      {
+        "@type": "Offer",
+        name: "Réflexologie - Séance de suivi",
+        price: "50",
+        priceCurrency: "EUR",
+        itemOffered: { "@id": `${SITE_URL}/reflexologie#service` },
+      },
     ],
   },
 };
@@ -284,6 +306,34 @@ const services = {
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
         url: `${SITE_URL}/naturopathie`,
+      },
+    ],
+  },
+  "/reflexologie": {
+    "@type": "Service",
+    "@id": `${SITE_URL}/reflexologie#service`,
+    name: "Réflexologie",
+    serviceType: "Réflexologie plantaire et palmaire",
+    description:
+      "Séance de réflexologie par stimulation des zones réflexes pour favoriser la détente, améliorer la circulation et retrouver l'équilibre naturel.",
+    provider: { "@id": `${SITE_URL}/#localbusiness` },
+    areaServed: { "@type": "City", name: "Vacqueyras" },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Première séance",
+        price: "60",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: `${SITE_URL}/reflexologie`,
+      },
+      {
+        "@type": "Offer",
+        name: "Séance de suivi",
+        price: "50",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: `${SITE_URL}/reflexologie`,
       },
     ],
   },
@@ -330,6 +380,28 @@ const faqByPath = {
         "Les consultations peuvent aborder la digestion, l'alimentation, la fatigue, le stress, le sommeil, la peau, les cycles féminins et les changements de rythme de vie.",
     },
   ],
+  "/reflexologie": [
+    {
+      question: "Est-ce que la réflexologie fait mal ?",
+      answer:
+        "La réflexologie est une technique douce. Certaines zones peuvent être plus sensibles, ce qui indique les zones de tension. La pression est toujours adaptée à votre confort.",
+    },
+    {
+      question: "Combien de temps dure une séance ?",
+      answer:
+        "La première séance dure environ 1 heure (incluant l'échange préalable). Les séances suivantes durent environ 45 minutes.",
+    },
+    {
+      question: "La réflexologie remplace-t-elle un traitement médical ?",
+      answer:
+        "Non. La réflexologie est une approche complémentaire de bien-être. Elle ne pose pas de diagnostic, ne prescrit pas de traitement et ne remplace jamais une consultation médicale.",
+    },
+    {
+      question: "À qui s'adresse la réflexologie ?",
+      answer:
+        "La réflexologie s'adresse à tous : enfants, adolescents, adultes. Elle est adaptée à de nombreux motifs de consultation liés au stress, à la fatigue, aux douleurs ou aux troubles fonctionnels.",
+    },
+  ],
   "/massage-assis": [
     {
       question: "Faut-il se déshabiller pour un massage assis ?",
@@ -359,6 +431,7 @@ const pageNames = {
   "/about": "À propos",
   "/prestations": "Prestations",
   "/naturopathie": "Naturopathie",
+  "/reflexologie": "Réflexologie",
   "/massage-assis": "Massage assis",
   "/contact": "Contact",
   "/mentions-legales": "Mentions légales",
@@ -435,7 +508,11 @@ export const getStructuredData = (path = "/") => {
   ];
 
   if (path === "/prestations") {
-    graph.push(services["/naturopathie"], services["/massage-assis"]);
+    graph.push(
+      services["/naturopathie"],
+      services["/reflexologie"],
+      services["/massage-assis"],
+    );
     graph.push({
       "@type": "ItemList",
       "@id": `${SITE_URL}/prestations#services`,
@@ -449,6 +526,11 @@ export const getStructuredData = (path = "/") => {
         {
           "@type": "ListItem",
           position: 2,
+          item: { "@id": `${SITE_URL}/reflexologie#service` },
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
           item: { "@id": `${SITE_URL}/massage-assis#service` },
         },
       ],
