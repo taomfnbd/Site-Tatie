@@ -1,18 +1,17 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import StaticDragonfly from '../../common/StaticDragonfly';
-import EditableText from '../admin/EditableText';
-import { useEditMode } from '../../contexts/EditModeContext';
+import React from "react";
+import { motion } from "framer-motion";
+import EditableText from "../admin/EditableText";
+import { useEditMode } from "../../contexts/EditModeContext";
 
 const ServiceContentSection = ({ content, onUpdate }) => {
   const { isEditMode } = useEditMode();
   const data = {
-    title: 'Titre de la section',
+    title: "Titre de la section",
     paragraphs: [
-      'Paragraphe 1. Cliquez pour éditer ce texte.',
-      'Paragraphe 2. Ajoutez autant de détails que nécessaire.',
+      "Paragraphe 1. Cliquez pour éditer ce texte.",
+      "Paragraphe 2. Ajoutez autant de détails que nécessaire.",
     ],
-    ...content
+    ...content,
   };
 
   const updateField = (field, value) => {
@@ -26,7 +25,10 @@ const ServiceContentSection = ({ content, onUpdate }) => {
   };
 
   const addParagraph = () => {
-    onUpdate({ ...data, paragraphs: [...data.paragraphs, 'Nouveau paragraphe'] });
+    onUpdate({
+      ...data,
+      paragraphs: [...data.paragraphs, "Nouveau paragraphe"],
+    });
   };
 
   const removeParagraph = (index) => {
@@ -36,27 +38,37 @@ const ServiceContentSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      className="bg-gradient-to-br from-stone-25 to-green-25 rounded-2xl p-8 lg:p-10 mb-16 relative border border-stone-100"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-20"
     >
-      <StaticDragonfly type={3} className="absolute top-8 right-8 w-16 h-16 opacity-85" />
-      <EditableText
-        value={data.title}
-        onChange={(val) => updateField('title', val)}
-        element="h2"
-        className="text-2xl font-medium text-stone-800 mb-6 text-center tracking-wide"
-      />
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="text-center mb-8">
+        <EditableText
+          value={data.title}
+          onChange={(val) => updateField("title", val)}
+          element="h2"
+          className="text-2xl sm:text-3xl font-light text-stone-800 tracking-wide"
+        />
+        <div className="w-12 h-[2px] bg-[#95a58d]/40 mx-auto mt-4" />
+      </div>
+      <div className="max-w-3xl mx-auto space-y-5">
         {data.paragraphs.map((paragraph, index) => (
-          <div key={index} className="relative group">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.08 }}
+            className="relative group"
+          >
             <EditableText
               value={paragraph}
               onChange={(val) => updateParagraph(index, val)}
               element="p"
               allowHTML={true}
-              className="text-base text-stone-700 leading-relaxed font-light"
+              className="text-base sm:text-lg text-stone-600 leading-relaxed font-light text-center"
             />
             {isEditMode && (
               <button
@@ -67,12 +79,12 @@ const ServiceContentSection = ({ content, onUpdate }) => {
                 ×
               </button>
             )}
-          </div>
+          </motion.div>
         ))}
         {isEditMode && (
           <button
             onClick={addParagraph}
-            className="text-sm text-[#95a58d] hover:text-[#7a8471] mt-2 opacity-50 hover:opacity-100 transition-opacity"
+            className="block mx-auto text-sm text-[#95a58d] hover:text-[#7a8471] mt-4 opacity-50 hover:opacity-100 transition-opacity"
           >
             + Ajouter un paragraphe
           </button>

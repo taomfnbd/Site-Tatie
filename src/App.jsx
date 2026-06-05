@@ -1,26 +1,29 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import ErrorBoundary from './components/ErrorBoundary';
-import LoadingSpinner from './components/LoadingSpinner';
-import SEOHead from './components/SEOHead';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import React, { Suspense, lazy, useState, useEffect } from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary";
+import LoadingSpinner from "./components/LoadingSpinner";
+import SEOHead from "./components/SEOHead";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Services = lazy(() => import('./pages/Services'));
-const Naturopathy = lazy(() => import('./pages/Naturopathy'));
-const Massage = lazy(() => import('./pages/Massage'));
-const Contact = lazy(() => import('./pages/Contact'));
-const LegalNotice = lazy(() => import('./pages/LegalNotice'));
-const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Naturopathy = lazy(() => import("./pages/Naturopathy"));
+const Reflexologie = lazy(() => import("./pages/Reflexologie"));
+const Massage = lazy(() => import("./pages/Massage"));
+const Contact = lazy(() => import("./pages/Contact"));
+const LegalNotice = lazy(() => import("./pages/LegalNotice"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 
-import { EditModeProvider, useEditMode } from './contexts/EditModeContext';
-import { ContentProvider } from './contexts/ContentContext';
+import { EditModeProvider, useEditMode } from "./contexts/EditModeContext";
+import { ContentProvider } from "./contexts/ContentContext";
 
-const AdminToolbar = lazy(() => import('./components/admin/AdminToolbar'));
-const AdminLoginModal = lazy(() => import('./components/admin/AdminLoginModal'));
-const CookieConsent = lazy(() => import('./components/CookieConsent'));
+const AdminToolbar = lazy(() => import("./components/admin/AdminToolbar"));
+const AdminLoginModal = lazy(
+  () => import("./components/admin/AdminLoginModal"),
+);
+const CookieConsent = lazy(() => import("./components/CookieConsent"));
 
 function DeferredCookieConsent() {
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -45,9 +48,9 @@ function AdminDetector() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.has('admin') && !isAuthenticated) {
+    if (params.has("admin") && !isAuthenticated) {
       setShowLoginModal(true);
-    } else if (!params.has('admin') || isAuthenticated) {
+    } else if (!params.has("admin") || isAuthenticated) {
       setShowLoginModal(false);
     }
   }, [isAuthenticated]);
@@ -84,12 +87,17 @@ function App() {
               <SEOHead />
               <Header />
               <main className="flex-1">
-                <Suspense fallback={<LoadingSpinner message="Chargement de la page..." />}>
+                <Suspense
+                  fallback={
+                    <LoadingSpinner message="Chargement de la page..." />
+                  }
+                >
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/prestations" element={<Services />} />
                     <Route path="/naturopathie" element={<Naturopathy />} />
+                    <Route path="/reflexologie" element={<Reflexologie />} />
                     <Route path="/massage-assis" element={<Massage />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/mentions-legales" element={<LegalNotice />} />

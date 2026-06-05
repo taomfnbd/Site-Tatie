@@ -27,6 +27,7 @@ Current public routes:
 - `/about`
 - `/prestations`
 - `/naturopathie`
+- `/reflexologie`
 - `/massage-assis`
 - `/contact`
 - `/mentions-legales`
