@@ -49,8 +49,8 @@ const ServiceProcessCardsSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
       className="mb-16 relative"
@@ -65,8 +65,8 @@ const ServiceProcessCardsSection = ({ content, onUpdate }) => {
         {data.steps.map((step, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 48 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 relative text-center border border-stone-100 group"

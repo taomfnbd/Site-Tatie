@@ -1,13 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import StaticDragonfly from '../../common/StaticDragonfly';
-import EditableText from '../admin/EditableText';
+import React from "react";
+import { motion } from "framer-motion";
+import StaticDragonfly from "../../common/StaticDragonfly";
+import EditableText from "../admin/EditableText";
 
 const CTASection = ({ content, onUpdate }) => {
   const data = {
-    title: 'Prêt(e) à prendre soin de votre bien-être ?',
-    description: 'Prenez rendez-vous dès maintenant pour un accompagnement personnalisé',
-    ...content
+    title: "Prêt(e) à prendre soin de votre bien-être ?",
+    description:
+      "Prenez rendez-vous dès maintenant pour un accompagnement personnalisé",
+    ...content,
   };
 
   const updateField = (field, value) => {
@@ -22,22 +23,22 @@ const CTASection = ({ content, onUpdate }) => {
       />
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 48 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-light text-white mb-4 sm:mb-6 tracking-wide">
             <EditableText
               value={data.title}
-              onChange={(val) => updateField('title', val)}
+              onChange={(val) => updateField("title", val)}
               element="span"
               className="inline"
             />
           </h2>
           <EditableText
             value={data.description}
-            onChange={(val) => updateField('description', val)}
+            onChange={(val) => updateField("description", val)}
             element="p"
             className="text-sm sm:text-base lg:text-lg text-green-100 mb-6 sm:mb-8 font-light"
           />
