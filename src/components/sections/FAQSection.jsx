@@ -127,7 +127,7 @@ const FAQSection = ({ content, onUpdate }) => {
                     >
                       <span className="leading-snug">{item.question}</span>
                       <FiChevronDown
-                        className={`mt-0.5 h-5 w-5 flex-shrink-0 text-[#95a58d] transition-transform duration-200 ${
+                        className={`mt-0.5 h-5 w-5 flex-shrink-0 text-[#6b7563] transition-transform duration-200 ${
                           isOpen ? "rotate-180" : ""
                         }`}
                         aria-hidden="true"
@@ -178,7 +178,7 @@ const FAQSection = ({ content, onUpdate }) => {
           <div className="text-center pt-3">
             <button
               onClick={addItem}
-              className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d]/40 rounded-full px-5 py-2 hover:bg-white transition-colors"
+              className="text-sm text-[#6b7563] hover:text-[#7a8471] border border-[#95a58d]/40 rounded-full px-5 py-2 hover:bg-white transition-colors"
             >
               + Ajouter une question
             </button>

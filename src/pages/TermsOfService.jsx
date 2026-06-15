@@ -7,7 +7,7 @@ const TermsOfService = () => {
       id: 'terms-of-service',
       type: 'legal_content',
       content: {
-        title: 'Conditions Générales <span class="text-[#95a58d]">d\'Utilisation</span>',
+        title: 'Conditions Générales <span class="text-[#6b7563]">d\'Utilisation</span>',
         content: `<h2>1. Présentation du site</h2>
           <p>
             Le présent site internet (Alaïs Tavernier Naturopathe) a pour objet de présenter les activités 

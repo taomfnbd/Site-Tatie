@@ -83,7 +83,7 @@ const ServiceBenefitsSection = ({ content, onUpdate }) => {
           <div className="text-center mt-5">
             <button
               onClick={addBenefit}
-              className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d]/40 rounded-full px-5 py-2 hover:bg-white transition-colors"
+              className="text-sm text-[#6b7563] hover:text-[#7a8471] border border-[#95a58d]/40 rounded-full px-5 py-2 hover:bg-white transition-colors"
             >
               + Ajouter un bienfait
             </button>

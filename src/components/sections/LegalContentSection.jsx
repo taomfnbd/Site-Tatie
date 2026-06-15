@@ -42,7 +42,7 @@ const LegalContentSection = ({ content, onUpdate }) => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-stone-100"
         >
-          <div className="prose prose-stone max-w-none prose-h2:text-xl prose-h2:font-medium prose-h2:text-stone-800 prose-h3:text-lg prose-h3:font-medium prose-h3:text-stone-700 prose-p:font-light prose-strong:font-medium prose-strong:text-[#95a58d]">
+          <div className="prose prose-stone max-w-none prose-h2:text-xl prose-h2:font-medium prose-h2:text-stone-800 prose-h3:text-lg prose-h3:font-medium prose-h3:text-stone-700 prose-p:font-light prose-strong:font-medium prose-strong:text-[#6b7563]">
              <EditableText
               value={data.content}
               onChange={(val) => updateField('content', val)}

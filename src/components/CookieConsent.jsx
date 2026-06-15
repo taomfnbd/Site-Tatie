@@ -46,7 +46,7 @@ const CookieConsent = () => {
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             <div className="flex-1">
               <div className="flex items-start space-x-3">
-                <SafeIcon icon={FiInfo} className="text-[#95a58d] mt-1 flex-shrink-0" />
+                <SafeIcon icon={FiInfo} className="text-[#6b7563] mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-stone-800 mb-1">Respect de votre vie privée</h3>
                   <p className="text-sm text-stone-600 leading-relaxed">
@@ -54,7 +54,7 @@ const CookieConsent = () => {
                     {!showDetails && (
                       <button
                         onClick={() => setShowDetails(true)}
-                        className="text-[#95a58d] hover:text-[#7a8471] ml-1 underline"
+                        className="text-[#6b7563] hover:text-[#7a8471] ml-1 underline"
                       >
                         En savoir plus
                       </button>
@@ -81,7 +81,7 @@ const CookieConsent = () => {
                         </div>
                         <button
                           onClick={() => setShowDetails(false)}
-                          className="text-[#95a58d] hover:text-[#7a8471] underline"
+                          className="text-[#6b7563] hover:text-[#7a8471] underline"
                         >
                           Masquer les détails
                         </button>

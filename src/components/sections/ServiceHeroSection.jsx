@@ -31,7 +31,7 @@ const ServiceHeroSection = ({ content, onUpdate }) => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="inline-block text-[#95a58d] text-sm font-medium tracking-widest uppercase mb-4"
+            className="inline-block text-[#6b7563] text-sm font-medium tracking-widest uppercase mb-4"
           >
             &bull; &bull; &bull;
           </motion.span>

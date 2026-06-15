@@ -84,7 +84,7 @@ const ServiceContentSection = ({ content, onUpdate }) => {
         {isEditMode && (
           <button
             onClick={addParagraph}
-            className="block mx-auto text-sm text-[#95a58d] hover:text-[#7a8471] mt-4 opacity-50 hover:opacity-100 transition-opacity"
+            className="block mx-auto text-sm text-[#6b7563] hover:text-[#7a8471] mt-4 opacity-50 hover:opacity-100 transition-opacity"
           >
             + Ajouter un paragraphe
           </button>
