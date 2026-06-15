@@ -157,6 +157,38 @@ export const initialSiteContent = {
         },
       },
       {
+        id: "service-reflexology-1",
+        type: "service_card",
+        content: {
+          iconType: "star",
+          gradient: "from-green-25 to-stone-25",
+          title: "Réflexologie",
+          subtitle: "Stimulation des zones réflexes pour le bien-être",
+          description:
+            "Une technique manuelle douce qui stimule des zones réflexes des pieds, des mains ou du visage pour favoriser la détente et l'équilibre naturel du corps.",
+          benefits: [
+            "Détente et réduction du stress",
+            "Amélioration de la circulation",
+            "Soutien du sommeil et de l'énergie",
+            "Séance personnalisée selon vos besoins",
+          ],
+          prices: [
+            {
+              type: "Première séance",
+              duration: "1h",
+              price: "60€",
+            },
+            {
+              type: "Séances suivantes",
+              duration: "45 min",
+              price: "50€",
+            },
+          ],
+          linkUrl: "/reflexologie",
+          linkText: "En savoir plus",
+        },
+      },
+      {
         id: "service-massage-1",
         type: "service_card",
         content: {
