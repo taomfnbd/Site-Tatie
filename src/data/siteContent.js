@@ -71,6 +71,8 @@ export const initialSiteContent = {
           quote:
             "La force qui est en chacun de nous est notre plus grand médecin",
           quoteAuthor: "Hippocrate",
+          imageUrl:
+            "https://raw.githubusercontent.com/taomfnbd/image2/main/1.svg",
         },
       },
       {
