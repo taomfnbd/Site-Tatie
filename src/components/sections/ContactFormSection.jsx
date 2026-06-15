@@ -171,7 +171,7 @@ const ContactFormSection = ({ content, onUpdate }) => {
               name="consentData"
               checked={formData.consentData}
               onChange={handleChange}
-              className="mt-1 w-4 h-4 text-[#95a58d] border-stone-300 rounded focus:ring-[#95a58d]"
+              className="mt-1 w-4 h-4 text-[#6b7563] border-stone-300 rounded focus:ring-[#95a58d]"
             />
             <span className="text-sm text-stone-700 font-light">J'accepte l'utilisation de mes données dans le cadre de ce contact. *</span>
           </label>
@@ -181,7 +181,7 @@ const ContactFormSection = ({ content, onUpdate }) => {
               name="consentPrivacy"
               checked={formData.consentPrivacy}
               onChange={handleChange}
-              className="mt-1 w-4 h-4 text-[#95a58d] border-stone-300 rounded focus:ring-[#95a58d]"
+              className="mt-1 w-4 h-4 text-[#6b7563] border-stone-300 rounded focus:ring-[#95a58d]"
             />
             <span className="text-sm text-stone-700 font-light">J'ai bien pris connaissance du principe de confidentialité. *</span>
           </label>

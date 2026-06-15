@@ -53,7 +53,7 @@ const ServiceCardSection = ({ content, onUpdate }) => {
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-4">
               <div className="w-14 h-14 flex items-center justify-center bg-white rounded-xl shadow-sm border border-stone-100">
-                <SafeIcon icon={IconComponent} className="text-[#95a58d] text-2xl" />
+                <SafeIcon icon={IconComponent} className="text-[#6b7563] text-2xl" />
               </div>
               <div>
                 <h2 className="text-2xl font-medium text-stone-800 tracking-wide">
@@ -114,7 +114,7 @@ const ServiceCardSection = ({ content, onUpdate }) => {
 
           <div className="bg-white/80 rounded-xl p-6 space-y-4 relative border border-stone-100">
             <h3 className="text-lg font-medium text-stone-800 flex items-center space-x-2">
-              <SafeIcon icon={FiCreditCard} className="text-[#95a58d]" />
+              <SafeIcon icon={FiCreditCard} className="text-[#6b7563]" />
               <span>Tarifs</span>
             </h3>
 
@@ -147,7 +147,7 @@ const ServiceCardSection = ({ content, onUpdate }) => {
                       </span>
                     </p>
                   </div>
-                  <p className="text-lg font-semibold text-[#95a58d]">
+                  <p className="text-lg font-semibold text-[#6b7563]">
                     <EditableText 
                       value={price.price} 
                       onChange={(v) => {

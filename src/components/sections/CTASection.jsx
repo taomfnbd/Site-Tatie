@@ -46,13 +46,13 @@ const CTASection = ({ content, onUpdate }) => {
               href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-[#95a58d] px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:bg-stone-100 transition-all duration-300 shadow-sm"
+              className="bg-white text-[#6b7563] px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:bg-stone-100 transition-all duration-300 shadow-sm"
             >
               Réserver sur Resalib
             </a>
             <a
               href="tel:0781660929"
-              className="border border-white text-white px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:bg-white hover:text-[#95a58d] transition-all duration-300"
+              className="border border-white text-white px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:bg-white hover:text-[#6b7563] transition-all duration-300"
             >
               Appeler directement
             </a>

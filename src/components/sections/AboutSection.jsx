@@ -44,7 +44,7 @@ const AboutSection = ({ content, onUpdate }) => {
               value={data.title}
               onChange={(val) => updateField('title', val)}
               element="span"
-              className="text-[#95a58d] inline"
+              className="text-[#6b7563] inline"
             />
           </h2>
           <EditableText

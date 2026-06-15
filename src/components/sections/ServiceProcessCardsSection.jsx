@@ -103,7 +103,7 @@ const ServiceProcessCardsSection = ({ content, onUpdate }) => {
         <div className="text-center mt-8">
           <button
             onClick={addStep}
-            className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d] rounded-full px-4 py-2 hover:bg-green-50 transition-colors"
+            className="text-sm text-[#6b7563] hover:text-[#7a8471] border border-[#95a58d] rounded-full px-4 py-2 hover:bg-green-50 transition-colors"
           >
             + Ajouter une étape
           </button>

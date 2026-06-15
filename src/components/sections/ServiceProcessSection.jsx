@@ -101,7 +101,7 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
               )}
 
               <div className="flex items-start gap-4 mb-5">
-                <div className="w-10 h-10 bg-[#95a58d]/10 text-[#95a58d] rounded-xl flex items-center justify-center font-semibold text-base flex-shrink-0">
+                <div className="w-10 h-10 bg-[#95a58d]/10 text-[#6b7563] rounded-xl flex items-center justify-center font-semibold text-base flex-shrink-0">
                   {index + 1}
                 </div>
                 <h3 className="text-lg font-medium text-stone-800 tracking-wide pt-1">
@@ -122,7 +122,7 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
               {showMeta && (
                 <div className="flex items-center gap-3 pt-4 border-t border-stone-100">
                   {(hasDuration || isEditMode) && (
-                    <span className="text-xs sm:text-sm text-[#95a58d] bg-[#95a58d]/8 px-3 py-1.5 rounded-full flex items-center gap-1.5 font-light">
+                    <span className="text-xs sm:text-sm text-[#6b7563] bg-[#95a58d]/8 px-3 py-1.5 rounded-full flex items-center gap-1.5 font-light">
                       <SafeIcon icon={FiClock} className="text-[10px]" />
                       <EditableText
                         value={step.duration}
@@ -137,7 +137,7 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
                     </span>
                   )}
                   {(hasPrice || isEditMode) && (
-                    <span className="text-lg font-semibold text-[#95a58d] ml-auto">
+                    <span className="text-lg font-semibold text-[#6b7563] ml-auto">
                       <EditableText
                         value={step.price}
                         onChange={(val) => updateStep(index, "price", val)}
@@ -159,7 +159,7 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
         <div className="text-center mt-6">
           <button
             onClick={addStep}
-            className="text-sm text-[#95a58d] hover:text-[#7a8471] border border-[#95a58d]/40 rounded-full px-5 py-2 hover:bg-[#95a58d]/5 transition-colors"
+            className="text-sm text-[#6b7563] hover:text-[#7a8471] border border-[#95a58d]/40 rounded-full px-5 py-2 hover:bg-[#95a58d]/5 transition-colors"
           >
             + Ajouter une étape
           </button>

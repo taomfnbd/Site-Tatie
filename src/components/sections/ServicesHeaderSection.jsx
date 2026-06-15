@@ -39,7 +39,7 @@ const ServicesHeaderSection = ({ content, onUpdate }) => {
                 value={data.title} 
                 onChange={(v) => updateField('title', v)} 
                 element="span" 
-                className="text-[#95a58d]" 
+                className="text-[#6b7563]" 
               />
             </h1>
             <EditableText

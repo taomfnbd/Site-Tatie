@@ -137,7 +137,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
               <div className="mt-8 pt-8 border-t border-white/20">
                 <a
                   href="tel:0781660929"
-                  className="w-full bg-white text-[#95a58d] py-3 rounded-lg font-medium hover:bg-stone-100 transition-colors flex items-center justify-center space-x-2"
+                  className="w-full bg-white text-[#6b7563] py-3 rounded-lg font-medium hover:bg-stone-100 transition-colors flex items-center justify-center space-x-2"
                 >
                   <SafeIcon icon={FiPhone} />
                   <span>Appeler maintenant</span>
@@ -147,7 +147,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
 
             <div className="bg-white rounded-xl p-8 shadow-sm relative overflow-hidden border border-stone-100">
               <div className="flex items-center space-x-4 mb-6">
-                <SafeIcon icon={FiCalendar} className="text-2xl text-[#95a58d]" />
+                <SafeIcon icon={FiCalendar} className="text-2xl text-[#6b7563]" />
                 <EditableText
                   value={data.booking.title}
                   onChange={(val) => updateField('booking.title', val)}

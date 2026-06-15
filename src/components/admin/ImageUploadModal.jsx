@@ -61,13 +61,13 @@ const ImageUploadModal = ({ isOpen, onClose, currentSrc, currentAlt, onSave }) =
             <div className="flex space-x-4 border-b border-stone-200 pb-2">
               <button
                 onClick={() => setMode('upload')}
-                className={`pb-2 text-sm font-medium transition-colors ${mode === 'upload' ? 'text-[#95a58d] border-b-2 border-[#95a58d]' : 'text-stone-500 hover:text-stone-800'}`}
+                className={`pb-2 text-sm font-medium transition-colors ${mode === 'upload' ? 'text-[#6b7563] border-b-2 border-[#95a58d]' : 'text-stone-500 hover:text-stone-800'}`}
               >
                 Importer
               </button>
               <button
                 onClick={() => setMode('url')}
-                className={`pb-2 text-sm font-medium transition-colors ${mode === 'url' ? 'text-[#95a58d] border-b-2 border-[#95a58d]' : 'text-stone-500 hover:text-stone-800'}`}
+                className={`pb-2 text-sm font-medium transition-colors ${mode === 'url' ? 'text-[#6b7563] border-b-2 border-[#95a58d]' : 'text-stone-500 hover:text-stone-800'}`}
               >
                 Lien URL
               </button>

@@ -5,7 +5,7 @@ import EditableText from '../admin/EditableText';
 
 const ContactHeroSection = ({ content, onUpdate }) => {
   const data = {
-    title: 'Contact & <span class="text-[#95a58d]">Infos pratiques</span>',
+    title: 'Contact & <span class="text-[#6b7563]">Infos pratiques</span>',
     subtitle: 'Toutes les informations pour me contacter et organiser votre rendez-vous',
     ...content
   };

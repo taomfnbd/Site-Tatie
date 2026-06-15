@@ -85,7 +85,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
                 value={data.header.title} 
                 onChange={(v) => updateField('header.title', v)} 
                 element="span" 
-                className="text-[#95a58d]" 
+                className="text-[#6b7563]" 
               />
             </h1>
             <EditableText
@@ -121,7 +121,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
               <div className="lg:col-span-2 space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-14 h-14 flex items-center justify-center bg-white rounded-xl shadow-sm border border-stone-100">
-                    <SafeIcon icon={FiFeather} className="text-[#95a58d] text-2xl" />
+                    <SafeIcon icon={FiFeather} className="text-[#6b7563] text-2xl" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-medium text-stone-800 tracking-wide">
@@ -168,7 +168,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
               {/* Tarifs Naturopathie */}
               <div className="bg-white/80 rounded-xl p-6 space-y-4 relative border border-stone-100">
                  <h3 className="text-lg font-medium text-stone-800 flex items-center space-x-2">
-                  <SafeIcon icon={FiCreditCard} className="text-[#95a58d]" />
+                  <SafeIcon icon={FiCreditCard} className="text-[#6b7563]" />
                   <span>Tarifs</span>
                 </h3>
                 <div className="border-b border-stone-200 pb-3">
@@ -184,7 +184,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
                         </span>
                       </p>
                     </div>
-                    <p className="text-lg font-semibold text-[#95a58d]">
+                    <p className="text-lg font-semibold text-[#6b7563]">
                       <EditableText value={data.naturopathy.price1.price} onChange={(v) => updateField('naturopathy.price1.price', v)} />
                     </p>
                    </div>
@@ -199,7 +199,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
               <div className="lg:col-span-2 space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-14 h-14 flex items-center justify-center bg-white rounded-xl shadow-sm border border-stone-100">
-                    <SafeIcon icon={FiHeart} className="text-[#95a58d] text-2xl" />
+                    <SafeIcon icon={FiHeart} className="text-[#6b7563] text-2xl" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-medium text-stone-800 tracking-wide">

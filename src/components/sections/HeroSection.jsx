@@ -54,7 +54,7 @@ const HeroSection = ({ content, onUpdate }) => {
                 value={data.lastName}
                 onChange={(val) => updateField('lastName', val)}
                 element="span"
-                className="text-[#95a58d] font-normal inline"
+                className="text-[#6b7563] font-normal inline"
               />
             </h1>
             <div className="mb-6 sm:mb-8 lg:mb-10">
@@ -87,7 +87,7 @@ const HeroSection = ({ content, onUpdate }) => {
                 value={`"${data.quote}"`}
                 onChange={(val) => updateField('quote', val.replace(/"/g, ''))}
                 element="p"
-                className="text-base sm:text-lg lg:text-xl text-[#95a58d] font-light italic"
+                className="text-base sm:text-lg lg:text-xl text-[#6b7563] font-light italic"
               />
               <p className="text-sm sm:text-base text-stone-500 mt-2 sm:mt-3 font-light">
                 — <EditableText
@@ -110,7 +110,7 @@ const HeroSection = ({ content, onUpdate }) => {
               </a>
               <Link
                 to="/contact"
-                className="flex items-center justify-center space-x-2 border border-[#95a58d] text-[#95a58d] px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium hover:bg-[#95a58d] hover:text-white transition-all duration-300"
+                className="flex items-center justify-center space-x-2 border border-[#95a58d] text-[#6b7563] px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium hover:bg-[#95a58d] hover:text-white transition-all duration-300"
               >
                 <SafeIcon icon={FiMail} />
                 <span>Me contacter</span>
