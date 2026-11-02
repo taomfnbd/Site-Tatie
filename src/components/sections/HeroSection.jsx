@@ -49,7 +49,7 @@ const HeroSection = ({ content, onUpdate }) => {
             <div className="aspect-[4/5] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-stone-100">
               <EditableImage
                 priority
-                sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, 320px"
+                sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, (min-width: 640px) 384px, 280px"
                 src={data.imageUrl}
                 alt={
                   data.imageAlt || "Alaïs Tavernier, naturopathe à Vacqueyras"

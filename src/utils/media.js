@@ -9,8 +9,14 @@ export function imageSet(src = "") {
     src.match(sourcePattern) ||
     src.match(/^\/images\/photo-([1-4])-\d+\.webp$/);
   return match
-    ? [480, 800, 1200]
+    ? (match[1] === "1" ? [480, 640, 800, 1200] : [480, 800, 1200])
         .map((width) => `/images/photo-${match[1]}-${width}.webp ${width}w`)
         .join(", ")
+    : undefined;
+}
+
+export function portraitAvifSet(src = "") {
+  return imageSource(src).startsWith("/images/photo-1-")
+    ? imageSet(src)?.replaceAll(".webp", ".avif")
     : undefined;
 }
