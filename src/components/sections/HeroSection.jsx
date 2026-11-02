@@ -1,3 +1,4 @@
+import { bookingUrl } from "../../utils/business";
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -136,7 +137,7 @@ const HeroSection = ({ content, onUpdate }) => {
             )}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center lg:justify-start">
               <a
-                href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
+                href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center space-x-2 bg-[#5e7056] text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium hover:bg-[#4e6048] transition-all duration-300 shadow-sm hover:shadow-md"

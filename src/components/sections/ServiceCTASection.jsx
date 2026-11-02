@@ -1,3 +1,4 @@
+import { bookingUrl } from "../../utils/business";
 import React from "react";
 import { motion } from "framer-motion";
 import EditableText from "../admin/EditableText";
@@ -68,7 +69,7 @@ const ServiceCTASection = ({ content, onUpdate }) => {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
+              href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white text-[#6b7563] px-7 py-3 rounded-full text-sm font-medium hover:bg-stone-100 transition-all duration-300 shadow-sm hover:shadow-md"

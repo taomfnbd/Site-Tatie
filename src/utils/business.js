@@ -48,3 +48,53 @@ export function breadcrumbItems(path) {
     { name: labels[path], path },
   ];
 }
+
+const plainText = (value) =>
+  String(value || "")
+    .replace(/<br\s*\/?\s*>/gi, "\n")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;|&#160;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .trim();
+export function instagramProfileUrl(handle) {
+  const username = plainText(handle).replace(/^@/, "").trim();
+  return username
+    ? `https://www.instagram.com/${encodeURIComponent(username)}/`
+    : instagramUrl;
+}
+// Public coordinates are derived once from the editable cabinet details.
+export function getBusinessProfile(content) {
+  const footer = content.footer;
+  const name = plainText(content.header?.brand?.name || footer.brand.name);
+  const rawAddress = plainText(footer.contact.address)
+    .replace(/\s*\n\s*/g, ", ")
+    .replace(/\s+/g, " ");
+  const parts = rawAddress.match(/^(.*?)\s*,?\s*(\d{5})\s+(.+)$/);
+  const streetAddress = parts
+    ? parts[1].replace(/,\s*$/, "").trim()
+    : rawAddress;
+  const postalCode = parts?.[2];
+  const addressLocality = parts?.[3]?.trim();
+  const displayAddress = parts
+    ? `${streetAddress}, ${postalCode} ${addressLocality}`
+    : rawAddress;
+  const address = {
+    "@type": "PostalAddress",
+    streetAddress,
+    addressCountry: "FR",
+    ...(postalCode ? { postalCode, addressLocality } : {}),
+  };
+  const telephone = String(footer.contact.phone)
+    .replace(/[^+\d]/g, "")
+    .replace(/^0(?=\d{9}$)/, "+33");
+  const query = `${name}, ${displayAddress}`;
+  return {
+    name,
+    address,
+    displayAddress,
+    telephone,
+    mapsUrl: `https://www.google.com/maps/search/?${new URLSearchParams({ api: "1", query })}`,
+    directionsUrl: `https://www.google.com/maps/dir/?${new URLSearchParams({ api: "1", destination: query })}`,
+    instagramUrl: instagramProfileUrl(footer.social?.instagram),
+  };
+}

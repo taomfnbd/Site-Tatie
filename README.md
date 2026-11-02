@@ -49,7 +49,13 @@ Les anciens `VITE_ADMIN_PASSWORD`, `VITE_ADMIN_API_SECRET`, `ADMIN_API_TOKEN` et
 - `netlify/functions/` et `netlify/lib/` : connexion, publication et médiathèque.
 - `public/images/` : photos optimisées et éléments décoratifs locaux.
 
-Les URL publiques sont des chemins ordinaires (`/reflexologie`). Les anciens liens `/#/reflexologie` sont migrés côté navigateur, en conservant `?admin`. Les URL inconnues renvoient une vraie réponse 404 avec un écran utile. Le site ne charge pas d’outil publicitaire ni de mesure d’audience ; aucune bannière de consentement optionnel n’est nécessaire dans cette configuration. Contact se fait par téléphone ou Resalib, sans formulaire hébergé ici.
+Les URL publiques sont des chemins ordinaires (`/reflexologie`). Les anciens liens `/#/reflexologie` sont migrés côté navigateur, en conservant `?admin`. Les URL inconnues renvoient une vraie réponse 404 avec un écran utile. Le site ne charge pas d’outil publicitaire. Une mesure d’audience agrégée est activée après accord du visiteur ; ses préférences sont modifiables en bas de page. Le tableau privé et les limites des compteurs sont décrits dans TRACKING.md. Contact se fait par téléphone ou Resalib, sans formulaire hébergé ici.
+
+## Préparer la fiche Google et les profils locaux
+
+`npm run export:local -- "/chemin/du/kit"` génère depuis les données publiées une description de fiche, les coordonnées, les horaires, un catalogue CSV et des brouillons de demandes d’avis/liens. Cela ne modifie aucun compte externe et n’envoie aucun message. Le kit indique les éléments restant à confirmer : fiche Google exacte, accès propriétaire, photos, stationnement et accessibilité. Régénérer le kit après toute modification du contenu.
+
+Le lien de site fourni dans le kit comporte un balisage fixe reconnu comme « Fiche Google (lien balisé) » dans les statistiques, uniquement après consentement. Seule la catégorie est enregistrée ; il ne s’agit pas d’une confirmation de rendez-vous.
 
 ## Publication et vérification
 

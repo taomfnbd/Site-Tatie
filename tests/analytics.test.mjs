@@ -141,3 +141,30 @@ test("statistics are private and unsupported date ranges are rejected before sto
   );
   assert.equal(response.status, 400);
 });
+
+import { campaignSource } from "../src/analytics/events.js";
+test("only the predefined business-profile campaign maps to a finite source category", () => {
+  assert.equal(
+    campaignSource(
+      "?utm_source=google&utm_medium=organic&utm_campaign=fiche_etablissement&email=private@example.com",
+    ),
+    "google_business",
+  );
+  assert.equal(
+    campaignSource("?utm_source=google&utm_campaign=private-information"),
+    null,
+  );
+  assert.equal(
+    campaignSource(
+      "?utm_source=private@example.com&utm_medium=organic&utm_campaign=fiche_etablissement",
+    ),
+    null,
+  );
+  assert.ok(validateEvent({ ...event, source: "google_business" }));
+  const stats = summarize(
+    [{ day: "2026-11-02", counts: { "pageview|/|google_business|mobile": 2 } }],
+    7,
+    new Date("2026-11-02"),
+  );
+  assert.deepEqual(stats.sources, { google_business: 2 });
+});

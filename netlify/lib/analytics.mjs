@@ -22,6 +22,7 @@ export const events = [
 export const sources = [
   "direct",
   "google",
+  "google_business",
   "bing",
   "social",
   "resalib",

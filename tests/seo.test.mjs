@@ -146,3 +146,49 @@ test("page entities and breadcrumb references resolve within each schema graph",
       );
   }
 });
+
+import { getBusinessProfile } from "../src/utils/business.js";
+test("editable coordinates drive maps, structured address, telephone and profile links together", () => {
+  const content = structuredClone(initialSiteContent);
+  content.footer.contact.address =
+    "731 route de Sarrians<br />84190 Vacqueyras";
+  content.footer.contact.phone = "06 12 34 56 78";
+  content.footer.social.instagram = "@cabinet_test";
+  const profile = getBusinessProfile(content);
+  assert.equal(
+    profile.displayAddress,
+    "731 route de Sarrians, 84190 Vacqueyras",
+  );
+  assert.equal(profile.address.streetAddress, "731 route de Sarrians");
+  assert.equal(profile.address.postalCode, "84190");
+  assert.equal(profile.telephone, "+33612345678");
+  assert.equal(profile.instagramUrl, "https://www.instagram.com/cabinet_test/");
+  assert.ok(
+    new URL(profile.mapsUrl).searchParams
+      .get("query")
+      .includes(profile.displayAddress),
+  );
+  assert.ok(
+    new URL(profile.directionsUrl).searchParams
+      .get("destination")
+      .includes(profile.displayAddress),
+  );
+  const business = getStructuredData("/contact", content)["@graph"].find(
+    (node) => Array.isArray(node["@type"]),
+  );
+  assert.deepEqual(business.address, profile.address);
+  assert.equal(business.hasMap, profile.mapsUrl);
+  assert.equal(business.telephone, profile.telephone);
+  assert.ok(business.sameAs.includes(profile.instagramUrl));
+  content.footer.contact.address = "731 route de Sarrians, 84190 Vacqueyras";
+  assert.equal(
+    getBusinessProfile(content).address.streetAddress,
+    "731 route de Sarrians",
+  );
+  content.footer.contact.address = "Adresse à confirmer";
+  assert.equal(
+    getBusinessProfile(content).address.streetAddress,
+    "Adresse à confirmer",
+  );
+  assert.equal(getBusinessProfile(content).address.postalCode, undefined);
+});

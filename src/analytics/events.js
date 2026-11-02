@@ -24,7 +24,17 @@ export function saveChoice(value) {
     /* No storage: preference lasts for this page only. */
   }
 }
+export function campaignSource(search) {
+  const params = new URLSearchParams(search);
+  return params.get("utm_source") === "google" &&
+    params.get("utm_medium") === "organic" &&
+    params.get("utm_campaign") === "fiche_etablissement"
+    ? "google_business"
+    : null;
+}
 export function sourceCategory(referrer) {
+  const campaign = campaignSource(window.location.search);
+  if (campaign) return campaign;
   if (!referrer) return "direct";
   try {
     const host = new URL(referrer).hostname.toLowerCase();

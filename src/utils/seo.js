@@ -1,6 +1,11 @@
 import { resolveFAQItems } from "./faq.js";
 import { initialSiteContent } from "../data/siteContent.js";
-import { routePageKeys, breadcrumbItems } from "./business.js";
+import {
+  routePageKeys,
+  breadcrumbItems,
+  bookingUrl,
+  getBusinessProfile,
+} from "./business.js";
 // Utilitaires SEO pour optimiser le référencement
 export const SITE_URL = "https://alais-tavernier-naturopathe.fr";
 export const SITE_NAME = "Alaïs Tavernier - Naturopathe";
@@ -181,6 +186,7 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
   const seo = getPageSEO(path, content);
   if (seo.noindex) return { "@context": "https://schema.org", "@graph": [] };
   const footer = content.footer || initialSiteContent.footer;
+  const profile = getBusinessProfile({ ...content, footer });
   const pages = content.pages || initialSiteContent.pages;
   const cards = pages.services.filter((s) => s.type === "service_card");
   const services = cards.map((card) => {
@@ -209,28 +215,17 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
   const business = {
     "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
     "@id": `${SITE_URL}/#localbusiness`,
-    name: `${content.header?.brand?.name || "Alaïs Tavernier"} - Naturopathe`,
+    name: `${profile.name} - Naturopathe`,
     description: "Naturopathie, réflexologie et massage assis à Vacqueyras.",
     url: SITE_URL,
-    telephone: String(footer.contact.phone)
-      .replace(/[^+\d]/g, "")
-      .replace(/^0/, "+33"),
+    telephone: profile.telephone,
     image: DEFAULT_IMAGE,
     logo: `${SITE_URL}/images/libellule-3.png`,
     priceRange: `${Math.min(...prices)}€–${Math.max(...prices)}€`,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "729 route de Sarrians",
-      addressLocality: "Vacqueyras",
-      postalCode: "84190",
-      addressCountry: "FR",
-    },
+    address: profile.address,
     founder: { "@id": `${SITE_URL}/#person` },
-    hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(plain(footer.contact.address.replace(/<br\s*\/?>/gi, ", ")))}`,
-    sameAs: [
-      `https://www.instagram.com/${footer.social.instagram}/`,
-      "https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras",
-    ],
+    hasMap: profile.mapsUrl,
+    sameAs: [profile.instagramUrl, bookingUrl],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Prestations de bien-être",
@@ -242,15 +237,6 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
       ),
     },
   };
-  const address = footer.contact.address.split(/<br\s*\/?>(?:\s*)/i).map(plain);
-  const city = address[1]?.match(/(\d{5})\s+(.+)/);
-  if (city)
-    business.address = {
-      ...business.address,
-      streetAddress: address[0],
-      postalCode: city[1],
-      addressLocality: city[2],
-    };
   const days = {
     Lundi: "Monday",
     Mardi: "Tuesday",
@@ -282,7 +268,7 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
     {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
-      name: content.header?.brand?.name || "Alaïs Tavernier",
+      name: profile.name,
       jobTitle:
         "Naturopathe et praticienne en réflexologie et massage bien-être",
       url: `${SITE_URL}/about`,
