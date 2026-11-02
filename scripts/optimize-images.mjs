@@ -14,10 +14,17 @@ for (let i = 1; i <= 4; i++) {
     if (!match) throw new Error(`Photographie ${i} manquante`);
     input = Buffer.from(match[1], "base64");
   }
-  for (const width of [480, 800, 1200])
+  for (const width of i === 1 ? [480, 640, 800, 1200] : [480, 800, 1200]) {
     await sharp(input)
       .rotate()
       .resize({ width, withoutEnlargement: true })
       .webp({ quality: 80 })
       .toFile(`public/images/photo-${i}-${width}.webp`);
+    if (i === 1)
+      await sharp(input)
+        .rotate()
+        .resize({ width, withoutEnlargement: true })
+        .avif({ quality: 50, effort: 6 })
+        .toFile(`public/images/photo-1-${width}.avif`);
+  }
 }

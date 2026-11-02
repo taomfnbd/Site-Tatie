@@ -27,6 +27,13 @@ test("mobile identity and booking visible; menu closes via button, Escape and na
   await expect(
     page.locator("header").getByText("Alaïs Tavernier"),
   ).toBeVisible();
+  const portrait = page.locator("main picture img").first();
+  await expect
+    .poll(() => portrait.evaluate((image) => image.currentSrc))
+    .toMatch(/photo-1-\d+\.avif$/);
+  await expect
+    .poll(() => portrait.evaluate((image) => image.naturalWidth))
+    .toBeGreaterThan(0);
   const book = page
     .locator("main")
     .getByRole("link", { name: "Prendre rendez-vous", exact: true })
