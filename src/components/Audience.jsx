@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useEditMode } from "../contexts/EditModeContext";
 import {
-  getChoice,
+  readChoice,
   saveChoice,
   sourceCategory,
   linkEvent,
@@ -28,22 +28,40 @@ export default function Audience() {
   const [settings, setSettings] = useState(false);
   const lastView = useRef(null);
   const source = useRef("direct");
+  const consentUntil = useRef(0);
   const admin =
     isAuthenticated || new URLSearchParams(location.search).has("admin");
   useEffect(() => {
-    setChoice(getChoice());
+    const saved = readChoice();
+    consentUntil.current = saved?.expiresAt || 0;
+    setChoice(saved?.value || null);
     source.current = sourceCategory(document.referrer);
     setReady(true);
   }, []);
   useEffect(() => {
     const update = (event) => {
-      if (event.key !== preferenceKey) return;
-      setChoice(getChoice());
+      if (event.key !== preferenceKey && event.key !== null) return;
+      const saved = readChoice();
+      consentUntil.current = saved?.expiresAt || 0;
+      setChoice(saved?.value || null);
       lastView.current = null;
     };
     window.addEventListener("storage", update);
     return () => window.removeEventListener("storage", update);
   }, []);
+  useEffect(() => {
+    if (!ready || !choice) return;
+    let timer;
+    const expire = () => {
+      const remaining = consentUntil.current - Date.now();
+      if (remaining <= 0) {
+        setChoice(null);
+        lastView.current = null;
+      } else timer = window.setTimeout(expire, Math.min(remaining, 86400000));
+    };
+    expire();
+    return () => window.clearTimeout(timer);
+  }, [ready, choice]);
   useEffect(() => {
     if (
       !ready ||
@@ -54,6 +72,11 @@ export default function Audience() {
     )
       return;
     const send = (event) => {
+      if (Date.now() >= consentUntil.current) {
+        setChoice(null);
+        lastView.current = null;
+        return;
+      }
       void fetch("/api/audience/event", {
         method: "POST",
         credentials: "same-origin",
@@ -76,6 +99,11 @@ export default function Audience() {
       send("pageview");
     }
     const click = (event) => {
+      if (
+        (event.type === "auxclick" && event.button !== 1) ||
+        (event.type === "click" && event.button !== 0)
+      )
+        return;
       const anchor =
         event.target instanceof Element
           ? event.target.closest("a[href]")
@@ -92,7 +120,7 @@ export default function Audience() {
     };
   }, [ready, choice, admin, location.pathname, location.key]);
   const choose = (value) => {
-    saveChoice(value);
+    consentUntil.current = saveChoice(value);
     setChoice(value);
     setSettings(false);
     lastView.current = null;

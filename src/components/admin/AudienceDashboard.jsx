@@ -4,7 +4,7 @@ const labels = {
   resalib: "Clics vers Resalib",
   phone: "Clics téléphone",
   email: "Clics email",
-  maps: "Clics itinéraire",
+  maps: "Clics Google Maps",
   instagram: "Clics Instagram",
   direct: "Accès direct / source inconnue",
   google: "Google",
@@ -16,7 +16,7 @@ const labels = {
   desktop: "Ordinateur / tablette",
 };
 const metrics = ["pageview", "resalib", "phone", "email", "maps", "instagram"];
-function Breakdown({ title, values }) {
+function Breakdown({ title, values, sourceLabels = false }) {
   return (
     <section className="border rounded-xl p-4">
       <h3 className="font-semibold mb-3">{title}</h3>
@@ -26,7 +26,11 @@ function Breakdown({ title, values }) {
             .sort((a, b) => b[1] - a[1])
             .map(([key, count]) => (
               <li key={key} className="flex justify-between gap-4">
-                <span className="break-all">{labels[key] || key}</span>
+                <span className="break-all">
+                  {sourceLabels && key === "resalib"
+                    ? "Resalib"
+                    : labels[key] || key}
+                </span>
                 <strong>{count}</strong>
               </li>
             ))}
@@ -199,6 +203,7 @@ export default function AudienceDashboard({ onClose }) {
               <Breakdown
                 title="Provenance des pages vues"
                 values={data.sources}
+                sourceLabels
               />
               <Breakdown title="Écrans des pages vues" values={data.devices} />
             </div>

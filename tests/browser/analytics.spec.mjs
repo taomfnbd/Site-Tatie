@@ -142,3 +142,82 @@ test("the business-profile link counts a category after consent without recordin
     device: "mobile",
   });
 });
+
+test("right clicks do not count as contact actions and middle clicks do", async ({
+  page,
+}) => {
+  const events = [];
+  await page.route("**/api/audience/event", async (route) => {
+    events.push(route.request().postDataJSON());
+    await route.fulfill({ status: 204 });
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Accepter", exact: true }).click();
+  await expect.poll(() => events.length).toBe(1);
+  await page.evaluate(() => {
+    const link = document.querySelector('a[href*="resalib.fr"]');
+    link.addEventListener("auxclick", (event) => event.preventDefault());
+    link.dispatchEvent(
+      new MouseEvent("auxclick", { bubbles: true, button: 2 }),
+    );
+    link.dispatchEvent(
+      new MouseEvent("auxclick", { bubbles: true, button: 1 }),
+    );
+  });
+  await expect.poll(() => events.length).toBe(2);
+  expect(events[1].event).toBe("resalib");
+});
+test("clearing storage in another tab withdraws tracking without a reload", async ({
+  page,
+}) => {
+  const events = [];
+  await page.route("**/api/audience/event", async (route) => {
+    events.push(route.request().postDataJSON());
+    await route.fulfill({ status: 204 });
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Accepter", exact: true }).click();
+  await expect.poll(() => events.length).toBe(1);
+  const peer = await page.context().newPage();
+  await peer.route("**/api/audience/event", (route) =>
+    route.fulfill({ status: 204 }),
+  );
+  await peer.goto("/");
+  await peer.evaluate(() => localStorage.clear());
+  await expect(
+    page.getByRole("button", { name: "Accepter", exact: true }),
+  ).toBeVisible();
+  await page.evaluate(() => {
+    const link = document.querySelector('a[href*="resalib.fr"]');
+    link.addEventListener("click", (e) => e.preventDefault());
+    link.click();
+  });
+  expect(events.length).toBe(1);
+  await peer.close();
+});
+test("a long-lived page asks again when the six-month choice expires", async ({
+  page,
+}) => {
+  const events = [];
+  await page.route("**/api/audience/event", async (route) => {
+    events.push(route.request().postDataJSON());
+    await route.fulfill({ status: 204 });
+  });
+  await page.goto("/");
+  await page.clock.install();
+  await page.getByRole("button", { name: "Accepter", exact: true }).click();
+  await expect.poll(() => events.length).toBe(1);
+  await page.clock.setSystemTime(
+    await page.evaluate(() => Date.now() + 181 * 86400000),
+  );
+  await page.clock.fastForward(86400001);
+  await expect(
+    page.getByRole("button", { name: "Accepter", exact: true }),
+  ).toBeVisible();
+  await page.evaluate(() => {
+    const link = document.querySelector('a[href*="resalib.fr"]');
+    link.addEventListener("click", (e) => e.preventDefault());
+    link.click();
+  });
+  expect(events.length).toBe(1);
+});

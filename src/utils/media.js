@@ -20,3 +20,12 @@ export function portraitAvifSet(src = "") {
     ? imageSet(src)?.replaceAll(".webp", ".avif")
     : undefined;
 }
+
+export function imageDimensions(src = "") {
+  const match =
+    src.match(sourcePattern) ||
+    src.match(/^\/images\/photo-([1-4])-\d+\.(?:webp|avif)$/);
+  return match
+    ? { width: 1200, height: { 1: 1600, 2: 900, 3: 924, 4: 900 }[match[1]] }
+    : undefined;
+}
