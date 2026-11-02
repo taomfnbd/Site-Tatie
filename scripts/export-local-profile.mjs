@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, copyFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { initialSiteContent as content } from "../src/data/siteContent.js";
 import { getBusinessProfile, bookingUrl } from "../src/utils/business.js";
@@ -6,6 +6,17 @@ import { SITE_URL } from "../src/utils/seo.js";
 const output = resolve(process.argv[2] || "audits/kit-local");
 await mkdir(output, { recursive: true });
 const profile = getBusinessProfile(content);
+await mkdir(resolve(output, "photos-existantes"), { recursive: true });
+for (const [source, filename] of [
+  ["photo-1-1200.webp", "portrait-alais.webp"],
+  ["photo-2-1200.webp", "massage-assis-detail.webp"],
+  ["photo-3-1200.webp", "massage-assis-cabinet.webp"],
+  ["photo-4-1200.webp", "echange-au-cabinet.webp"],
+])
+  await copyFile(
+    new URL(`../public/images/${source}`, import.meta.url),
+    resolve(output, "photos-existantes", filename),
+  );
 const website = `${SITE_URL}/?utm_source=google&utm_medium=organic&utm_campaign=fiche_etablissement`;
 const description = `${profile.name} vous accueille sur rendez-vous au cabinet de Vacqueyras, dans le Vaucluse, pour des consultations de naturopathie, des séances de réflexologie et du massage assis habillé, sans huile. Formée pendant trois ans à l’école Æsculape d’Aix-en-Provence, elle propose une approche attentive à vos habitudes et à votre rythme de vie. La naturopathie comprend un bilan de vitalité et des conseils personnalisés en hygiène de vie. Ces prestations de bien-être ne comportent ni diagnostic médical ni prescription et ne remplacent pas un suivi médical.`;
 if (description.length > 750)
@@ -96,9 +107,11 @@ ${catalogue}
 
 Fichier services.csv joint pour faciliter la saisie. Ce CSV n’est pas présenté comme un format d’import automatique accepté par Google. Vérifier les services et prix du profil Resalib, notamment les formats massage et réflexologie ; les extraits de moteurs de recherche peuvent être anciens.
 
-## 2. Photos réelles à préparer
+## 2. Photos existantes et prises de vue à compléter
 
-- Portrait : la photo déjà publiée sur le site est disponible ; confirmer les droits avant réutilisation sur une autre plateforme.
+- Le dossier photos-existantes contient le portrait et trois photos déjà utilisées sur le site : deux mises en situation de massage assis et un échange au cabinet. Les images sources sont copiées sans modification.
+- Plusieurs photos montrent une autre personne : confirmer son accord et les droits de réutilisation avant de les charger sur une autre plateforme. Leur présence sur le site ne prouve pas un consentement couvrant Google.
+- Les sources sont en WebP ; préparer au besoin une exportation JPG/PNG selon les formats acceptés par la plateforme, sans modifier la réalité du lieu.
 - Entrée extérieure et accès au cabinet : cadrage permettant de reconnaître le bon lieu.
 - Vue intérieure du cabinet et installation de massage : photographie réelle du lieu actuel, sans client identifiable.
 - Détail de la chaise et espace d’accueil : lumière naturelle, image nette, sans données personnelles visibles.
