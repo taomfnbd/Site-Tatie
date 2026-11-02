@@ -19,7 +19,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { useContent } from '../../contexts/ContentContext';
 import { useEditMode } from '../../contexts/EditModeContext';
 
-const EditableSection = lazy(() => import('./EditableSection'));
+import EditableSection from './EditableSection';
 const AddSectionButton = lazy(() => import('./AddSectionButton'));
 const SectionLibraryModal = lazy(() => import('./SectionLibraryModal'));
 
