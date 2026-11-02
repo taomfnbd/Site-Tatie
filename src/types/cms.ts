@@ -3,7 +3,7 @@ export interface Section {
   id: string;
   type: string;
   content: Record<string, any>;
-  order: number;
+  order?: number;
 }
 
 export interface PageData {

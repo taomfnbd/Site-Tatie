@@ -51,7 +51,7 @@ class ErrorBoundary extends React.Component {
               </div>
               
               <p className="text-stone-600 mb-6 font-light">
-                Nous nous excusons pour ce désagrément. L'erreur a été signalée et sera corrigée rapidement.
+                Nous nous excusons pour ce désagrément. Vous pouvez réessayer ou revenir à l’accueil.
               </p>
               
               <div className="space-y-3">

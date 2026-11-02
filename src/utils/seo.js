@@ -1,8 +1,10 @@
+import { initialSiteContent } from '../data/siteContent.js';
+import { routePageKeys } from './business.js';
 // Utilitaires SEO pour optimiser le référencement
 export const SITE_URL = "https://alais-tavernier-naturopathe.fr";
 export const SITE_NAME = "Alaïs Tavernier - Naturopathe";
 export const DEFAULT_IMAGE =
-  "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png";
+  `${SITE_URL}/images/photo-1-1200.webp`;
 
 export const seoConfig = {
   "/": {
@@ -19,15 +21,15 @@ export const seoConfig = {
       "Découvrez le parcours d’Alaïs Tavernier, naturopathe et praticienne en massage bien-être à Vacqueyras.",
     keywords:
       "Alaïs Tavernier, naturopathe Vacqueyras, parcours naturopathe, bien-être Vaucluse",
-    canonicalUrl: `${SITE_URL}/#/about`,
+    canonicalUrl: `${SITE_URL}/about`,
   },
   "/prestations": {
-    title: "Prestations naturopathie & massage assis | Vacqueyras",
+    title: "Naturopathie, réflexologie & massage | Vacqueyras",
     description:
-      "Découvrez les prestations d’Alaïs Tavernier : bilan de vitalité, suivi naturopathique personnalisé et massage assis de 30 minutes à Vacqueyras.",
+      "Naturopathie, réflexologie et massage assis à Vacqueyras : découvrez le déroulement, la durée et les tarifs des séances avec Alaïs Tavernier.",
     keywords:
       "prestations naturopathe, tarifs naturopathie, massage assis, consultation naturopathe Vaucluse",
-    canonicalUrl: `${SITE_URL}/#/prestations`,
+    canonicalUrl: `${SITE_URL}/prestations`,
   },
   "/naturopathie": {
     title: "Naturopathie à Vacqueyras | Bilan de vitalité",
@@ -35,7 +37,7 @@ export const seoConfig = {
       "Consultation de naturopathie à Vacqueyras : bilan de vitalité, conseils alimentaires, hygiène de vie, stress, sommeil et accompagnement personnalisé.",
     keywords:
       "naturopathie Vacqueyras, bilan de vitalité, troubles digestifs, gestion stress, rééquilibrage alimentaire",
-    canonicalUrl: `${SITE_URL}/#/naturopathie`,
+    canonicalUrl: `${SITE_URL}/naturopathie`,
   },
   "/reflexologie": {
     title: "Réflexologie à Vacqueyras | Séance de détente naturelle",
@@ -43,7 +45,7 @@ export const seoConfig = {
       "Séance de réflexologie à Vacqueyras : stimulation des zones réflexes pour détente, gestion du stress, sommeil et vitalité. Première séance 1h.",
     keywords:
       "réflexologie Vacqueyras, réflexologie plantaire, détente naturelle, gestion stress, troubles du sommeil, bien-être Vaucluse",
-    canonicalUrl: `${SITE_URL}/#/reflexologie`,
+    canonicalUrl: `${SITE_URL}/reflexologie`,
   },
   "/massage-assis": {
     title: "Massage assis à Vacqueyras | Séance détente 30 min",
@@ -51,7 +53,7 @@ export const seoConfig = {
       "Massage assis habillé à Vacqueyras : séance de 30 minutes pour relâcher dos, nuque, épaules, bras et mains. Tarif : 30 euros.",
     keywords:
       "massage assis Vacqueyras, massage habillé, détente, tensions dos nuque, relaxation Vaucluse",
-    canonicalUrl: `${SITE_URL}/#/massage-assis`,
+    canonicalUrl: `${SITE_URL}/massage-assis`,
   },
   "/contact": {
     title: "Contact & rendez-vous | Alaïs Tavernier Vacqueyras",
@@ -59,26 +61,26 @@ export const seoConfig = {
       "Contactez Alaïs Tavernier, naturopathe à Vacqueyras. Téléphone : 07 81 66 09 29. Rendez-vous en ligne via Resalib.",
     keywords:
       "contact naturopathe Vacqueyras, rendez-vous naturopathe, horaires consultation, téléphone naturopathe",
-    canonicalUrl: `${SITE_URL}/#/contact`,
+    canonicalUrl: `${SITE_URL}/contact`,
   },
   "/mentions-legales": {
     title: "Mentions légales | Alaïs Tavernier Naturopathe",
     description:
       "Mentions légales du site Alaïs Tavernier Naturopathe : éditeur, hébergeur, activité, responsabilité et données personnelles.",
     keywords: "mentions légales, naturopathe Vacqueyras",
-    canonicalUrl: `${SITE_URL}/#/mentions-legales`,
+    canonicalUrl: `${SITE_URL}/mentions-legales`,
   },
   "/cgu": {
     title: "Conditions générales d’utilisation | Alaïs Tavernier",
     description:
       "Conditions générales d’utilisation du site Alaïs Tavernier Naturopathe : accès, contenu, responsabilité, propriété intellectuelle et contact.",
     keywords: "CGU, conditions générales, naturopathe Vacqueyras",
-    canonicalUrl: `${SITE_URL}/#/cgu`,
+    canonicalUrl: `${SITE_URL}/cgu`,
   },
 };
 
 export const updatePageSEO = (pageData) => {
-  const { title, description, keywords, canonicalUrl } = pageData;
+  const { title, description, keywords, canonicalUrl, noindex } = pageData;
 
   if (title) {
     document.title = title;
@@ -86,7 +88,7 @@ export const updatePageSEO = (pageData) => {
 
   updateMetaTag("description", description);
   updateMetaTag("keywords", keywords);
-  updateMetaTag("robots", "index,follow,max-image-preview:large");
+  updateMetaTag("robots", noindex ? "noindex,follow" : "index,follow,max-image-preview:large");
   updateMetaTag("author", "Alaïs Tavernier");
   updateMetaTag("geo.region", "FR-84");
   updateMetaTag("geo.placename", "Vacqueyras");
@@ -163,397 +165,31 @@ const updateAlternateUrl = (url) => {
   alternate.setAttribute("href", url);
 };
 
-const practitioner = {
-  "@type": "Person",
-  "@id": `${SITE_URL}/#person`,
-  name: "Alaïs Tavernier",
-  jobTitle: "Naturopathe et praticienne en massage bien-être",
-  url: SITE_URL,
-  sameAs: [
-    "https://www.instagram.com/lali_bellul/",
-    "https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras",
-  ],
-};
-
-const localBusiness = {
-  "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
-  "@id": `${SITE_URL}/#localbusiness`,
-  name: "Alaïs Tavernier - Naturopathe",
-  description:
-    "Naturopathe et praticienne en massage bien-être à Vacqueyras. Accompagnement personnalisé en naturopathie, bilan de vitalité et massage assis.",
-  url: SITE_URL,
-  telephone: "+33781660929",
-  email: "alais.tavernier@gmail.com",
-  image: DEFAULT_IMAGE,
-  logo: DEFAULT_IMAGE,
-  priceRange: "30€-70€",
-  founder: { "@id": `${SITE_URL}/#person` },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "729 route de Sarrians",
-    addressLocality: "Vacqueyras",
-    postalCode: "84190",
-    addressCountry: "FR",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "44.1397",
-    longitude: "4.9764",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Thursday"],
-      opens: "09:00",
-      closes: "17:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "09:00",
-      closes: "12:00",
-    },
-  ],
-  sameAs: [
-    "https://www.instagram.com/lali_bellul/",
-    "https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras",
-  ],
-  areaServed: [
-    {
-      "@type": "AdministrativeArea",
-      name: "Vaucluse",
-    },
-    {
-      "@type": "City",
-      name: "Vacqueyras",
-    },
-  ],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Prestations de bien-être",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        name: "Première consultation de naturopathie",
-        price: "70",
-        priceCurrency: "EUR",
-        itemOffered: { "@id": `${SITE_URL}/naturopathie#service` },
-      },
-      {
-        "@type": "Offer",
-        name: "Consultation de suivi en naturopathie",
-        price: "50",
-        priceCurrency: "EUR",
-        itemOffered: { "@id": `${SITE_URL}/naturopathie#service` },
-      },
-      {
-        "@type": "Offer",
-        name: "Massage assis",
-        price: "30",
-        priceCurrency: "EUR",
-        itemOffered: { "@id": `${SITE_URL}/massage-assis#service` },
-      },
-      {
-        "@type": "Offer",
-        name: "Réflexologie - Première séance",
-        price: "60",
-        priceCurrency: "EUR",
-        itemOffered: { "@id": `${SITE_URL}/reflexologie#service` },
-      },
-      {
-        "@type": "Offer",
-        name: "Réflexologie - Séance de suivi",
-        price: "50",
-        priceCurrency: "EUR",
-        itemOffered: { "@id": `${SITE_URL}/reflexologie#service` },
-      },
-    ],
-  },
-};
-
-const website = {
-  "@type": "WebSite",
-  "@id": `${SITE_URL}/#website`,
-  url: SITE_URL,
-  name: SITE_NAME,
-  inLanguage: "fr-FR",
-  publisher: { "@id": `${SITE_URL}/#localbusiness` },
-};
-
-const services = {
-  "/naturopathie": {
-    "@type": "Service",
-    "@id": `${SITE_URL}/naturopathie#service`,
-    name: "Consultation de naturopathie",
-    serviceType: "Naturopathie, bilan de vitalité et conseils d'hygiène de vie",
-    description:
-      "Accompagnement personnalisé pour soutenir la vitalité par l'alimentation, l'hygiène de vie, la gestion du stress et l'équilibre naturel.",
-    provider: { "@id": `${SITE_URL}/#localbusiness` },
-    areaServed: { "@type": "City", name: "Vacqueyras" },
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Première consultation",
-        price: "70",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        url: `${SITE_URL}/naturopathie`,
-      },
-      {
-        "@type": "Offer",
-        name: "Séance de suivi",
-        price: "50",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        url: `${SITE_URL}/naturopathie`,
-      },
-    ],
-  },
-  "/reflexologie": {
-    "@type": "Service",
-    "@id": `${SITE_URL}/reflexologie#service`,
-    name: "Réflexologie",
-    serviceType: "Réflexologie plantaire et palmaire",
-    description:
-      "Séance de réflexologie par stimulation des zones réflexes pour favoriser la détente, améliorer la circulation et retrouver l'équilibre naturel.",
-    provider: { "@id": `${SITE_URL}/#localbusiness` },
-    areaServed: { "@type": "City", name: "Vacqueyras" },
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Première séance",
-        price: "60",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        url: `${SITE_URL}/reflexologie`,
-      },
-      {
-        "@type": "Offer",
-        name: "Séance de suivi",
-        price: "50",
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        url: `${SITE_URL}/reflexologie`,
-      },
-    ],
-  },
-  "/massage-assis": {
-    "@type": "Service",
-    "@id": `${SITE_URL}/massage-assis#service`,
-    name: "Massage assis",
-    serviceType: "Massage assis habillé sans huile",
-    description:
-      "Séance de massage assis de 30 minutes ciblant dos, nuque, épaules, bras et mains pour relâcher les tensions.",
-    provider: { "@id": `${SITE_URL}/#localbusiness` },
-    areaServed: { "@type": "City", name: "Vacqueyras" },
-    offers: {
-      "@type": "Offer",
-      name: "Séance complète de massage assis",
-      price: "30",
-      priceCurrency: "EUR",
-      availability: "https://schema.org/InStock",
-      url: `${SITE_URL}/massage-assis`,
-    },
-  },
-};
-
-const faqByPath = {
-  "/naturopathie": [
-    {
-      question: "À quoi sert un bilan de vitalité ?",
-      answer:
-        "Le bilan de vitalité permet d'identifier vos habitudes, votre rythme de vie, votre alimentation, votre niveau de stress et vos besoins prioritaires afin de proposer des conseils naturels personnalisés.",
-    },
-    {
-      question: "La naturopathie remplace-t-elle un médecin ?",
-      answer:
-        "Non. La naturopathie est une approche complémentaire de bien-être. Elle ne pose pas de diagnostic, ne prescrit pas de traitement et ne remplace jamais une consultation médicale.",
-    },
-    {
-      question: "Combien de temps dure une première consultation ?",
-      answer:
-        "La première consultation dure environ 1h30. Elle comprend un échange approfondi et un bilan de vitalité pour construire un accompagnement adapté.",
-    },
-    {
-      question: "Quels sujets peut-on aborder en consultation ?",
-      answer:
-        "Les consultations peuvent aborder la digestion, l'alimentation, la fatigue, le stress, le sommeil, la peau, les cycles féminins et les changements de rythme de vie.",
-    },
-  ],
-  "/reflexologie": [
-    {
-      question: "Est-ce que la réflexologie fait mal ?",
-      answer:
-        "La réflexologie est une technique douce. Certaines zones peuvent être plus sensibles, ce qui indique les zones de tension. La pression est toujours adaptée à votre confort.",
-    },
-    {
-      question: "Combien de temps dure une séance ?",
-      answer:
-        "La première séance dure environ 1 heure (incluant l'échange préalable). Les séances suivantes durent environ 45 minutes.",
-    },
-    {
-      question: "La réflexologie remplace-t-elle un traitement médical ?",
-      answer:
-        "Non. La réflexologie est une approche complémentaire de bien-être. Elle ne pose pas de diagnostic, ne prescrit pas de traitement et ne remplace jamais une consultation médicale.",
-    },
-    {
-      question: "À qui s'adresse la réflexologie ?",
-      answer:
-        "La réflexologie s'adresse à tous : enfants, adolescents, adultes. Elle est adaptée à de nombreux motifs de consultation liés au stress, à la fatigue, aux douleurs ou aux troubles fonctionnels.",
-    },
-  ],
-  "/massage-assis": [
-    {
-      question: "Faut-il se déshabiller pour un massage assis ?",
-      answer:
-        "Non. Le massage assis se pratique habillé, sans huile, sur une chaise de massage adaptée.",
-    },
-    {
-      question: "Combien de temps dure la séance ?",
-      answer:
-        "La séance de massage assis dure environ 30 minutes. Elle cible les zones de tension les plus fréquentes : dos, nuque, épaules, bras et mains.",
-    },
-    {
-      question: "À qui s'adresse le massage assis ?",
-      answer:
-        "Le massage assis s'adresse aux personnes qui souhaitent une pause détente rapide, notamment en cas de stress, de tensions musculaires ou de besoin de récupération.",
-    },
-    {
-      question: "Quel est le tarif d'un massage assis ?",
-      answer:
-        "Le tarif d'une séance complète de massage assis est de 30 euros.",
-    },
-  ],
-};
-
-const pageNames = {
-  "/": "Accueil",
-  "/about": "À propos",
-  "/prestations": "Prestations",
-  "/naturopathie": "Naturopathie",
-  "/reflexologie": "Réflexologie",
-  "/massage-assis": "Massage assis",
-  "/contact": "Contact",
-  "/mentions-legales": "Mentions légales",
-  "/cgu": "Conditions générales d’utilisation",
-};
-
-const getWebPage = (path, pageData) => ({
-  "@type": "WebPage",
-  "@id": `${pageData.canonicalUrl}#webpage`,
-  url: pageData.canonicalUrl,
-  name: pageData.title,
-  description: pageData.description,
-  inLanguage: "fr-FR",
-  isPartOf: { "@id": `${SITE_URL}/#website` },
-  about: path === "/" ? { "@id": `${SITE_URL}/#localbusiness` } : undefined,
-  primaryImageOfPage: {
-    "@type": "ImageObject",
-    url: DEFAULT_IMAGE,
-  },
-});
-
-const getBreadcrumb = (path) => {
-  const items = [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Accueil",
-      item: `${SITE_URL}/`,
-    },
-  ];
-
-  if (path !== "/") {
-    items.push({
-      "@type": "ListItem",
-      position: 2,
-      name: pageNames[path] || "Page",
-      item: `${SITE_URL}${path}`,
-    });
-  }
-
-  return {
-    "@type": "BreadcrumbList",
-    "@id": `${SITE_URL}${path === "/" ? "" : path}#breadcrumb`,
-    itemListElement: items,
-  };
-};
-
-const getFAQPage = (path) => {
-  const questions = faqByPath[path];
-  if (!questions) return null;
-
-  return {
-    "@type": "FAQPage",
-    "@id": `${SITE_URL}${path}#faq`,
-    mainEntity: questions.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-};
-
-export const getStructuredData = (path = "/") => {
-  const pageData = seoConfig[path] || seoConfig["/"];
-  const graph = [
-    practitioner,
-    localBusiness,
-    website,
-    getWebPage(path, pageData),
-    getBreadcrumb(path),
-  ];
-
-  if (path === "/prestations") {
-    graph.push(
-      services["/naturopathie"],
-      services["/reflexologie"],
-      services["/massage-assis"],
-    );
-    graph.push({
-      "@type": "ItemList",
-      "@id": `${SITE_URL}/prestations#services`,
-      name: "Prestations proposées",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          item: { "@id": `${SITE_URL}/naturopathie#service` },
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          item: { "@id": `${SITE_URL}/reflexologie#service` },
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          item: { "@id": `${SITE_URL}/massage-assis#service` },
-        },
-      ],
-    });
-  }
-
-  if (services[path]) {
-    graph.push(services[path]);
-  }
-
-  const faq = getFAQPage(path);
-  if (faq) {
-    graph.push(faq);
-  }
-
-  return {
-    "@context": "https://schema.org",
-    "@graph": graph.filter(Boolean).map((node) => {
-      const cleanNode = { ...node };
-      Object.keys(cleanNode).forEach(
-        (key) => cleanNode[key] === undefined && delete cleanNode[key],
-      );
-      return cleanNode;
-    }),
-  };
-};
+seoConfig['/confidentialite'] = { title: 'Confidentialité | Alaïs Tavernier', description: 'Comment sont utilisées vos données lors de la consultation du site et de vos échanges avec Alaïs Tavernier, naturopathe à Vacqueyras.', canonicalUrl: `${SITE_URL}/confidentialite` };
+seoConfig['/404'] = { title: 'Page introuvable | Alaïs Tavernier', description: 'Cette page est introuvable. Retrouvez les prestations et les coordonnées du cabinet.', canonicalUrl: `${SITE_URL}/404`, noindex: true };
+const plain = value => String(value || '').replace(/<[^>]*>/g, '').trim();
+export function getStructuredData(path = '/', content = initialSiteContent) {
+  if (!seoConfig[path]) return { '@context': 'https://schema.org', '@graph': [] };
+  const seo = seoConfig[path];
+  const footer = content.footer || initialSiteContent.footer;
+  const pages = content.pages || initialSiteContent.pages;
+  const cards = pages.services.filter(s=>s.type==='service_card');
+  const services = cards.map(card=>{
+    const data=card.content;
+    return { '@type':'Service', '@id':`${SITE_URL}${data.linkUrl}#service`, name:data.title, description:plain(data.description), provider:{'@id':`${SITE_URL}/#localbusiness`}, areaServed:{'@type':'City',name:'Vacqueyras'}, offers:(data.prices || []).map(price=>({'@type':'Offer',name:price.type,price:String(price.price).replace(/[^\d.,]/g,'').replace(',','.'),priceCurrency:'EUR',url:`${SITE_URL}${data.linkUrl}`})) };
+  });
+  const prices=services.flatMap(service=>service.offers.map(offer=>Number(offer.price))).filter(Number.isFinite);
+  const business={ '@type':['LocalBusiness','HealthAndBeautyBusiness'], '@id':`${SITE_URL}/#localbusiness`, name:`${content.header?.brand?.name || 'Alaïs Tavernier'} - Naturopathe`, description:'Naturopathie, réflexologie et massage assis à Vacqueyras.',url:SITE_URL,telephone:String(footer.contact.phone).replace(/[^+\d]/g,''),image:DEFAULT_IMAGE,logo:`${SITE_URL}/images/libellule-3.png`,priceRange:`${Math.min(...prices)}€–${Math.max(...prices)}€`,address:{'@type':'PostalAddress',streetAddress:'729 route de Sarrians',addressLocality:'Vacqueyras',postalCode:'84190',addressCountry:'FR'},founder:{'@id':`${SITE_URL}/#person`},sameAs:[`https://www.instagram.com/${footer.social.instagram}/`,'https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras'],hasOfferCatalog:{'@type':'OfferCatalog',name:'Prestations de bien-être',itemListElement:services.flatMap(service=>service.offers.map(offer=>({...offer,itemOffered:{'@id':service['@id']}})))} };
+  const address=footer.contact.address.split(/<br\s*\/?>(?:\s*)/i).map(plain);
+  const city=address[1]?.match(/(\d{5})\s+(.+)/);
+  if(city) business.address={...business.address,streetAddress:address[0],postalCode:city[1],addressLocality:city[2]};
+  const days={Lundi:'Monday',Mardi:'Tuesday',Mercredi:'Wednesday',Jeudi:'Thursday',Vendredi:'Friday',Samedi:'Saturday',Dimanche:'Sunday'};
+  business.openingHoursSpecification=(footer.schedule || []).flatMap(day=>{const hours=day.hours.match(/(\d{1,2})h(\d{2})?\s*[–-]\s*(\d{1,2})h(\d{2})?/);return hours&&days[day.day]?[{'@type':'OpeningHoursSpecification',dayOfWeek:days[day.day],opens:`${hours[1].padStart(2,'0')}:${hours[2]||'00'}`,closes:`${hours[3].padStart(2,'0')}:${hours[4]||'00'}`}]:[];});
+  const graph=[business,{'@type':'Person','@id':`${SITE_URL}/#person`,name:content.header?.brand?.name || 'Alaïs Tavernier',jobTitle:'Naturopathe et praticienne en réflexologie et massage bien-être',url:`${SITE_URL}/about`},{'@type':'WebSite','@id':`${SITE_URL}/#website`,url:SITE_URL,name:SITE_NAME,inLanguage:'fr-FR',publisher:{'@id':`${SITE_URL}/#localbusiness`}},{'@type':'WebPage','@id':`${seo.canonicalUrl}#webpage`,url:seo.canonicalUrl,name:seo.title,description:seo.description,inLanguage:'fr-FR',isPartOf:{'@id':`${SITE_URL}/#website`}}, {'@type':'BreadcrumbList','@id':`${seo.canonicalUrl}#breadcrumb`,itemListElement:[{'@type':'ListItem',position:1,name:'Accueil',item:`${SITE_URL}/`},...(path==='/'?[]:[{'@type':'ListItem',position:2,name:seo.title.split('|')[0].trim(),item:seo.canonicalUrl}])]}];
+  if (path==='/prestations' || path==='/') graph.push(...services);
+  else { const service=services.find(item=>item.offers[0]?.url===`${SITE_URL}${path}`); if(service) graph.push(service); }
+  const faq=pages[routePageKeys[path]]?.find(section=>section.type==='faq')?.content;
+  const questions=faq?.items || faq?.questions || [];
+  if(questions.length) graph.push({'@type':'FAQPage','@id':`${seo.canonicalUrl}#faq`,mainEntity:questions.map(item=>({'@type':'Question',name:plain(item.question),acceptedAnswer:{'@type':'Answer',text:plain(item.answer)}}))});
+  return {'@context':'https://schema.org','@graph':graph};
+}

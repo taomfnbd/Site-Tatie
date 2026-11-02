@@ -2,10 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
+import { useContent } from '../../contexts/ContentContext';
+import { phoneHref } from '../../utils/business';
 import SafeIcon from '../../common/SafeIcon';
 import { FiPhone, FiMapPin, FiCalendar, FiInfo, FiInstagram, FiExternalLink } from 'react-icons/fi';
 
 const ContactDetailsSection = ({ content, onUpdate }) => {
+  const { globalContent, updateGlobalContent } = useContent();
   const data = {
     directContact: {
       title: 'Contact direct',
@@ -57,7 +60,13 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
     ...content
   };
 
+  data.directContact = { ...data.directContact, phone: globalContent.footer.contact.phone, address: globalContent.footer.contact.address };
+  if (globalContent.footer.schedule) data.schedule = { ...data.schedule, days: globalContent.footer.schedule };
   const updateField = (path, value) => {
+    if (path === 'directContact.phone' || path === 'directContact.address') {
+      updateGlobalContent('footer', { ...globalContent.footer, contact: { ...globalContent.footer.contact, [path.split('.')[1]]: value } });
+    }
+    if (path === 'schedule.days') updateGlobalContent('footer', { ...globalContent.footer, schedule: value });
     // Helper pour nested update
     const newData = JSON.parse(JSON.stringify(data));
     const parts = path.split('.');
@@ -80,14 +89,14 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
          
          {/* Contact Direct */}
          <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="space-y-8 lg:col-span-2" // Pleine largeur si pas de form à côté
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-[#95a58d] to-[#7a8471] rounded-2xl p-8 text-white relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#5e7056] to-[#4e6048] rounded-2xl p-8 text-white relative overflow-hidden">
               <StaticDragonfly type={1} className="absolute bottom-6 right-6 w-16 h-16 opacity-30 filter brightness-0 invert" />
               <EditableText
                 value={data.directContact.title}
@@ -105,7 +114,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
                       element="p"
                       className="text-green-100 text-sm font-light"
                     />
-                    <a href="tel:0781660929" className="text-lg font-medium hover:text-green-100 transition-colors">
+                    <a href={phoneHref(data.directContact.phone)} className="text-lg font-medium hover:text-green-100 transition-colors">
                       <EditableText
                         value={data.directContact.phone}
                         onChange={(val) => updateField('directContact.phone', val)}
@@ -136,7 +145,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
                 <a
-                  href="tel:0781660929"
+                  href={phoneHref(data.directContact.phone)}
                   className="w-full bg-white text-[#6b7563] py-3 rounded-lg font-medium hover:bg-stone-100 transition-colors flex items-center justify-center space-x-2"
                 >
                   <SafeIcon icon={FiPhone} />
@@ -165,7 +174,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
                 href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#95a58d] text-white py-3 rounded-lg font-medium hover:bg-[#7a8471] transition-colors flex items-center justify-center space-x-2"
+                className="w-full bg-[#5e7056] text-white py-3 rounded-lg font-medium hover:bg-[#4e6048] transition-colors flex items-center justify-center space-x-2"
               >
                 <SafeIcon icon={FiCalendar} />
                 <span>Réserver sur Resalib</span>
@@ -178,7 +187,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
       {/* Ligne 2: Horaires, Paiement, Infos */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -241,7 +250,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -280,7 +289,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -321,7 +330,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
         {/* Ligne 3: Instagram + Map */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -366,7 +375,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -388,7 +397,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
               href="https://maps.google.com/?q=729+route+de+Sarrians,+84190+Vacqueyras"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 bg-[#95a58d] text-white px-6 py-3 rounded-lg hover:bg-[#7a8471] transition-colors"
+              className="inline-flex items-center space-x-2 bg-[#5e7056] text-white px-6 py-3 rounded-lg hover:bg-[#4e6048] transition-colors"
             >
               <SafeIcon icon={FiMapPin} />
               <span>Voir sur Google Maps</span>

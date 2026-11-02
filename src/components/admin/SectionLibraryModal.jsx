@@ -85,12 +85,6 @@ const availableSections = [
     icon: '👋',
   },
   {
-    type: 'contact_form',
-    label: 'Formulaire Contact',
-    description: 'Formulaire de contact complet',
-    icon: '✉️',
-  },
-  {
     type: 'contact_details',
     label: 'Infos Contact',
     description: 'Coordonnées, Horaires, Carte, Réseaux',

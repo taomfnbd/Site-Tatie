@@ -11,11 +11,11 @@ import ToastContainer, { type ToastItem } from './ToastContainer';
 
 export const AdminToolbar: React.FC = () => {
   const { isEditMode, disableEditMode, logout } = useEditMode();
-  const { saveAllChanges, hasUnsavedChanges, exportData, publishToGitHub } = useContent();
+  const { saveAllChanges, hasUnsavedChanges, hasUnpublishedChanges, draftWarning, discardDraft, exportStoredDraft, publishState, exportData, publishToGitHub } = useContent();
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [confirmAction, setConfirmAction] = useState<null | 'publish' | 'logout'>(null);
+  const [confirmAction, setConfirmAction] = useState<null | 'publish' | 'logout' | 'discard'>(null);
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   const addToast = useCallback((message: string, type: ToastItem['type']) => {
@@ -63,7 +63,7 @@ export const AdminToolbar: React.FC = () => {
       setConfirmAction('logout');
       return;
     }
-    logout();
+    void logout().catch(error => addToast(error.message, 'error'));
   };
 
   const handlePublish = useCallback(async () => {
@@ -99,11 +99,15 @@ export const AdminToolbar: React.FC = () => {
   }, [handleSave, hasUnsavedChanges, isEditMode, isSaving]);
 
   const statusLabel = useMemo(() => {
-    if (isPublishing) return 'Publication en cours';
+    if (isPublishing) return 'Envoi de la publication';
+    if (publishState === 'deploying') return 'Publication reçue · mise en ligne en cours';
+    if (publishState === 'live') return 'Version publiée et vérifiée en ligne';
+    if (publishState === 'pending') return 'Déploiement à vérifier · vos modifications ont été envoyées';
     if (isSaving) return 'Enregistrement en cours';
     if (hasUnsavedChanges) return 'Modifications non sauvegardées';
+    if (hasUnpublishedChanges) return 'Brouillon enregistré · non publié';
     return 'Aucun changement en attente';
-  }, [hasUnsavedChanges, isPublishing, isSaving]);
+  }, [hasUnsavedChanges, hasUnpublishedChanges, isPublishing, isSaving, publishState]);
 
   if (!isEditMode) return null;
 
@@ -117,7 +121,7 @@ export const AdminToolbar: React.FC = () => {
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         className="fixed top-0 left-0 right-0 z-[9999] bg-stone-900 text-white shadow-2xl"
       >
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center justify-between gap-4 px-4 py-3 overflow-x-auto">
           {/* Logo / Titre */}
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-[#95a58d] rounded flex items-center justify-center font-bold text-sm">
@@ -210,7 +214,7 @@ export const AdminToolbar: React.FC = () => {
             {/* Bouton Publier */}
             <button
               onClick={() => setConfirmAction('publish')}
-              disabled={isPublishing}
+              disabled={isPublishing || publishState === 'deploying' || !!draftWarning || !hasUnpublishedChanges}
               className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-2 ${
                 isPublishing ? 'bg-purple-700 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-700'
               }`}
@@ -235,11 +239,7 @@ export const AdminToolbar: React.FC = () => {
 
           {/* Actions droite */}
           <div className="flex items-center space-x-2">
-            {/* Aide */}
-            <button className="p-2 hover:bg-stone-800 rounded-lg transition-all" title="Aide">
-              <span className="text-lg">❓</span>
-            </button>
-
+            <button onClick={() => setConfirmAction('discard')} className="px-3 py-2 rounded-lg bg-stone-700 hover:bg-stone-600 text-sm whitespace-nowrap">Repartir du site publié</button>
             {/* Déconnexion */}
             <button
               onClick={handleLogout}
@@ -265,6 +265,8 @@ export const AdminToolbar: React.FC = () => {
         </div>
       </motion.div>
 
+      {draftWarning && <div role="alert" className="fixed bottom-4 left-4 right-4 z-[10000] rounded-xl bg-amber-50 border border-amber-300 p-4 text-stone-900 shadow-lg"><p>{draftWarning}</p><div className="flex gap-3 mt-3"><button className="px-4 py-3 border rounded-lg" onClick={exportStoredDraft}>Exporter le brouillon</button><button className="px-4 py-3 border rounded-lg" onClick={() => setConfirmAction('discard')}>Repartir du site publié</button></div></div>}
+      <ConfirmModal isOpen={confirmAction === 'discard'} title="Repartir du site publié" message="Le brouillon local sera abandonné. Exportez-le d’abord si vous souhaitez conserver vos textes." confirmLabel="Abandonner le brouillon" confirmVariant="danger" onConfirm={() => { discardDraft(); setConfirmAction(null); }} onCancel={() => setConfirmAction(null)} />
       {/* Spacer pour ne pas cacher le contenu */}
       <div className="h-[88px]" />
 
@@ -288,7 +290,7 @@ export const AdminToolbar: React.FC = () => {
         confirmLabel="Se déconnecter"
         confirmVariant="danger"
         onConfirm={() => {
-          logout();
+          void logout().catch(error => addToast(error.message, 'error'));
           setConfirmAction(null);
         }}
         onCancel={() => setConfirmAction(null)}

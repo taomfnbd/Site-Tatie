@@ -49,7 +49,7 @@ const ServiceProcessCardsSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
@@ -65,7 +65,7 @@ const ServiceProcessCardsSection = ({ content, onUpdate }) => {
         {data.steps.map((step, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.1 }}

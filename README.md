@@ -1,174 +1,62 @@
-# Alaïs Tavernier - Site Web Naturopathe
+# Site d’Alaïs Tavernier
 
-Site web professionnel pour Alaïs Tavernier, naturopathe et praticienne en massage bien-être à Vacqueyras.
+Site vitrine de naturopathie, réflexologie et massage assis à Vacqueyras.
 
-## 🌟 Fonctionnalités
+Production : https://alais-tavernier-naturopathe.fr
+Code : React 18, Vite, Tailwind CSS, pré-rendu HTML, Netlify Functions.
 
-- **Site vitrine moderne** avec design responsive
-- **Système de gestion de contenu (CMS)** via Decap CMS
-- **Formulaire de contact** intégré avec Netlify Forms
-- **Optimisation SEO** complète
-- **Performance optimisée** avec Vite et React
+## Développement
 
-## 🚀 Technologies utilisées
+Utiliser Node 24 LTS et `npm ci`.
 
-- **React 18** - Interface utilisateur moderne
-- **Vite** - Build tool rapide et optimisé
-- **Tailwind CSS** - Framework CSS utilitaire
-- **Framer Motion** - Animations fluides
-- **React Router** - Navigation
-- **Decap CMS** - Gestion de contenu
-- **Netlify** - Hébergement et déploiement
+- `npm run dev` : développement Vite.
+- `npm run check` : lint JS/TS, vérification TypeScript, tests métier et build avec pré-rendu.
+- `npm run test:e2e` : tests Chromium sur le build ; lance automatiquement le serveur de prévisualisation.
+- `npm run build` : produit les dix pages HTML, la page 404, le sitemap et la version du contenu.
+- `node scripts/serve-preview.mjs` : prévisualisation statique sur le port 4173. Les opérations CMS exigent Netlify.
+- `node scripts/optimize-images.mjs` : régénération facultative des photos WebP depuis les sources historiques ; les fichiers optimisés sont déjà versionnés.
 
-## 📁 Structure du projet
+Les tests navigateur nécessitent `npx playwright install chromium`. GitHub Actions exécute les contrôles et les tests de navigation sur chaque PR.
 
-```
-├── public/
-│   ├── admin/              # Interface CMS
-│   └── images/uploads/     # Images uploadées
-├── src/
-│   ├── components/         # Composants React
-│   ├── pages/             # Pages du site
-│   ├── common/            # Composants réutilisables
-│   └── content/           # Fichiers de contenu Markdown
-├── netlify.toml           # Configuration Netlify
-└── README_CMS.md         # Guide CMS détaillé
-```
+## Édition du contenu
 
-## 🛠️ Installation et développement
+Ouvrir `https://alais-tavernier-naturopathe.fr/?admin`, puis utiliser le mot de passe privé du cabinet. Le mot de passe n’est jamais intégré au code client. Ne pas utiliser les anciens identifiants : ils ont été remplacés après l’audit.
 
-### Prérequis
-- Node.js 18+
-- npm ou yarn
+L’authentification est vérifiée par le serveur. Une session de quatre heures maximum utilise un cookie HttpOnly, Secure, SameSite=Strict. Les endpoints sensibles contrôlent aussi l’origine de la requête et bénéficient de limites de débit Netlify.
 
-### Installation
+« Enregistrer » conserve un brouillon sur l’appareil. Ce brouillon ne remplace jamais le contenu des visiteurs publics. « Publier » vérifie la révision de départ, valide/nettoie les données et crée un commit de contenu sur GitHub. Netlify reconstruit ensuite les pages. La barre d’édition distingue brouillon, mise en ligne en cours et version vérifiée en ligne.
 
-```bash
-# Cloner le repository
-git clone [url-du-repository]
-cd alais-tavernier-naturopathe
+Si le contenu a changé depuis un brouillon, exporter le brouillon puis repartir du site publié. Cette protection évite les écrasements silencieux. Les images importées sont converties en WebP et stockées dans la médiathèque Netlify Blobs ; elles ne sont pas incorporées en base64 au JavaScript.
 
-# Installer les dépendances
-npm install
+## Variables d’environnement
 
-# Démarrer le serveur de développement
-npm run dev
-```
+À configurer dans Netlify, jamais dans Git ou dans une variable préfixée `VITE_` :
 
-### Scripts disponibles
+- `ADMIN_PASSWORD_HASH` : `sel:hash-hex`, hash scrypt de 64 octets (N=16384, r=8, p=1).
+- `ADMIN_SESSION_SECRET` : secret aléatoire d’au moins 32 caractères.
+- `GITHUB_TOKEN` : accès restreint au dépôt, avec écriture du contenu.
+- `REPO_OWNER`, `REPO_NAME`, et éventuellement `BRANCH` (défaut `main`).
 
-```bash
-npm run dev      # Serveur de développement
-npm run build    # Build de production
-npm run lint     # Vérification du code
-npm run preview  # Aperçu du build
-```
+Les anciens `VITE_ADMIN_PASSWORD`, `VITE_ADMIN_API_SECRET`, `ADMIN_API_TOKEN` et `ADMIN_API_SECRET` ne sont plus utilisés. Une rotation du secret de session invalide les sessions existantes. Ne pas réintroduire un secret dans les ressources publiques.
 
-## 🌐 Déploiement
+## Architecture
 
-### Netlify (Recommandé)
+- `src/data/siteContent.js` : contenu publié et catalogue des prestations.
+- `src/utils/servicePrices.js` : synchronisation des tarifs entre catalogue et détails.
+- `src/utils/seo.js` : métadonnées et JSON-LD dérivés des données du site.
+- `src/entry-server.jsx`, `scripts/prerender.mjs` : HTML initial complet et sitemap.
+- `src/contexts/ContentContext.tsx` : brouillons authentifiés, publication et suivi.
+- `netlify/functions/` et `netlify/lib/` : connexion, publication et médiathèque.
+- `public/images/` : photos optimisées et éléments décoratifs locaux.
 
-1. **Connecter à Netlify**
-   - Build command: `npm run build`
-   - Publish directory: `dist`
+Les URL publiques sont des chemins ordinaires (`/reflexologie`). Les anciens liens `/#/reflexologie` sont migrés côté navigateur, en conservant `?admin`. Les URL inconnues renvoient une vraie réponse 404 avec un écran utile. Le site ne charge pas d’outil publicitaire ni de mesure d’audience ; aucune bannière de consentement optionnel n’est nécessaire dans cette configuration. Contact se fait par téléphone ou Resalib, sans formulaire hébergé ici.
 
-2. **Activer Netlify Identity**
-   - Site Settings → Identity → Enable Identity
-   - Services → Enable Git Gateway
+## Publication et vérification
 
-3. **Configuration automatique**
-   - Le fichier `netlify.toml` configure automatiquement les redirections
-   - Le CMS est accessible sur `/admin`
+Ne pas pousser directement sur `main`. Créer une branche, ouvrir une PR, attendre les contrôles et vérifier le deploy preview Netlify avant de fusionner. Le merge déclenche la production.
 
-## 📝 Gestion de contenu
+Le site Netlify correct est `e9872838-c910-4bf1-9797-eb046ce90f69` (`lucent-cucurucho-5d32b0`). Toujours vérifier cet identifiant avant une commande de déploiement. Un ancien lien local pointait vers un autre projet.
 
-### Accès au CMS
-- URL: `https://votre-site.netlify.app/admin`
-- Authentification via Netlify Identity
-- Interface intuitive pour modifier le contenu
+Le statut Netlify du déploiement et sa révision font foi. Vérifier les pages réelles, les en-têtes, les anciennes URL, la session administrateur et le refus d’une publication non authentifiée. Pour un deploy CLI local, reconstruire les fonctions avant l’envoi : un ancien cache peut contenir des versions périmées. Les fonctions utilisant Sharp doivent être construites pour l’environnement Linux du serveur ; le build Netlify depuis Git est la référence.
 
-### Sections modifiables
-- **Page d'accueil** : Hero, parcours, services, CTA
-- **Services** : Descriptions, tarifs, bienfaits
-- **Contact** : Informations, horaires, paiement
-- **Configuration** : SEO, informations générales
-- **Médias** : Gestion des images
-
-## 📧 Formulaire de contact
-
-### Configuration actuelle
-- **Netlify Forms** (gratuit jusqu'à 100 soumissions/mois)
-- Protection anti-spam intégrée
-- Notifications email automatiques
-
-### Configuration des emails
-1. Netlify Dashboard → Site Settings → Forms
-2. Form notifications → Add notification
-3. Email de destination: `contact@alais-tavernier.fr`
-
-## 🎨 Personnalisation
-
-### Couleurs principales
-```css
---primary: #95a58d      /* Vert sauge */
---primary-dark: #7a8471 /* Vert sauge foncé */
---stone-25: #fefdfb     /* Beige très clair */
-```
-
-### Images des libellules
-- Libellule 1: Logo/décoration principale
-- Libellule 2: Décoration secondaire
-- Libellule 3: Accent décoratif
-
-## 📱 Responsive Design
-
-- **Mobile First** : Optimisé pour tous les écrans
-- **Breakpoints** : xs (475px), sm (640px), md (768px), lg (1024px), xl (1280px)
-- **Navigation mobile** : Menu hamburger avec animations
-
-## ⚡ Performance
-
-### Optimisations incluses
-- **Lazy loading** des images
-- **Preload** des ressources critiques
-- **Compression** automatique des assets
-- **Cache** optimisé via Netlify
-- **Minification** CSS/JS automatique
-
-## 🔍 SEO
-
-### Optimisations SEO
-- **Meta tags** complets
-- **Open Graph** et Twitter Cards
-- **Structured data** (JSON-LD)
-- **Sitemap** automatique
-- **URLs** optimisées
-
-## 🐛 Dépannage
-
-### Problèmes courants
-
-1. **CMS ne se charge pas**
-   - Vérifier Netlify Identity activé
-   - Vérifier Git Gateway configuré
-
-2. **Formulaire ne fonctionne pas**
-   - Vérifier attribut `data-netlify="true"`
-   - Consulter Netlify Dashboard → Forms
-
-3. **Images ne s'affichent pas**
-   - Vérifier les URLs des images
-   - Contrôler les permissions
-
-## 📞 Support
-
-### Ressources utiles
-- [Documentation Netlify](https://docs.netlify.com)
-- [Guide Decap CMS](https://decapcms.org/docs/)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-
----
-
-**Version** : 1.0.0  
-**Dernière mise à jour** : Janvier 2024  
-**Licence** : Propriétaire
+Les anciens guides CMS sont historiques. Ce README et CLAUDE.md décrivent le fonctionnement actuel. Les sauvegardes Supabase ont été conservées à titre d’archive ; le CMS actuel ne les utilise pas.

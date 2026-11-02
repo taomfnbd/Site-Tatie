@@ -71,7 +71,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8 }}
@@ -99,7 +99,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -120,7 +120,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
         <div className="space-y-8">
           {/* Naturopathie */}
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -230,7 +230,7 @@ const ServicesListSection = ({ content, onUpdate }) => {
 
           {/* Massage */}
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{

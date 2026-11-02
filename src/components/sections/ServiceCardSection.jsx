@@ -43,7 +43,7 @@ const ServiceCardSection = ({ content, onUpdate }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
       <motion.div
-        initial={{ opacity: 0, y: 48 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
@@ -100,7 +100,7 @@ const ServiceCardSection = ({ content, onUpdate }) => {
                {/* Lien éditable ou fixe ? Pour l'instant simple bouton */}
                <Link
                 to={data.linkUrl}
-                className="inline-flex items-center space-x-2 bg-[#95a58d] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#7a8471] transition-colors duration-200 text-sm"
+                className="inline-flex items-center space-x-2 bg-[#5e7056] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#4e6048] transition-colors duration-200 text-sm"
               >
                 <EditableText 
                   value={data.linkText} 

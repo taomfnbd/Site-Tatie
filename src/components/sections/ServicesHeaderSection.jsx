@@ -22,7 +22,7 @@ const ServicesHeaderSection = ({ content, onUpdate }) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8 }}
@@ -52,7 +52,7 @@ const ServicesHeaderSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -60,7 +60,8 @@ const ServicesHeaderSection = ({ content, onUpdate }) => {
           >
             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-stone-100 bg-white">
               <EditableImage
-                src={data.imageUrl}
+                priority
+              src={data.imageUrl}
                 alt="Illustration services"
                 onChange={(v) => updateField('imageUrl', v)}
                 className="w-full h-full object-cover"

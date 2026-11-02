@@ -67,3 +67,9 @@ svg {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+.skip-link { position: fixed; left: 1rem; top: -6rem; z-index: 10002; background: white; color: #34442d; padding: .8rem 1rem; border: 2px solid #5e7056; border-radius: .5rem; }
+.skip-link:focus { top: 1rem; }
+:focus-visible { outline-color: #5e7056; }
+img.object-cover { height: 100%; }
+@media (prefers-reduced-motion: reduce) { [style*="transform"] { scroll-behavior: auto; } }

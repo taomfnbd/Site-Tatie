@@ -13,6 +13,8 @@ const AboutSection = ({ content, onUpdate }) => {
     ...content,
   };
 
+  const Heading = data.isPage ? "h1" : "h2";
+
   const updateField = (field, value) => {
     onUpdate({ ...data, [field]: value });
   };
@@ -25,13 +27,13 @@ const AboutSection = ({ content, onUpdate }) => {
       />
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 48 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-light text-stone-800 mb-4 tracking-wide">
+          <Heading className="text-xl sm:text-2xl lg:text-3xl font-light text-stone-800 mb-4 tracking-wide">
             <EditableText
               value={data.titlePrefix}
               onChange={(val) => updateField("titlePrefix", val)}
@@ -44,7 +46,7 @@ const AboutSection = ({ content, onUpdate }) => {
               element="span"
               className="text-[#6b7563] inline"
             />
-          </h2>
+          </Heading>
           <EditableText
             value={data.subtitle}
             onChange={(val) => updateField("subtitle", val)}
@@ -53,7 +55,7 @@ const AboutSection = ({ content, onUpdate }) => {
           />
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, y: 48 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}

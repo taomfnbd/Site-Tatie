@@ -20,13 +20,13 @@ const ServiceCTASection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16"
     >
-      <div className="bg-gradient-to-br from-[#95a58d] to-[#7a8471] rounded-2xl p-8 sm:p-10 lg:p-12 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#5e7056] to-[#4e6048] rounded-2xl p-8 sm:p-10 lg:p-12 text-white relative overflow-hidden">
         {/* Subtle decorative circles */}
         <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-white/5" />
         <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-white/5" />
