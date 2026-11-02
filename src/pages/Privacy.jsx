@@ -1,14 +1,18 @@
 import React from "react";
+import { useContent } from "../contexts/ContentContext";
+import { getBusinessProfile } from "../utils/business";
 import { Link } from "react-router-dom";
 export default function Privacy() {
+  const { globalContent } = useContent();
+  const profile = getBusinessProfile(globalContent);
   return (
     <article className="max-w-3xl mx-auto px-5 py-14 sm:py-20 prose prose-stone prose-a:text-[#5e7056]">
       <h1>Confidentialité et données personnelles</h1>
       <p>Dernière mise à jour : 2 novembre 2026.</p>
       <h2>Qui est responsable de vos données ?</h2>
       <p>
-        Alaïs Tavernier, 729 route de Sarrians, 84190 Vacqueyras. Pour toute
-        question ou pour exercer vos droits :{" "}
+        {profile.name}, {profile.displayAddress}. Pour toute question ou pour
+        exercer vos droits :{" "}
         <a href="mailto:alais.tavernier@gmail.com">alais.tavernier@gmail.com</a>
         .
       </p>
@@ -25,13 +29,14 @@ export default function Privacy() {
         Sur la base de votre consentement, le site compte les pages vues et les
         clics vers Resalib, le téléphone, l’email, les itinéraires et Instagram.
         Seuls le chemin d’une page connue, la catégorie de provenance (Google,
-        réseau social, accès direct ou autre), la catégorie d’écran (mobile ou
-        ordinateur/tablette) et le type d’action sont transmis à notre hébergeur
-        Netlify, puis agrégés par journée. Les paramètres d’URL, adresses email,
-        numéros de téléphone, noms, contenus de messages et données de
-        rendez-vous ne sont pas enregistrés dans ces statistiques. Aucun
-        identifiant de visiteur ni empreinte numérique n’est créé ; les adresses
-        IP ne sont pas conservées dans les compteurs d’audience.
+        fiche Google via son lien balisé, réseau social, accès direct ou autre),
+        la catégorie d’écran (mobile ou ordinateur/tablette) et le type d’action
+        sont transmis à notre hébergeur Netlify, puis agrégés par journée. Les
+        paramètres d’URL, adresses email, numéros de téléphone, noms, contenus
+        de messages et données de rendez-vous ne sont pas enregistrés dans ces
+        statistiques. Aucun identifiant de visiteur ni empreinte numérique n’est
+        créé ; les adresses IP ne sont pas conservées dans les compteurs
+        d’audience.
       </p>
       <p>
         Ces statistiques servent exclusivement à améliorer ce site. Elles sont

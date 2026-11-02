@@ -205,3 +205,41 @@ test("initial HTML and navigated pages agree on metadata and contextual links re
     page.locator('main a[href="/massage-assis"]').first(),
   ).toBeVisible();
 });
+
+test("an edited address updates the contact card, itinerary, structured data and privacy page", async ({
+  page,
+}) => {
+  await page.route("**/api/admin/session", (route) =>
+    route.fulfill({ json: { authenticated: true } }),
+  );
+  await page.goto("/contact?admin");
+  const address = page
+    .locator('main [contenteditable="true"]')
+    .filter({ hasText: "729 route de Sarrians" })
+    .first();
+  await address.fill("731 route de Sarrians, 84190 Vacqueyras");
+  await page.keyboard.press("Tab");
+  const itinerary = page.getByRole("link", { name: "Préparer mon itinéraire" });
+  await expect
+    .poll(async () =>
+      new URL(await itinerary.getAttribute("href")).searchParams.get(
+        "destination",
+      ),
+    )
+    .toContain("731 route de Sarrians");
+  await expect(
+    page
+      .locator("main")
+      .getByText("731 route de Sarrians, 84190 Vacqueyras", { exact: true }),
+  ).toHaveCount(2);
+  await expect
+    .poll(() => page.locator("#structured-data").textContent())
+    .toContain("731 route de Sarrians");
+  await page
+    .locator("footer")
+    .getByRole("link", { name: "Confidentialité", exact: true })
+    .click();
+  await expect(page.locator("main")).toContainText(
+    "731 route de Sarrians, 84190 Vacqueyras",
+  );
+});

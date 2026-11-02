@@ -4,7 +4,7 @@ import { FiInstagram, FiPhone, FiCalendar } from "react-icons/fi";
 import SafeIcon from "../common/SafeIcon";
 import EditableText from "./admin/EditableText";
 import { useContent } from "../contexts/ContentContext";
-import { bookingUrl, phoneHref } from "../utils/business";
+import { bookingUrl, phoneHref, instagramProfileUrl } from "../utils/business";
 export default function Footer() {
   const { globalContent, updateGlobalContent } = useContent();
   const data = globalContent.footer;
@@ -112,7 +112,7 @@ export default function Footer() {
               ))
             )}
             <a
-              href={`https://www.instagram.com/${data.social.instagram}/`}
+              href={instagramProfileUrl(data.social.instagram)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 min-h-11 mt-2 text-sm text-stone-200 hover:text-white"

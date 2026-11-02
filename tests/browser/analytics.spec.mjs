@@ -120,3 +120,25 @@ test("authenticated dashboard renders real counts, exports CSV and distinguishes
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);
 });
+
+test("the business-profile link counts a category after consent without recording its query", async ({
+  page,
+}) => {
+  const events = [];
+  await page.route("**/api/audience/event", async (route) => {
+    events.push(route.request().postDataJSON());
+    await route.fulfill({ status: 204 });
+  });
+  await page.goto(
+    "/?utm_source=google&utm_medium=organic&utm_campaign=fiche_etablissement&email=private@example.com",
+  );
+  await page.getByRole("button", { name: "Accepter", exact: true }).click();
+  await expect.poll(() => events.length).toBe(1);
+  expect(events[0]).toEqual({
+    consent: true,
+    event: "pageview",
+    path: "/",
+    source: "google_business",
+    device: "mobile",
+  });
+});

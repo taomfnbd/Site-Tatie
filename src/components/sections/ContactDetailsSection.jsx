@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
 import { useContent } from '../../contexts/ContentContext';
-import { phoneHref } from '../../utils/business';
+import { phoneHref, bookingUrl, getBusinessProfile } from '../../utils/business';
 import SafeIcon from '../../common/SafeIcon';
 import { FiPhone, FiMapPin, FiCalendar, FiInfo, FiInstagram, FiExternalLink } from 'react-icons/fi';
 
 const ContactDetailsSection = ({ content, onUpdate }) => {
   const { globalContent, updateGlobalContent } = useContent();
+  const profile = getBusinessProfile(globalContent);
   const data = {
     directContact: {
       title: 'Contact direct',
@@ -62,10 +63,13 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
 
   data.directContact = { ...data.directContact, phone: globalContent.footer.contact.phone, address: globalContent.footer.contact.address };
   if (globalContent.footer.schedule) data.schedule = { ...data.schedule, days: globalContent.footer.schedule };
+  data.location = { ...data.location, address: profile.displayAddress };
+  data.instagram = { ...data.instagram, handle: '@' + globalContent.footer.social.instagram };
   const updateField = (path, value) => {
-    if (path === 'directContact.phone' || path === 'directContact.address') {
-      updateGlobalContent('footer', { ...globalContent.footer, contact: { ...globalContent.footer.contact, [path.split('.')[1]]: value } });
+    if (path === 'directContact.phone' || path === 'directContact.address' || path === 'location.address') {
+      updateGlobalContent('footer', { ...globalContent.footer, contact: { ...globalContent.footer.contact, [path.endsWith('.address') ? 'address' : 'phone']: value } });
     }
+    if (path === 'instagram.handle') updateGlobalContent('footer', { ...globalContent.footer, social: { ...globalContent.footer.social, instagram: value.replace(/^@/, '').trim() } });
     if (path === 'schedule.days') updateGlobalContent('footer', { ...globalContent.footer, schedule: value });
     // Helper pour nested update
     const newData = JSON.parse(JSON.stringify(data));
@@ -78,7 +82,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
     onUpdate(newData);
   };
 
-  const instagramWebUrl = 'https://www.instagram.com/lali_bellul/';
+  const instagramWebUrl = profile.instagramUrl;
 
   return (
     <div className="space-y-12">
@@ -171,7 +175,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
                 className="text-stone-600 mb-6 font-light"
               />
               <a
-                href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
+                href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#5e7056] text-white py-3 rounded-lg font-medium hover:bg-[#4e6048] transition-colors flex items-center justify-center space-x-2"
@@ -394,13 +398,13 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
               className="text-stone-600 mb-6 font-light"
             />
             <a
-              href="https://maps.google.com/?q=729+route+de+Sarrians,+84190+Vacqueyras"
+              href={profile.directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-[#5e7056] text-white px-6 py-3 rounded-lg hover:bg-[#4e6048] transition-colors"
             >
               <SafeIcon icon={FiMapPin} />
-              <span>Voir sur Google Maps</span>
+              <span>Préparer mon itinéraire</span>
             </a>
           </motion.div>
         </div>

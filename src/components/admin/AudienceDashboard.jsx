@@ -8,6 +8,7 @@ const labels = {
   instagram: "Clics Instagram",
   direct: "Accès direct / source inconnue",
   google: "Google",
+  google_business: "Fiche Google (lien balisé)",
   bing: "Bing",
   social: "Réseaux sociaux",
   other: "Autres sites",
@@ -101,7 +102,7 @@ export default function AudienceDashboard({ onClose }) {
       ref={dialog}
       onCancel={onClose}
       aria-labelledby="audience-title"
-      className="w-[calc(100%-1.5rem)] max-w-5xl max-h-[90dvh] rounded-2xl p-0 text-stone-900 backdrop:bg-black/50"
+      className="m-auto w-[calc(100%-1.5rem)] max-w-5xl max-h-[90dvh] rounded-2xl p-0 text-stone-900 backdrop:bg-black/50"
     >
       <div className="p-5 sm:p-8">
         <div className="flex justify-between gap-4">
@@ -238,9 +239,12 @@ export default function AudienceDashboard({ onClose }) {
               </div>
             </details>
             <p className="text-xs text-stone-600 mt-4">
-              Conservation : 90 jours. Les sources peuvent être masquées par les
-              navigateurs ; « accès direct » inclut les provenances inconnues.
-              Actualisé le {new Date(data.generatedAt).toLocaleString("fr-FR")}.
+              Conservation : 90 jours. La source « Fiche Google » correspond au
+              lien balisé fourni pour la fiche ; elle ne prouve pas
+              indépendamment l’origine de la visite. Les sources peuvent être
+              masquées par les navigateurs ; « accès direct » inclut les
+              provenances inconnues. Actualisé le{" "}
+              {new Date(data.generatedAt).toLocaleString("fr-FR")}.
             </p>
           </>
         )}

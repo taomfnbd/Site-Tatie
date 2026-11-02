@@ -7,7 +7,7 @@ Le bouton **Statistiques**, dans la barre de l’administration `/?admin`, affic
 - Début de mesure à la mise en ligne ; aucun historique reconstitué.
 - Uniquement les navigateurs ayant explicitement accepté la mesure. Le refus reste sans effet sur la navigation et les réservations.
 - Pas de personnes uniques, sessions ou parcours individuels : un retour sur une page est une nouvelle vue.
-- Provenance limitée à des catégories, sans URL référente, paramètres de campagne ou identifiants. « Direct » inclut les sources masquées par les navigateurs. La provenance est celle disponible au chargement du document, appliquée aux pages vues de ce document ; ce n’est pas une attribution de conversion.
+- Provenance limitée à des catégories, sans URL référente, texte libre de campagne ou identifiants. Le lien du kit Google porte trois balises fixes (`utm_source=google`, `utm_medium=organic`, `utm_campaign=fiche_etablissement`) reconnues comme la catégorie « Fiche Google ». Seule cette catégorie est envoyée ; les paramètres ne sont pas stockés. Un lien partagé ou modifié peut fausser cette attribution déclarative. « Direct » inclut les sources masquées par les navigateurs. La provenance est celle disponible au chargement du document, appliquée aux pages vues de ce document ; ce n’est pas une attribution de conversion.
 - **Clic Resalib ≠ réservation confirmée. Clic téléphone ≠ appel abouti. Clic email ≠ message envoyé ou reçu.** Ces confirmations ne sont pas connectées.
 - Robots reconnaissables et administrateurs exclus au mieux ; les compteurs publics peuvent être manipulés. Les utiliser pour suivre des tendances, jamais comme preuve de facturation.
 - Prévisualisations Netlify exclues côté client et serveur.

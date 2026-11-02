@@ -239,7 +239,8 @@ export const initialSiteContent = {
           "titlePrefix": "Prestations et",
           "title": "tarifs à Vacqueyras",
           "subtitle": "Des accompagnements personnalisés pour votre bien-être global",
-          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/3.svg"
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/3.svg",
+          "imageAlt": "Alaïs Tavernier pratique un massage assis au cabinet"
         }
       },
       {
@@ -345,7 +346,8 @@ export const initialSiteContent = {
         "content": {
           "title": "Naturopathie à Vacqueyras",
           "subtitle": "La naturopathie est un accompagnement de bien-être centré sur les habitudes alimentaires, le rythme de vie et la gestion du stress. À Vacqueyras, Alaïs Tavernier propose un bilan de vitalité et des échanges personnalisés, sans diagnostic médical ni prescription.",
-          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg"
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
+          "imageAlt": "Alaïs Tavernier échange avec une personne au cabinet"
         }
       },
       {
@@ -470,7 +472,8 @@ export const initialSiteContent = {
         "content": {
           "title": "Réflexologie à Vacqueyras",
           "subtitle": "La réflexologie est une pratique manuelle de bien-être fondée sur des pressions adaptées, principalement sur les pieds et les mains. Au cabinet de Vacqueyras, Alaïs Tavernier propose une séance personnalisée, attentive au confort et aux sensations de chacun.",
-          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg"
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
+          "imageAlt": "Alaïs Tavernier échange avec une personne au cabinet"
         }
       },
       {
@@ -595,7 +598,8 @@ export const initialSiteContent = {
         "content": {
           "title": "Massage assis à Vacqueyras",
           "subtitle": "Le massage assis se pratique habillé, sans huile, sur une chaise de massage adaptée. La séance proposée par Alaïs Tavernier à Vacqueyras dure 30 minutes et porte notamment sur le dos, la nuque, les épaules, les bras et les mains.",
-          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/2.svg"
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/2.svg",
+          "imageAlt": "Massage assis habillé sur une chaise adaptée, au cabinet"
         }
       },
       {

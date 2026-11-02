@@ -62,8 +62,8 @@ const ServicesHeaderSection = ({ content, onUpdate }) => {
               <EditableImage
                 priority
               src={data.imageUrl}
-                alt="Illustration services"
-                onChange={(v) => updateField('imageUrl', v)}
+                alt={data.imageAlt || "Massage assis habillé sur une chaise adaptée au cabinet"}
+                onChange={(imageUrl, imageAlt) => onUpdate({ ...data, imageUrl, imageAlt })}
                 className="w-full h-full object-cover"
               />
             </div>
