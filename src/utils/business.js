@@ -1,3 +1,5 @@
+export const googlePlaceId = "ChIJG-MmWnE9HY0RX9u_WlAr-KU";
+export const googleMapsUrl = `https://www.google.com/maps/search/?${new URLSearchParams({ api: "1", query: "Alaïs Tavernier", query_place_id: googlePlaceId })}`;
 export const bookingUrl =
   "https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras";
 export const instagramUrl = "https://www.instagram.com/lali_bellul/";
@@ -93,7 +95,7 @@ export function getBusinessProfile(content) {
     address,
     displayAddress,
     telephone,
-    mapsUrl: `https://www.google.com/maps/search/?${new URLSearchParams({ api: "1", query })}`,
+    mapsUrl: `https://www.google.com/maps/search/?${new URLSearchParams({ api: "1", query, query_place_id: googlePlaceId })}`,
     directionsUrl: `https://www.google.com/maps/dir/?${new URLSearchParams({ api: "1", destination: query })}`,
     instagramUrl: instagramProfileUrl(footer.social?.instagram),
   };

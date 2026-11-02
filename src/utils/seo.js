@@ -4,6 +4,7 @@ import {
   routePageKeys,
   breadcrumbItems,
   bookingUrl,
+  googleMapsUrl,
   getBusinessProfile,
 } from "./business.js";
 // Utilitaires SEO pour optimiser le référencement
@@ -225,7 +226,7 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
     address: profile.address,
     founder: { "@id": `${SITE_URL}/#person` },
     hasMap: profile.mapsUrl,
-    sameAs: [profile.instagramUrl, bookingUrl],
+    sameAs: [googleMapsUrl, profile.instagramUrl, bookingUrl],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Prestations de bien-être",

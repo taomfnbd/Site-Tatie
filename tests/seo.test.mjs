@@ -147,7 +147,11 @@ test("page entities and breadcrumb references resolve within each schema graph",
   }
 });
 
-import { getBusinessProfile } from "../src/utils/business.js";
+import {
+  getBusinessProfile,
+  googlePlaceId,
+  googleMapsUrl,
+} from "../src/utils/business.js";
 test("editable coordinates drive maps, structured address, telephone and profile links together", () => {
   const content = structuredClone(initialSiteContent);
   content.footer.contact.address =
@@ -178,6 +182,11 @@ test("editable coordinates drive maps, structured address, telephone and profile
   );
   assert.deepEqual(business.address, profile.address);
   assert.equal(business.hasMap, profile.mapsUrl);
+  assert.equal(
+    new URL(profile.mapsUrl).searchParams.get("query_place_id"),
+    googlePlaceId,
+  );
+  assert.ok(business.sameAs.includes(googleMapsUrl));
   assert.equal(business.telephone, profile.telephone);
   assert.ok(business.sameAs.includes(profile.instagramUrl));
   content.footer.contact.address = "731 route de Sarrians, 84190 Vacqueyras";

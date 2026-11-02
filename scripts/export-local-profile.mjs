@@ -1,7 +1,11 @@
 import { mkdir, writeFile, copyFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { initialSiteContent as content } from "../src/data/siteContent.js";
-import { getBusinessProfile, bookingUrl } from "../src/utils/business.js";
+import {
+  getBusinessProfile,
+  bookingUrl,
+  googleMapsUrl,
+} from "../src/utils/business.js";
 import { SITE_URL } from "../src/utils/seo.js";
 const output = resolve(process.argv[2] || "audits/kit-local");
 await mkdir(output, { recursive: true });
@@ -52,6 +56,7 @@ await writeFile(
       address: profile.displayAddress,
       website,
       bookingUrl,
+      googleMapsUrl,
       instagram: profile.instagramUrl,
       schedule: content.footer.schedule,
       services,
@@ -77,6 +82,7 @@ Généré le ${new Date().toISOString().slice(0, 10)} depuis le contenu du site.
 
 ## 1. Fiche Google existante : champs à vérifier et compléter
 
+- Fiche identifiée : ${googleMapsUrl}
 - Nom public : **${profile.name}**. Conserver le nom réel déjà utilisé sur la signalétique ; ajouter « Naturopathe » seulement si cela fait partie du nom public réel. Pas de renommage artificiel par commune.
 - Catégorie principale à rechercher : **Naturopathe**, si proposée par Google pour cette activité. Confirmer sa disponibilité dans la fiche ; catégories secondaires uniquement si elles décrivent effectivement les services.
 - Adresse : **${profile.displayAddress}**.
@@ -89,7 +95,11 @@ Généré le ${new Date().toISOString().slice(0, 10)} depuis le contenu du site.
 
 Le lien Site balisé alimente la catégorie « Fiche Google (lien balisé) » du tableau, après accord du visiteur. C’est une attribution déclarative du lien, pas une réservation confirmée ni une preuve indépendante d’origine.
 
-### Horaires actuellement publiés sur le site
+### Horaires à confirmer avant modification
+
+Le 2 novembre 2026, la fiche Google affiche lundi et jeudi 14 h–18 h, tandis que le site affiche 9 h–17 h. Le samedi concorde : 9 h–12 h. La confirmation des horaires réels est attendue ; aucun horaire n’a été modifié sur la seule base de cette différence.
+
+Horaires actuellement publiés sur le site :
 
 ${schedule}
 
@@ -156,7 +166,7 @@ Brouillon non envoyé. Vérifier la signature et le destinataire avant envoi.
 
 - Site : corrections SEO et données structurées publiées, accès aux dix pages vérifié.
 - Audience : tableau privé, collecte après consentement, nouvelles mesures seulement.
-- Fiche Google : lien exact et accès propriétaire non fournis ; aucune modification ou revendication effectuée.
+- Fiche Google : identifiée et reliée au site par son identifiant Google Places. Le compte de gestion actuellement consulté ne liste pas cette fiche ; aucune modification ou revendication effectuée.
 - Photos du cabinet et accès : validation d’Alaïs nécessaire.
 - Avis : messages préparés ; aucun envoi et aucun nouvel avis promis.
 - Liens partenaires : pistes et brouillon préparés ; aucun lien obtenu annoncé.
