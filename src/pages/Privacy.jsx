@@ -14,11 +14,48 @@ export default function Privacy() {
       </p>
       <h2>Consulter ce site</h2>
       <p>
-        Le site ne charge pas de traceur publicitaire ni d’outil de mesure
-        d’audience côté navigateur. Les données techniques nécessaires à
-        l’hébergement et à la sécurité, telles que l’adresse IP et les
-        informations de requête, peuvent être traitées par l’hébergeur Netlify.
-        Aucun compte visiteur n’est nécessaire.
+        Le site ne charge pas de traceur publicitaire. Une mesure d’audience
+        facultative est activée uniquement après votre accord. Les données
+        techniques nécessaires à l’hébergement et à la sécurité, telles que
+        l’adresse IP et les informations de requête, peuvent être traitées par
+        l’hébergeur Netlify. Aucun compte visiteur n’est nécessaire.
+      </p>
+      <h2>Mesure d’audience facultative</h2>
+      <p>
+        Sur la base de votre consentement, le site compte les pages vues et les
+        clics vers Resalib, le téléphone, l’email, les itinéraires et Instagram.
+        Seuls le chemin d’une page connue, la catégorie de provenance (Google,
+        réseau social, accès direct ou autre), la catégorie d’écran (mobile ou
+        ordinateur/tablette) et le type d’action sont transmis à notre hébergeur
+        Netlify, puis agrégés par journée. Les paramètres d’URL, adresses email,
+        numéros de téléphone, noms, contenus de messages et données de
+        rendez-vous ne sont pas enregistrés dans ces statistiques. Aucun
+        identifiant de visiteur ni empreinte numérique n’est créé ; les adresses
+        IP ne sont pas conservées dans les compteurs d’audience.
+      </p>
+      <p>
+        Ces statistiques servent exclusivement à améliorer ce site. Elles sont
+        accessibles uniquement à l’administration et conservées 90 jours, avec
+        suppression quotidienne des compteurs expirés. Le choix d’accepter ou de
+        refuser est conservé localement sur votre navigateur pendant six mois.
+        Vous pouvez le modifier à tout moment via « Préférences de mesure
+        d’audience » en bas de page ; le retrait arrête les nouvelles mesures.
+        Les compteurs déjà agrégés ne permettent pas d’isoler une personne.
+        Refuser ne limite aucune fonction du site.
+      </p>
+      <p>
+        Netlify traite les requêtes nécessaires au fonctionnement du service, ce
+        qui peut impliquer des transferts hors de l’Union européenne selon ses
+        conditions et garanties contractuelles. Consultez la{" "}
+        <a
+          href="https://www.netlify.com/privacy/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          politique de confidentialité de Netlify
+        </a>
+        . La mesure ne confirme ni les rendez-vous pris sur Resalib, ni les
+        appels aboutis, ni les emails envoyés.
       </p>
       <h2>Prendre contact ou rendez-vous</h2>
       <p>
@@ -37,11 +74,11 @@ export default function Privacy() {
       </p>
       <h2>Stockage et sécurité</h2>
       <p>
-        La navigation publique ne nécessite pas de cookie de consentement.
-        L’administration utilise un cookie de session sécurisé, nécessaire à la
-        connexion, valable au maximum quatre heures, et un brouillon conservé
-        sur l’appareil de l’administratrice. Ces éléments ne servent pas à
-        suivre les visiteurs.
+        Le choix de mesure d’audience est enregistré dans le stockage local du
+        navigateur, sans cookie publicitaire. L’administration utilise un cookie
+        de session sécurisé, nécessaire à la connexion, valable au maximum
+        quatre heures, et un brouillon conservé sur l’appareil de
+        l’administratrice. Ces éléments ne servent pas à suivre les visiteurs.
       </p>
       <p>
         Les échanges de contact sont conservés le temps nécessaire à leur

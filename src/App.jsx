@@ -7,6 +7,7 @@ import NavigationEffects from "./components/NavigationEffects";
 import Breadcrumbs from "./components/Breadcrumbs";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Audience from "./components/Audience";
 import { EditModeProvider, useEditMode } from "./contexts/EditModeContext";
 import { ContentProvider } from "./contexts/ContentContext";
 import Home from "./pages/Home";
@@ -85,6 +86,7 @@ export default function App() {
                 </Routes>
               </main>
               <Footer />
+              <Audience />
             </div>
           </ContentProvider>
         </EditModeProvider>
