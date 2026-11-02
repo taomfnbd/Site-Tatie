@@ -27,11 +27,25 @@ Préserver ConfirmModal, ToastContainer, l’édition inline et les garde-fous d
 
 `src/data/siteContent.js` est la source publiée. Header/footer partagent les liens. Le catalogue de prestations alimente les cartes de l’accueil, les tarifs synchronisés et les offres JSON-LD. Les FAQ du graphe proviennent du contenu visible. Utiliser `syncServicePrices` pour toute évolution des tarifs.
 
-Les photos historiques sont désormais disponibles en WebP local, aux tailles 480/800/1200. Le helper media mappe aussi les anciennes URL connues vers ces assets. Le portrait principal est eager et prioritaire ; les images sous le premier écran restent lazy. Le CMS conserve les textes alternatifs. Les libellules décoratives sont locales et ont un alt vide.
+Les photos historiques sont disponibles en WebP local, aux tailles 480/800/1200. Le portrait dispose aussi de variantes AVIF. Préserver `imageDimensions` dans le helper média : dimensions réelles des photos connues, aucune dimension inventée pour un nouvel upload. Le helper media mappe aussi les anciennes URL connues vers ces assets. Le portrait principal est eager et prioritaire ; les images sous le premier écran restent lazy. Le CMS conserve les textes alternatifs. Les libellules décoratives sont locales et ont un alt vide.
 
 Conserver l’identité sauge/beige. Les fonds d’action utilisent `#5e7056` ou plus sombre avec texte blanc ; ne pas utiliser blanc sur `#95a58d` (contraste insuffisant). Les éléments de navigation et le zoom doivent rester accessibles.
 
-Contact utilise téléphone/Resalib ; pas de formulaire public. Aucun traceur optionnel actif : ne pas ajouter une bannière de consentement sans inventorier les traitements et connecter réellement le choix à leur chargement. Garder la page de confidentialité cohérente avec les usages réels.
+Contact utilise téléphone/Resalib ; pas de formulaire public. Garder la page de confidentialité cohérente avec les usages réels.
+
+## Audience et présence locale
+
+Le suivi optionnel est actif uniquement après consentement explicite. `src/analytics/events.js` et `Audience.jsx` gèrent le choix pendant 180 jours, son expiration dans un onglet ouvert et son retrait entre onglets. Refuser et accepter doivent rester également accessibles. Exclure administration, previews et robots ; ne jamais enregistrer de nom, contenu libre, données de santé, IP, identifiant visiteur ou URL/referrer complets.
+
+Les fonctions `/api/audience/event` et `/api/admin/audience` utilisent des agrégats Netlify Blobs avec mises à jour conditionnelles ETag. Conservation de 90 jours, tableau privé dans l’administration, périodes 7/30/90 jours et export CSV. Un clic Resalib, téléphone ou email ne prouve jamais une réservation, un appel ou un message. Les rendez-vous confirmés ne sont pas connectés. Voir `TRACKING.md`.
+
+Les coordonnées et liens proviennent de `getBusinessProfile` dans `src/utils/business.js`. La fiche Google vérifiée porte le Place ID `ChIJG-MmWnE9HY0RX9u_WlAr-KU`. Ne pas inventer de GPS, avis, note ou équipement. Le propriétaire de ce projet n’est pas administrateur de la fiche Google : ne pas modifier cette fiche ni demander des droits sans instruction explicite.
+
+Les horaires du lundi/jeudi divergent encore : site 9–17 h, fiche Google 14–18 h. Attendre la confirmation d’Alaïs avant de les harmoniser. Ne pas garantir indexation, classement ou citations par les IA. Voir `SEO-LOCAL.md` et le kit généré par `npm run export:local -- "/chemin/de/sortie"`.
+
+## Design
+
+Préserver la palette sauge/beige, le portrait réel et le contenu éditable. Les titres éditoriaux utilisent Georgia système via `.font-editorial`, sans police distante. Conserver les contrastes, le focus clavier, la réduction des mouvements et les cibles tactiles. Examiner les rendus mobile et bureau après toute modification visuelle ; éviter défilement horizontal, recadrage du visage et décalages de mise en page.
 
 ## Maintenance
 

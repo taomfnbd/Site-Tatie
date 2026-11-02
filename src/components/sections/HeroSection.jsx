@@ -28,7 +28,7 @@ const HeroSection = ({ content, onUpdate }) => {
   };
 
   return (
-    <section className="relative min-h-0 flex items-center justify-center bg-gradient-to-br from-stone-25 via-green-25 to-stone-50 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-0 flex items-center justify-center bg-gradient-to-br from-[#f8f5ef] via-[#fafbf7] to-[#eef2e9] px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-24 sm:w-32 h-24 sm:h-32 bg-[#95a58d] rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-32 sm:w-40 h-32 sm:h-40 bg-green-300 rounded-full blur-3xl"></div>
@@ -45,9 +45,9 @@ const HeroSection = ({ content, onUpdate }) => {
             initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative order-2 mx-auto w-full max-w-[280px] sm:max-w-sm lg:max-w-none"
+            className="relative order-2 mx-auto w-full max-w-[280px] sm:max-w-sm lg:max-w-[460px]"
           >
-            <div className="aspect-[4/5] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-stone-100">
+            <div className="aspect-[4/5] lg:aspect-[4/5] rounded-t-[9rem] rounded-b-3xl overflow-hidden shadow-lg border border-white/80">
               <EditableImage
                 priority
                 sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, (min-width: 640px) 384px, 280px"
@@ -75,7 +75,7 @@ const HeroSection = ({ content, onUpdate }) => {
             <p className="text-xs uppercase tracking-[0.2em] text-[#5e7056] mb-4 font-medium">
               Votre cabinet de bien-être dans le Vaucluse
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light text-stone-800 mb-6 sm:mb-8 tracking-wide leading-tight">
+            <h1 className="font-editorial text-5xl sm:text-6xl lg:text-6xl xl:text-7xl font-light text-stone-800 mb-6 sm:mb-8 tracking-wide leading-tight">
               <EditableText
                 value={data.firstName}
                 onChange={(val) => updateField("firstName", val)}
@@ -92,7 +92,7 @@ const HeroSection = ({ content, onUpdate }) => {
                 value={data.profession}
                 onChange={(val) => updateField("profession", val)}
                 element="span"
-                className="block mt-4 text-xl sm:text-2xl text-stone-700 font-light tracking-normal"
+                className="font-sans block mt-4 text-xl sm:text-2xl text-stone-700 font-light tracking-normal"
               />
             </h1>
             <div className="mb-6 sm:mb-8 lg:mb-10">
@@ -147,7 +147,7 @@ const HeroSection = ({ content, onUpdate }) => {
               </a>
               <Link
                 to="/contact"
-                className="flex items-center justify-center space-x-2 border border-[#95a58d] text-[#6b7563] px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium hover:bg-[#95a58d] hover:text-white transition-all duration-300"
+                className="flex items-center justify-center space-x-2 border border-[#95a58d] text-[#6b7563] px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium hover:bg-[#5e7056] hover:text-white transition-all duration-300"
               >
                 <SafeIcon icon={FiMail} />
                 <span>Me contacter</span>
