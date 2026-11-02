@@ -175,3 +175,33 @@ test("a late anonymous session check cannot override a successful login", async 
   ).toBeVisible();
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
+
+test("initial HTML and navigated pages agree on metadata and contextual links remain accessible", async ({
+  page,
+}) => {
+  for (const route of ["/about", "/contact", "/prestations", "/reflexologie"]) {
+    const response = await page.goto(route);
+    const html = await response.text();
+    const staticTags = await page.evaluate((markup) => {
+      const document = new DOMParser().parseFromString(markup, "text/html");
+      return [
+        ...document.querySelectorAll(
+          'meta[name="description"],meta[property^="og:"],meta[name^="twitter:"]',
+        ),
+      ].map((tag) => ({
+        attribute: tag.hasAttribute("property") ? "property" : "name",
+        name: tag.getAttribute("property") || tag.getAttribute("name"),
+        content: tag.content,
+      }));
+    }, html);
+    for (const tag of staticTags)
+      await expect(
+        page.locator(`meta[${tag.attribute}="${tag.name}"]`),
+      ).toHaveAttribute("content", tag.content);
+    await expect(page.locator('meta[name="keywords"]')).toHaveCount(0);
+  }
+  await expect(page.locator('main a[href="/about"]')).toBeVisible();
+  await expect(
+    page.locator('main a[href="/massage-assis"]').first(),
+  ).toBeVisible();
+});

@@ -132,6 +132,17 @@ export const initialSiteContent = {
         }
       },
       {
+        "id": "home-prepare-appointment",
+        "type": "service_content",
+        "content": {
+          "title": "Préparer votre première visite",
+          "paragraphs": [
+            "Vous recherchez un échange sur vos habitudes de vie ou un temps de détente corporelle ? La <a href=\"/naturopathie\">première consultation de naturopathie</a> repose sur un bilan de vitalité. La <a href=\"/reflexologie\">réflexologie</a> et le <a href=\"/massage-assis\">massage assis habillé</a> proposent deux formats de pratique manuelle de bien-être.",
+            "Pour faire connaissance, découvrez <a href=\"/about\">mon parcours de formation en naturopathie</a>. Retrouvez ensuite <a href=\"/contact\">les horaires, les coordonnées et l’itinéraire du cabinet à Vacqueyras</a> pour organiser votre rendez-vous."
+          ]
+        }
+      },
+      {
         "id": "home-local-faq",
         "type": "faq",
         "content": {
@@ -180,9 +191,9 @@ export const initialSiteContent = {
         "id": "about-page-main",
         "type": "about",
         "content": {
-          "titlePrefix": "Une approche",
-          "title": "à votre écoute",
-          "subtitle": "Alaïs Tavernier, naturopathe à Vacqueyras",
+          "titlePrefix": "Alaïs Tavernier,",
+          "title": "naturopathe à Vacqueyras",
+          "subtitle": "Mon parcours et ma façon de vous accompagner",
           "content": "Mon parcours a commencé comme secrétaire médicale, avant de se poursuivre dans la comptabilité. Cette expérience m’a donné le goût de l’écoute et des relations humaines. En 2022, j’ai intégré l’école Aesculape à Aix-en-Provence pour trois années de formation en naturopathie. Aujourd’hui, je vous accueille à Vacqueyras avec une approche attentive à vos habitudes, à votre rythme de vie et à vos besoins. Ensemble, nous cherchons des ajustements simples et réalistes pour votre quotidien.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/1.svg",
           "isPage": true
@@ -206,8 +217,8 @@ export const initialSiteContent = {
           "title": "Un cadre clair pour votre accompagnement",
           "paragraphs": [
             "La naturopathie, la réflexologie et le massage assis s’inscrivent dans une démarche de bien-être. Je ne pose pas de diagnostic médical et ne prescris pas de traitement. Ces séances ne remplacent pas un suivi auprès d’un professionnel de santé.",
-            "La première rencontre est l’occasion d’échanger sur vos attentes et de choisir la prestation qui vous convient. Les tarifs, la durée des séances et le déroulement sont présentés sur chaque page de prestation.",
-            "Vous souhaitez poser une question avant de prendre rendez-vous ? Contactez-moi par téléphone au 07 81 66 09 29. Le cabinet est situé au 729 route de Sarrians, à Vacqueyras."
+            "La première rencontre est l’occasion d’échanger sur vos attentes et de choisir la prestation qui vous convient. Comparez les <a href=\"/prestations\">tarifs et durées des séances de naturopathie, réflexologie et massage assis</a> pour préparer votre choix.",
+            "Vous souhaitez poser une question avant de prendre rendez-vous ? Retrouvez les <a href=\"/contact\">coordonnées, horaires et informations d’accès au cabinet de Vacqueyras</a>, ou appelez-moi au 07 81 66 09 29."
           ]
         }
       },
@@ -225,8 +236,8 @@ export const initialSiteContent = {
         "id": "services-header-1",
         "type": "services_header",
         "content": {
-          "titlePrefix": "Mes",
-          "title": "prestations",
+          "titlePrefix": "Prestations et",
+          "title": "tarifs à Vacqueyras",
           "subtitle": "Des accompagnements personnalisés pour votre bien-être global",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/3.svg"
         }
@@ -266,7 +277,7 @@ export const initialSiteContent = {
             }
           ],
           "linkUrl": "/naturopathie",
-          "linkText": "En savoir plus"
+          "linkText": "Déroulement de la naturopathie"
         }
       },
       {
@@ -279,10 +290,10 @@ export const initialSiteContent = {
           "subtitle": "Stimulation des zones réflexes pour le bien-être",
           "description": "Une pratique manuelle de bien-être par des pressions adaptées sur les pieds ou les mains, dans un cadre attentif à votre confort.",
           "benefits": [
-            "Détente et réduction du stress",
-            "Amélioration de la circulation",
-            "Soutien du sommeil et de l'énergie",
-            "Séance personnalisée selon vos besoins"
+            "Une pause dans un quotidien chargé",
+            "Des pressions sur les pieds ou les mains",
+            "Une pratique attentive à vos sensations",
+            "Une séance adaptée à votre confort"
           ],
           "prices": [
             {
@@ -297,7 +308,7 @@ export const initialSiteContent = {
             }
           ],
           "linkUrl": "/reflexologie",
-          "linkText": "En savoir plus"
+          "linkText": "Déroulement de la réflexologie"
         }
       },
       {
@@ -307,13 +318,13 @@ export const initialSiteContent = {
           "iconType": "heart",
           "gradient": "from-stone-25 to-green-25",
           "title": "Massage assis",
-          "subtitle": "Détente immédiate sans se déshabiller",
+          "subtitle": "Une pause corporelle, habillé et sans huile",
           "description": "Un massage relaxant pratiqué habillé, ciblé sur les zones de tensions du dos, nuque et épaules.",
           "benefits": [
-            "Réduction du stress et des tensions",
-            "Amélioration du sommeil",
-            "Stimulation de la circulation",
-            "Boost d'énergie immédiat"
+            "Un temps de détente corporelle",
+            "Une pratique habillée et sans huile",
+            "Des pressions adaptées à votre confort",
+            "Une attention portée au dos, à la nuque et aux épaules"
           ],
           "prices": [
             {
@@ -323,7 +334,7 @@ export const initialSiteContent = {
             }
           ],
           "linkUrl": "/massage-assis",
-          "linkText": "En savoir plus"
+          "linkText": "Déroulement du massage assis"
         }
       }
     ],
@@ -343,8 +354,8 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que la naturopathie ?",
           "paragraphs": [
-            "La naturopathie est un accompagnement de bien-être centré sur les habitudes alimentaires, le rythme de vie et la gestion du stress. À Vacqueyras, Alaïs Tavernier propose un bilan de vitalité et des échanges personnalisés, sans diagnostic médical ni prescription.",
-            "Le naturopathe est un <strong>éducateur de santé</strong>. Il accompagne son client à comprendre le fonctionnement de son organisme, à devenir autonome et acteur de son bien-être.",
+            "La consultation s’appuie sur un échange autour de votre alimentation, de votre rythme quotidien, du repos et du stress ressenti. L’objectif est de choisir des ajustements progressifs et réalistes, à partir de vos attentes et de vos possibilités.",
+            "Mon rôle est de vous aider à mieux comprendre vos habitudes et à faire des choix éclairés pour votre bien-être. Je ne réalise pas d’acte médical et je ne prescris pas de traitement.",
             "J'accompagne chaque personne à retrouver vitalité et harmonie grâce à une approche naturelle et globale de la santé : alimentation, émotions, rythme de vie et équilibre intérieur.",
             "La naturopathie s'adresse à toute personne souhaitant améliorer son bien-être, retrouver vitalité et équilibre au naturel : enfants, adolescents, adultes.",
             "Chaque accompagnement est personnalisé selon votre mode de vie, vos besoins et votre rythme."
@@ -384,6 +395,18 @@ export const initialSiteContent = {
             "Aborder le stress ressenti au quotidien",
             "Choisir des ajustements réalistes et progressifs",
             "Construire un accompagnement adapté à son quotidien"
+          ]
+        }
+      },
+      {
+        "id": "naturopathy-prepare-session",
+        "type": "service_content",
+        "content": {
+          "title": "Préparer un bilan de vitalité à Vacqueyras",
+          "paragraphs": [
+            "Avant la rencontre, vous pouvez noter vos questions, les habitudes que vous souhaitez faire évoluer et ce qui vous semble difficile à mettre en place au quotidien. Il n’est pas nécessaire de transmettre des informations médicales par email pour réserver.",
+            "Le bilan de vitalité est un entretien sur votre quotidien ; ce n’est ni un examen médical ni un diagnostic. Le suivi sert à revenir sur les ajustements discutés ensemble et à les adapter à vos possibilités.",
+            "Pour connaître la praticienne, consultez <a href=\"/about\">mon parcours et ma formation à Æsculape</a>. Si vous cherchez plutôt un temps de détente manuelle, découvrez la <a href=\"/reflexologie\">réflexologie au cabinet</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>."
           ]
         }
       },
@@ -456,7 +479,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que la réflexologie ?",
           "paragraphs": [
-            "La réflexologie est une pratique manuelle de bien-être fondée sur des pressions adaptées, principalement sur les pieds et les mains. Au cabinet de Vacqueyras, Alaïs Tavernier propose une séance personnalisée, attentive au confort et aux sensations de chacun.",
+            "La séance débute par un échange sur vos attentes et votre confort. Les pressions manuelles, notamment sur les pieds dans le cadre de la réflexologie plantaire, sont adaptées à vos sensations au fil de la pratique.",
             "Les pressions sont adaptées à votre confort. Les effets ressentis varient d’une personne à l’autre ; aucun résultat thérapeutique n’est garanti.",
             "Cette pratique s'adresse à toute personne souhaitant prendre soin de son bien-être de manière naturelle : enfants, adolescents, adultes.",
             "Chaque séance est personnalisée selon vos besoins et votre état du moment."
@@ -496,6 +519,18 @@ export const initialSiteContent = {
             "Porter attention aux sensations corporelles",
             "Bénéficier de pressions adaptées à son confort",
             "Échanger avant la séance sur ses attentes et sa situation"
+          ]
+        }
+      },
+      {
+        "id": "reflexologie-prepare-session",
+        "type": "service_content",
+        "content": {
+          "title": "Réflexologie plantaire ou massage assis : quel format choisir ?",
+          "paragraphs": [
+            "La réflexologie proposée au cabinet repose sur des pressions adaptées, principalement sur les pieds et les mains. La réflexologie plantaire concerne le travail sur les pieds ; elle se distingue du massage assis, centré notamment sur le dos, la nuque et les épaules.",
+            "Vous pouvez exprimer vos préférences et signaler toute gêne avant et pendant la séance. Si vous hésitez sur le format adapté à votre situation, contactez le cabinet avant de réserver.",
+            "Comparez avec le <a href=\"/massage-assis\">déroulement du massage assis</a>, ou découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a> si votre attente porte sur vos habitudes de vie. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>."
           ]
         }
       },
@@ -569,9 +604,9 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que le massage assis ?",
           "paragraphs": [
-            "Le massage assis se pratique habillé, sans huile, sur une chaise de massage adaptée. La séance proposée par Alaïs Tavernier à Vacqueyras dure 30 minutes et porte notamment sur le dos, la nuque, les épaules, les bras et les mains.",
+            "Au cabinet de Vacqueyras, vous êtes accueilli(e) pour un temps d’échange avant l’installation sur une chaise de massage. Le déroulement est expliqué avant la pratique et vous pouvez signaler vos préférences.",
             "Le massage assis est un <strong>enchaînement précis</strong> composé de pressions et d'étirements. Il est pratiqué <strong>habillé et sans huile</strong>, ce qui le rend particulièrement pratique et accessible.",
-            "Cette technique permet une <strong>détente immédiate</strong> en ciblant les zones où s'accumulent le plus souvent les tensions : nuque, épaules, dos."
+            "La séance propose une pause corporelle attentive à votre confort. Le ressenti de détente varie selon les personnes et aucun effet immédiat ou thérapeutique n’est promis."
           ]
         }
       },
@@ -590,8 +625,8 @@ export const initialSiteContent = {
               "description": "Les zones massées sont le crâne, les épaules, le dos, les bras et les mains avec des techniques précises."
             },
             {
-              "title": "Détente immédiate",
-              "description": "Ressentez les bienfaits dès la fin de la séance : détente, soulagement des tensions et regain d'énergie."
+              "title": "Un temps pour revenir à soi",
+              "description": "La fin de la séance permet de prendre un moment calme et d’échanger sur votre ressenti, sans attente de résultat imposée."
             }
           ]
         }
@@ -608,6 +643,18 @@ export const initialSiteContent = {
             "Une attention portée au dos, à la nuque et aux épaules",
             "Un temps d’échange avant la pratique",
             "Une pression adaptée à votre confort"
+          ]
+        }
+      },
+      {
+        "id": "massage-prepare-session",
+        "type": "service_content",
+        "content": {
+          "title": "Préparer votre séance de massage assis",
+          "paragraphs": [
+            "Le massage se pratique habillé et sans huile. Choisissez une tenue dans laquelle vous êtes à l’aise et indiquez vos attentes au début de la rencontre. Les pressions sont adaptées à votre confort ; signalez toute gêne pendant la pratique.",
+            "Ce format centré sur le dos, la nuque, les épaules, les bras et les mains est différent de la <a href=\"/reflexologie\">réflexologie pratiquée principalement sur les pieds et les mains</a>. Pour un échange consacré à vos habitudes de vie, consultez plutôt la page <a href=\"/naturopathie\">naturopathie et bilan de vitalité</a>.",
+            "Pour préparer votre venue, retrouvez <a href=\"/contact\">l’adresse, les horaires et l’itinéraire du cabinet à Vacqueyras</a>, ainsi que <a href=\"/about\">mon parcours de praticienne</a>."
           ]
         }
       },
@@ -673,7 +720,7 @@ export const initialSiteContent = {
         "id": "contact-hero",
         "type": "contact_hero",
         "content": {
-          "title": "Contact & <span class=\"text-[#6b7563]\">Infos pratiques</span>",
+          "title": "Contacter votre naturopathe à Vacqueyras",
           "subtitle": "Toutes les informations pour me contacter et organiser votre rendez-vous"
         }
       },
@@ -688,6 +735,18 @@ export const initialSiteContent = {
             "addressLabel": "Adresse",
             "address": "729 route de Sarrians<br />84190 Vacqueyras"
           }
+        }
+      },
+      {
+        "id": "contact-local-access",
+        "type": "service_content",
+        "content": {
+          "title": "Un rendez-vous au cabinet de Vacqueyras",
+          "paragraphs": [
+            "Le cabinet est situé à Vacqueyras, dans le Vaucluse. Vous venez de Sarrians, Beaumes-de-Venise, Gigondas ou Violès ? Les séances ont lieu au cabinet de Vacqueyras : utilisez le lien d’itinéraire ci-dessus pour préparer votre déplacement.",
+            "Avant de vous déplacer, réservez votre créneau sur Resalib ou appelez le cabinet. Pour toute question sur l’accès, le stationnement ou vos besoins d’accessibilité, demandez les précisions utiles par téléphone.",
+            "Vous hésitez entre plusieurs séances ? Consultez les <a href=\"/prestations\">durées et tarifs des prestations</a>, puis découvrez <a href=\"/about\">le parcours d’Alaïs Tavernier et son approche</a>."
+          ]
         }
       }
     ],

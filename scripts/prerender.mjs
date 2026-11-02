@@ -7,7 +7,7 @@ import {
   getPageSEO,
   getStructuredData,
   SITE_URL,
-  DEFAULT_IMAGE,
+  getPageMeta,
 } from "../src/utils/seo.js";
 const { render } = await import(
   pathToFileURL(resolve(".prerender/entry-server.js")).href
@@ -30,8 +30,13 @@ for (const route of [...publicRoutes, "/404"]) {
     "<title>Site Alaïs Tavernier</title>",
     `<title>${escape(seo.title)}</title>`,
   );
-  const image = `${SITE_URL}/images/photo-1-1200.webp`;
-  const head = `<meta name="description" content="${escape(seo.description)}"><meta name="robots" content="${route === "/404" || isPreview ? "noindex,follow" : "index,follow,max-image-preview:large"}"><link rel="canonical" href="${escape(seo.canonicalUrl)}"><meta property="og:title" content="${escape(seo.title)}"><meta property="og:description" content="${escape(seo.description)}"><meta property="og:url" content="${escape(seo.canonicalUrl)}"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:image" content="${image}"><meta property="og:image:alt" content="Alaïs Tavernier, naturopathe à Vacqueyras"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(seo.title)}"><meta name="twitter:description" content="${escape(seo.description)}"><meta name="twitter:image" content="${image}"><script type="application/ld+json" id="structured-data">${JSON.stringify(getStructuredData(route)).replaceAll("<", "\\u003c")}</script>`;
+  const metadata = getPageMeta(seo, isPreview)
+    .map(
+      ({ name, content, attribute }) =>
+        `<meta ${attribute}="${escape(name)}" content="${escape(content)}">`,
+    )
+    .join("");
+  const head = `${metadata}<link rel="canonical" href="${escape(seo.canonicalUrl)}"><script type="application/ld+json" id="structured-data">${JSON.stringify(getStructuredData(route)).replaceAll("<", "\\u003c")}</script>`;
   html = html.replace("</head>", head + "</head>");
   const directory = "dist";
   await mkdir(directory, { recursive: true });
