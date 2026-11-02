@@ -4,7 +4,12 @@ import { FiInstagram, FiPhone, FiCalendar } from "react-icons/fi";
 import SafeIcon from "../common/SafeIcon";
 import EditableText from "./admin/EditableText";
 import { useContent } from "../contexts/ContentContext";
-import { bookingUrl, phoneHref, instagramProfileUrl } from "../utils/business";
+import {
+  bookingUrl,
+  phoneHref,
+  instagramProfileUrl,
+  googleMapsUrl,
+} from "../utils/business";
 export default function Footer() {
   const { globalContent, updateGlobalContent } = useContent();
   const data = globalContent.footer;
@@ -119,6 +124,14 @@ export default function Footer() {
             >
               <SafeIcon icon={FiInstagram} />
               Instagram
+            </a>
+            <a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block min-h-11 py-3 text-sm text-stone-200 underline underline-offset-4 hover:text-white"
+            >
+              Fiche Google du cabinet
             </a>
           </div>
         </div>

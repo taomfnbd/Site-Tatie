@@ -32,6 +32,14 @@ Le domicile du cabinet et la pratique sont décrits honnêtement : pas de pages 
 
 Les longueurs des balises sont des repères éditoriaux, pas des quotas Google : Google peut adapter les titres et extraits selon la requête et l’écran. Les métadonnées sociales ne sont pas présentées comme un facteur de classement.
 
+## Fiche Google identifiée
+
+Le lien fourni le 2 novembre 2026 a permis d’identifier la fiche **Alaïs Tavernier**, catégorie Naturopathe, avec le même téléphone et le même site. Identifiant Places : `ChIJG-MmWnE9HY0RX9u_WlAr-KU`.
+
+[Fiche Google officielle](https://www.google.com/maps/search/?api=1&query=Ala%C3%AFs%20Tavernier&query_place_id=ChIJG-MmWnE9HY0RX9u_WlAr-KU).
+
+Le site et ses données structurées sont reliés à cette fiche précise. Un écart d’horaires a été observé : lundi/jeudi 14 h–18 h sur Google, 9 h–17 h sur le site ; confirmation de l’exploitante attendue avant modification. Le compte Google de gestion consulté ne liste pas cette fiche. Aucun profil n’a été créé, revendiqué ou modifié et aucun avis n’a été publié.
+
 ## Priorités hors site : accès propriétaire nécessaire
 
 1. **Fiche Google Business Profile** : retrouver/revendiquer la fiche existante, confirmer sa validation, choisir la catégorie réellement adaptée parmi les catégories disponibles, vérifier adresse, téléphone, horaires et liens site/réservation. Utiliser le nom réel du cabinet, sans ajout artificiel de mots-clés. Ne pas créer de doublon.

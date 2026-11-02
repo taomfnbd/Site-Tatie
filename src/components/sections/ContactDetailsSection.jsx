@@ -406,6 +406,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
               <SafeIcon icon={FiMapPin} />
               <span>Préparer mon itinéraire</span>
             </a>
+            <a href={profile.mapsUrl} target="_blank" rel="noopener noreferrer" className="block mt-3 py-3 text-[#5e7056] underline underline-offset-4">Voir la fiche du cabinet sur Google</a>
           </motion.div>
         </div>
     </div>
