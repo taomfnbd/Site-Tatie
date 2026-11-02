@@ -73,3 +73,12 @@ svg {
 :focus-visible { outline-color: #5e7056; }
 img.object-cover { height: 100%; }
 @media (prefers-reduced-motion: reduce) { [style*="transform"] { scroll-behavior: auto; } }
+
+/* Police système : aucun téléchargement supplémentaire pour les titres. */
+.font-editorial {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+summary::-webkit-details-marker { display: none; }
+::selection { background: #dce5d5; color: #263522; }
