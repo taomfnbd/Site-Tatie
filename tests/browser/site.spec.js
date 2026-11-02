@@ -40,3 +40,11 @@ test('administrator drafts survive reload, stay private, and can be discarded',a
  await page.getByRole('button',{name:'Repartir du site publié',exact:true}).click();await page.getByRole('button',{name:'Abandonner le brouillon',exact:true}).click();await expect(page.locator('main h1')).toContainText('Alaïs');
  expect(errors).toEqual([]);
 });
+test('a late anonymous session check cannot override a successful login',async({page})=>{
+ await page.route('**/api/admin/session',async route=>{await new Promise(resolve=>setTimeout(resolve,1200));await route.fulfill({json:{authenticated:false}});});
+ await page.route('**/api/admin/login',route=>route.fulfill({json:{authenticated:true}}));
+ await page.goto('/?admin');await page.getByLabel('Mot de passe',{exact:true}).fill('test-password');await page.getByRole('button',{name:'Se connecter',exact:true}).click();
+ await expect(page.locator('main h1 [contenteditable="true"]').first()).toBeVisible();
+ await page.waitForTimeout(1400);
+ await expect(page.locator('main h1 [contenteditable="true"]').first()).toBeVisible();await expect(page.getByRole('dialog')).toHaveCount(0);
+});
