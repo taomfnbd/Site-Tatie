@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import { useEditMode } from "../contexts/EditModeContext";
 import {
@@ -128,14 +129,15 @@ export default function Audience() {
   if (!ready || admin) return null;
   return (
     <>
-      <div className="bg-stone-100 px-5 py-3 text-center text-sm">
+      {document.getElementById("audience-preferences") && createPortal(
         <button
-          className="underline p-2 text-stone-700"
+          className="inline-flex items-center min-h-11 text-left underline underline-offset-4 hover:text-white"
           onClick={() => setSettings((v) => !v)}
         >
           Préférences de mesure d’audience
-        </button>
-      </div>
+        </button>,
+        document.getElementById("audience-preferences"),
+      )}
       {(!choice || settings) && (
         <section
           aria-label="Choix de mesure d’audience"

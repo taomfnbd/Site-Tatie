@@ -157,6 +157,7 @@ export default function Footer() {
                 {label}
               </Link>
             ))}
+            <span id="audience-preferences" />
           </nav>
         </div>
       </div>
