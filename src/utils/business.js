@@ -26,3 +26,25 @@ export const routePageKeys = {
   "/mentions-legales": "legal-notice",
   "/cgu": "terms-of-service",
 };
+
+export function breadcrumbItems(path) {
+  const labels = {
+    "/about": "À propos",
+    "/prestations": "Prestations",
+    "/naturopathie": "Naturopathie",
+    "/reflexologie": "Réflexologie",
+    "/massage-assis": "Massage assis",
+    "/contact": "Contact",
+    "/mentions-legales": "Mentions légales",
+    "/cgu": "CGU",
+    "/confidentialite": "Confidentialité",
+  };
+  if (!labels[path]) return [{ name: "Accueil", path: "/" }];
+  return [
+    { name: "Accueil", path: "/" },
+    ...(["/naturopathie", "/reflexologie", "/massage-assis"].includes(path)
+      ? [{ name: "Prestations", path: "/prestations" }]
+      : []),
+    { name: labels[path], path },
+  ];
+}

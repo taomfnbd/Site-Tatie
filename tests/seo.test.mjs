@@ -61,3 +61,41 @@ test("catalogue and detail prices stay aligned in both editing directions", () =
     "85€",
   );
 });
+import { getPageSEO } from "../src/utils/seo.js";
+import { resolveFAQItems } from "../src/utils/faq.js";
+test("price changes propagate to metadata and visible/schema FAQ answers", () => {
+  const content = structuredClone(initialSiteContent);
+  content.pages.services.find(
+    (s) => s.content.linkUrl === "/massage-assis",
+  ).content.prices[0].price = "35€";
+  const faq = content.pages.massage.find((s) => s.type === "faq").content;
+  assert.match(
+    resolveFAQItems(faq, content).find((q) => q.priceRef).answer,
+    /35 €/,
+  );
+  assert.match(getPageSEO("/massage-assis", content).description, /35 €/);
+  const schema = getStructuredData("/massage-assis", content)["@graph"].find(
+    (n) => n["@type"] === "FAQPage",
+  );
+  assert.ok(
+    schema.mainEntity.some((q) => q.acceptedAnswer.text.includes("35 €")),
+  );
+});
+test("service breadcrumb includes its catalogue parent and linked practitioner identity", () => {
+  const graph = getStructuredData("/reflexologie")["@graph"];
+  assert.deepEqual(
+    graph
+      .find((n) => n["@type"] === "BreadcrumbList")
+      .itemListElement.map((item) => item.name),
+    ["Accueil", "Prestations", "Réflexologie"],
+  );
+  assert.ok(
+    graph
+      .find((n) => n["@type"] === "Person")
+      .alumniOf.url.startsWith("https://aesculape.eu"),
+  );
+  assert.equal(
+    graph.find((n) => Array.isArray(n["@type"])).telephone,
+    "+33781660929",
+  );
+});

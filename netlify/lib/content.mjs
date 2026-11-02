@@ -5,6 +5,7 @@ const sectionTypes = new Set([
   "about",
   "cta",
   "home_services",
+  "service_comparison",
   "services_list",
   "services_header",
   "service_card",

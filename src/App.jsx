@@ -4,6 +4,7 @@ import { MotionConfig } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import SEOHead from "./components/SEOHead";
 import NavigationEffects from "./components/NavigationEffects";
+import Breadcrumbs from "./components/Breadcrumbs";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { EditModeProvider, useEditMode } from "./contexts/EditModeContext";
@@ -68,6 +69,7 @@ export default function App() {
                 tabIndex={-1}
                 className="flex-1 focus:outline-none"
               >
+                <Breadcrumbs />
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />

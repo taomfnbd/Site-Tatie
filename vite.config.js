@@ -44,6 +44,9 @@ export default defineConfig(({ isSsrBuild }) => ({
   },
   define: {
     global: "globalThis",
+    __IS_PREVIEW__: JSON.stringify(
+      !!process.env.CONTEXT && process.env.CONTEXT !== "production",
+    ),
     __CONTENT_REVISION__: JSON.stringify(
       execFileSync("git", ["hash-object", "src/data/siteContent.js"], {
         encoding: "utf8",

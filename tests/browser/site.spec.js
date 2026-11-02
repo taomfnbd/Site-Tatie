@@ -83,7 +83,7 @@ test("public pages and FAQ remain usable without JavaScript", async ({
   });
   const page = await context.newPage();
   await page.goto("/reflexologie");
-  await expect(page.locator("h1")).toHaveText("La réflexologie");
+  await expect(page.locator("h1")).toHaveText("Réflexologie à Vacqueyras");
   const second = page.locator("details").nth(1);
   await second.locator("summary").click();
   await expect(second).toHaveAttribute("open", "");
@@ -124,6 +124,8 @@ test("administrator drafts survive reload, stay private, and can be discarded", 
   await page.getByRole("button", { name: "Se connecter", exact: true }).click();
   const editable = page.locator('main h1 [contenteditable="true"]').first();
   await expect(editable).toBeVisible();
+  await expect(page.getByText("Mode Édition", { exact: true })).toBeVisible();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
   await editable.fill("Brouillon de vérification");
   await editable.blur();
   await page.getByRole("button", { name: /Enregistrer$/ }).click();

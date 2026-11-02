@@ -1,16 +1,26 @@
 import React from "react";
 import { useId } from "react";
+import { useContent } from "../../contexts/ContentContext";
+import { resolveFAQItems } from "../../utils/faq";
 import EditableText from "../admin/EditableText";
 import { useEditMode } from "../../contexts/EditModeContext";
 export default function FAQSection({ content, onUpdate }) {
   const { isEditMode } = useEditMode();
   const headingId = useId();
+  const { globalContent, pagesContent } = useContent();
+  const site = {
+    ...globalContent,
+    pages: Object.fromEntries(
+      Object.entries(pagesContent).map(([key, page]) => [key, page.sections]),
+    ),
+  };
   const data = {
     title: "Questions fréquentes",
     intro: "Quelques réponses pour préparer votre séance.",
     items: [],
     ...content,
   };
+  data.items = resolveFAQItems(data, site);
   const updateItem = (index, field, value) =>
     onUpdate({
       ...data,
@@ -67,11 +77,15 @@ export default function FAQSection({ content, onUpdate }) {
               </span>
             </summary>
             <div className="px-5 pb-5 border-t border-stone-100 pt-4 text-stone-600 leading-relaxed text-sm sm:text-base">
-              <EditableText
-                value={item.answer}
-                element="p"
-                onChange={(v) => updateItem(index, "answer", v)}
-              />
+              {item.priceSummary || item.priceRef ? (
+                <p>{item.answer}</p>
+              ) : (
+                <EditableText
+                  value={item.answer}
+                  element="p"
+                  onChange={(v) => updateItem(index, "answer", v)}
+                />
+              )}
               {isEditMode && (
                 <button
                   onClick={() =>

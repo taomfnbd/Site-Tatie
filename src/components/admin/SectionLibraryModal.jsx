@@ -2,101 +2,111 @@
 // MODAL BIBLIOTHÈQUE DE SECTIONS
 // Pour choisir quel type de section ajouter
 // =====================================================
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const availableSections = [
   {
-    type: 'hero',
-    label: 'Hero',
-    description: 'Section d\'en-tête avec titre, sous-titre et appel à l\'action',
-    icon: '🎯',
+    type: "service_comparison",
+    label: "Comparatif des séances",
+    description:
+      "Tableau des durées et tarifs, synchronisé avec les prestations",
+    icon: "📊",
   },
   {
-    type: 'about',
-    label: 'À propos',
-    description: 'Section avec texte et image pour présenter du contenu',
-    icon: '📝',
+    type: "faq",
+    label: "Questions fréquentes",
+    description: "Réponses aux questions des visiteurs",
+    icon: "❓",
   },
   {
-    type: 'cta',
-    label: 'Appel à l\'action',
-    description: 'Section pour inciter à prendre rendez-vous',
-    icon: '📞',
+    type: "hero",
+    label: "Hero",
+    description: "Section d'en-tête avec titre, sous-titre et appel à l'action",
+    icon: "🎯",
   },
   {
-    type: 'services_list',
-    label: 'Liste Complète Prestations',
-    description: 'Tous les services groupés (Naturopathie, Massage)',
-    icon: '📋',
+    type: "about",
+    label: "À propos",
+    description: "Section avec texte et image pour présenter du contenu",
+    icon: "📝",
   },
   {
-    type: 'services_header',
-    label: 'En-tête Prestations',
-    description: 'Titre et introduction de la page prestations',
-    icon: '🏷️',
+    type: "cta",
+    label: "Appel à l'action",
+    description: "Section pour inciter à prendre rendez-vous",
+    icon: "📞",
   },
   {
-    type: 'service_card',
-    label: 'Bloc Service',
-    description: 'Un service individuel avec détails et tarifs (ex: Réflexologie)',
-    icon: '💆‍♀️',
+    type: "services_list",
+    label: "Liste Complète Prestations",
+    description: "Tous les services groupés (Naturopathie, Massage)",
+    icon: "📋",
   },
   {
-    type: 'service_hero',
-    label: 'Hero Service',
-    description: 'En-tête de page de service (Titre + Image)',
-    icon: '🖼️',
+    type: "services_header",
+    label: "En-tête Prestations",
+    description: "Titre et introduction de la page prestations",
+    icon: "🏷️",
   },
   {
-    type: 'service_content',
-    label: 'Contenu Service',
-    description: 'Bloc de texte riche pour décrire un service',
-    icon: '📝',
+    type: "service_card",
+    label: "Bloc Service",
+    description:
+      "Un service individuel avec détails et tarifs (ex: Réflexologie)",
+    icon: "💆‍♀️",
   },
   {
-    type: 'service_process',
-    label: 'Déroulement (Liste)',
-    description: 'Étapes de la séance avec description (Liste verticale)',
-    icon: '🔢',
+    type: "service_hero",
+    label: "Hero Service",
+    description: "En-tête de page de service (Titre + Image)",
+    icon: "🖼️",
   },
   {
-    type: 'service_process_cards',
-    label: 'Déroulement (Cartes)',
-    description: 'Étapes de la séance en cartes centrées (Style Massage)',
-    icon: '🎴',
+    type: "service_content",
+    label: "Contenu Service",
+    description: "Bloc de texte riche pour décrire un service",
+    icon: "📝",
   },
   {
-    type: 'service_benefits',
-    label: 'Bienfaits',
-    description: 'Liste des bienfaits avec icônes',
-    icon: '✨',
+    type: "service_process",
+    label: "Déroulement (Liste)",
+    description: "Étapes de la séance avec description (Liste verticale)",
+    icon: "🔢",
   },
   {
-    type: 'service_cta',
-    label: 'Appel à l\'action Service',
-    description: 'Bloc de fin de page avec prix et bouton réservation',
-    icon: '🔔',
+    type: "service_process_cards",
+    label: "Déroulement (Cartes)",
+    description: "Étapes de la séance en cartes centrées (Style Massage)",
+    icon: "🎴",
   },
   {
-    type: 'contact_hero',
-    label: 'En-tête Contact',
-    description: 'Titre de la page contact',
-    icon: '👋',
+    type: "service_benefits",
+    label: "Bienfaits",
+    description: "Liste des bienfaits avec icônes",
+    icon: "✨",
   },
   {
-    type: 'contact_details',
-    label: 'Infos Contact',
-    description: 'Coordonnées, Horaires, Carte, Réseaux',
-    icon: '📍',
+    type: "service_cta",
+    label: "Appel à l'action Service",
+    description: "Bloc de fin de page avec prix et bouton réservation",
+    icon: "🔔",
+  },
+  {
+    type: "contact_hero",
+    label: "En-tête Contact",
+    description: "Titre de la page contact",
+    icon: "👋",
+  },
+  {
+    type: "contact_details",
+    label: "Infos Contact",
+    description: "Coordonnées, Horaires, Carte, Réseaux",
+    icon: "📍",
   },
 ];
 
-const SectionLibraryModal = ({
-  isOpen,
-  onClose,
-  onSelect,
-}) => {
+const SectionLibraryModal = ({ isOpen, onClose, onSelect }) => {
   if (!isOpen) return null;
 
   return (
@@ -116,7 +126,7 @@ const SectionLibraryModal = ({
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden"
         >
           {/* Header */}

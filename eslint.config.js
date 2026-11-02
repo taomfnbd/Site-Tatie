@@ -22,6 +22,7 @@ export default [
         ...globals.browser,
         ...globals.node,
         __CONTENT_REVISION__: "readonly",
+        __IS_PREVIEW__: "readonly",
       },
       parserOptions: { ecmaFeatures: { jsx: true } },
     },

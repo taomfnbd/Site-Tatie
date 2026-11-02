@@ -1,47 +1,49 @@
-import HomeServicesSection from '../sections/HomeServicesSection';
-import HeroSection from '../sections/HeroSection';
-import AboutSection from '../sections/AboutSection';
-import CTASection from '../sections/CTASection';
-import ServicesListSection from '../sections/ServicesListSection';
-import ServicesHeaderSection from '../sections/ServicesHeaderSection';
-import ServiceCardSection from '../sections/ServiceCardSection';
-import ServiceHeroSection from '../sections/ServiceHeroSection';
-import ServiceContentSection from '../sections/ServiceContentSection';
-import ServiceProcessSection from '../sections/ServiceProcessSection';
-import ServiceProcessCardsSection from '../sections/ServiceProcessCardsSection';
-import ServiceBenefitsSection from '../sections/ServiceBenefitsSection';
-import ServiceCTASection from '../sections/ServiceCTASection';
-import ContactHeroSection from '../sections/ContactHeroSection';
-import ContactDetailsSection from '../sections/ContactDetailsSection';
-import LegalContentSection from '../sections/LegalContentSection';
-import FAQSection from '../sections/FAQSection';
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { useContent } from '../../contexts/ContentContext';
-import { useEditMode } from '../../contexts/EditModeContext';
+import ServiceComparisonSection from "../sections/ServiceComparisonSection";
+import HomeServicesSection from "../sections/HomeServicesSection";
+import HeroSection from "../sections/HeroSection";
+import AboutSection from "../sections/AboutSection";
+import CTASection from "../sections/CTASection";
+import ServicesListSection from "../sections/ServicesListSection";
+import ServicesHeaderSection from "../sections/ServicesHeaderSection";
+import ServiceCardSection from "../sections/ServiceCardSection";
+import ServiceHeroSection from "../sections/ServiceHeroSection";
+import ServiceContentSection from "../sections/ServiceContentSection";
+import ServiceProcessSection from "../sections/ServiceProcessSection";
+import ServiceProcessCardsSection from "../sections/ServiceProcessCardsSection";
+import ServiceBenefitsSection from "../sections/ServiceBenefitsSection";
+import ServiceCTASection from "../sections/ServiceCTASection";
+import ContactHeroSection from "../sections/ContactHeroSection";
+import ContactDetailsSection from "../sections/ContactDetailsSection";
+import LegalContentSection from "../sections/LegalContentSection";
+import FAQSection from "../sections/FAQSection";
+import React, { Suspense, lazy, useState, useEffect } from "react";
+import { useContent } from "../../contexts/ContentContext";
+import { useEditMode } from "../../contexts/EditModeContext";
 
-import EditableSection from './EditableSection';
-const AddSectionButton = lazy(() => import('./AddSectionButton'));
-const SectionLibraryModal = lazy(() => import('./SectionLibraryModal'));
+import EditableSection from "./EditableSection";
+const AddSectionButton = lazy(() => import("./AddSectionButton"));
+const SectionLibraryModal = lazy(() => import("./SectionLibraryModal"));
 
 // Mapping des types de sections vers leurs composants React
 const SECTION_COMPONENTS = {
   home_services: HomeServicesSection,
-  'hero': HeroSection,
-  'about': AboutSection,
-  'cta': CTASection,
-  'services_list': ServicesListSection,
-  'services_header': ServicesHeaderSection,
-  'service_card': ServiceCardSection,
-  'service_hero': ServiceHeroSection,
-  'service_content': ServiceContentSection,
-  'service_process': ServiceProcessSection,
-  'service_process_cards': ServiceProcessCardsSection,
-  'service_benefits': ServiceBenefitsSection,
-  'service_cta': ServiceCTASection,
-  'contact_hero': ContactHeroSection,
-  'contact_details': ContactDetailsSection,
-  'legal_content': LegalContentSection,
-  'faq': FAQSection,
+  service_comparison: ServiceComparisonSection,
+  hero: HeroSection,
+  about: AboutSection,
+  cta: CTASection,
+  services_list: ServicesListSection,
+  services_header: ServicesHeaderSection,
+  service_card: ServiceCardSection,
+  service_hero: ServiceHeroSection,
+  service_content: ServiceContentSection,
+  service_process: ServiceProcessSection,
+  service_process_cards: ServiceProcessCardsSection,
+  service_benefits: ServiceBenefitsSection,
+  service_cta: ServiceCTASection,
+  contact_hero: ContactHeroSection,
+  contact_details: ContactDetailsSection,
+  legal_content: LegalContentSection,
+  faq: FAQSection,
 };
 
 const SectionFallback = () => <div className="min-h-24" aria-hidden="true" />;
@@ -49,7 +51,11 @@ const SectionFallback = () => <div className="min-h-24" aria-hidden="true" />;
 const SectionManager = ({ pageKey, defaultSections = [] }) => {
   const { getPageSections, updatePageSections } = useContent();
   const { isEditMode } = useEditMode();
-  const [sections, setSections] = useState(() => getPageSections(pageKey).length ? getPageSections(pageKey) : defaultSections);
+  const [sections, setSections] = useState(() =>
+    getPageSections(pageKey).length
+      ? getPageSections(pageKey)
+      : defaultSections,
+  );
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
   const [insertIndex, setInsertIndex] = useState(null);
 
@@ -61,7 +67,6 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
     } else if (defaultSections.length > 0) {
       // Initialiser avec les sections par défaut si rien de sauvegardé
       setSections(defaultSections);
-
     }
   }, [pageKey, getPageSections, updatePageSections]); // defaultSections retiré des dépendances pour éviter boucle infinie si objet littéral
 
@@ -100,9 +105,9 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
 
   const handleDuplicate = (index) => {
     const newSections = [...sections];
-    const sectionToDuplicate = { 
-      ...newSections[index], 
-      id: Date.now().toString() // Nouvel ID unique
+    const sectionToDuplicate = {
+      ...newSections[index],
+      id: Date.now().toString(), // Nouvel ID unique
     };
     newSections.splice(index + 1, 0, sectionToDuplicate);
     setSections(newSections);
@@ -118,14 +123,14 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
     const newSection = {
       id: Date.now().toString(),
       type: type,
-      content: {} // Contenu vide par défaut, le composant utilisera ses defaults
+      content: {}, // Contenu vide par défaut, le composant utilisera ses defaults
     };
 
     const newSections = [...sections];
     // Si insertIndex est null, ajouter à la fin, sinon à l'index spécifié
     const index = insertIndex !== null ? insertIndex : sections.length;
     newSections.splice(index, 0, newSection);
-    
+
     setSections(newSections);
     updatePageSections(pageKey, newSections);
     setIsLibraryOpen(false);
@@ -136,9 +141,13 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
     <div className="section-manager">
       {sections.map((section, index) => {
         const Component = SECTION_COMPONENTS[section.type];
-        
+
         if (!Component) {
-          return <div key={section.id} className="p-4 bg-red-100 text-red-800">Type de section inconnu: {section.type}</div>;
+          return (
+            <div key={section.id} className="p-4 bg-red-100 text-red-800">
+              Type de section inconnu: {section.type}
+            </div>
+          );
         }
 
         const renderedSection = (
@@ -151,7 +160,9 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
         );
 
         if (!isEditMode) {
-          return <React.Fragment key={section.id}>{renderedSection}</React.Fragment>;
+          return (
+            <React.Fragment key={section.id}>{renderedSection}</React.Fragment>
+          );
         }
 
         return (
@@ -190,7 +201,9 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
       {isEditMode && (
         <Suspense fallback={null}>
           <div className="py-6 flex justify-center relative z-20">
-            <AddSectionButton onClick={() => handleAddSectionClick(sections.length)} />
+            <AddSectionButton
+              onClick={() => handleAddSectionClick(sections.length)}
+            />
           </div>
         </Suspense>
       )}

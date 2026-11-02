@@ -104,12 +104,13 @@ export const initialSiteContent = {
         "content": {
           "firstName": "Alaïs",
           "lastName": "Tavernier",
-          "profession": "Naturopathie & détente",
-          "subtitle": "Réflexologie · Massage assis",
-          "description": "À Vacqueyras, je vous accompagne avec une écoute attentive et des conseils adaptés à votre quotidien. Prenez un temps pour votre équilibre et votre bien-être.",
+          "profession": "Naturopathe à Vacqueyras",
+          "subtitle": "Naturopathie · Réflexologie · Massage assis",
+          "description": "Alaïs Tavernier vous accueille au cabinet à Vacqueyras, dans le Vaucluse, pour des séances de naturopathie, de réflexologie et de massage assis. Découvrez les formats, les tarifs et le déroulement pour choisir votre rendez-vous.",
           "quote": "La force qui est en chacun de nous est notre plus grand médecin",
           "quoteAuthor": "Hippocrate",
-          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/1.svg"
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/1.svg",
+          "showQuote": false
         }
       },
       {
@@ -128,6 +129,41 @@ export const initialSiteContent = {
           "subtitle": "Découvrez mon cheminement vers la naturopathie",
           "content": "Je suis Alaïs Tavernier. Mon parcours professionnel a débuté dans le domaine médical, en tant que secrétaire médicale, avant d'évoluer vers la comptabilité au sein d'un cabinet d'expertise... L'expérience du télétravail pendant la période du COVID m'a offert une véritable prise de conscience : mon activité ne correspondait plus à mes aspirations profondes. C'est donc tout naturellement que la naturopathie s'est imposée à moi comme une évidence. En 2022, j'ai ainsi intégré avec enthousiasme l'école Aesculape, école libre de naturopathie à Aix-en-Provence, pour y suivre trois années de formation riches d'apprentissage et de sens.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/1.svg"
+        }
+      },
+      {
+        "id": "home-local-faq",
+        "type": "faq",
+        "content": {
+          "title": "Vos questions avant de venir au cabinet",
+          "intro": "Les réponses pratiques pour préparer un rendez-vous avec Alaïs Tavernier.",
+          "items": [
+            {
+              "question": "Où se trouve le cabinet d’Alaïs Tavernier ?",
+              "answer": "Le cabinet est situé à Vacqueyras, dans le Vaucluse. Retrouvez l’adresse complète, les horaires et le lien d’itinéraire sur la page Contact."
+            },
+            {
+              "question": "Quelles prestations sont proposées à Vacqueyras ?",
+              "answer": "Alaïs Tavernier propose des consultations de naturopathie, des séances de réflexologie et du massage assis habillé. Les durées et les tarifs sont présentés sur la page Prestations."
+            },
+            {
+              "question": "Quels sont les tarifs des séances à Vacqueyras ?",
+              "answer": "Les tarifs des séances sont détaillés dans le catalogue.",
+              "priceSummary": true
+            },
+            {
+              "question": "Comment prendre rendez-vous ?",
+              "answer": "La réservation se fait en ligne sur le profil Resalib d’Alaïs Tavernier ou par téléphone. Vous pouvez consulter les coordonnées du cabinet sur la page Contact."
+            },
+            {
+              "question": "Comment choisir entre naturopathie, réflexologie et massage assis ?",
+              "answer": "La naturopathie propose un échange sur les habitudes et l’hygiène de vie. La réflexologie est une pratique manuelle avec des pressions adaptées. Le massage assis est un format court qui se pratique habillé. Vous pouvez appeler le cabinet pour préciser votre demande."
+            },
+            {
+              "question": "Ces séances remplacent-elles une consultation médicale ?",
+              "answer": "Non. Ces prestations s’inscrivent dans une démarche de bien-être. Elles ne comportent ni diagnostic médical ni prescription et ne remplacent pas une consultation, un traitement ou un suivi auprès d’un professionnel de santé."
+            }
+          ]
         }
       },
       {
@@ -150,6 +186,17 @@ export const initialSiteContent = {
           "content": "Mon parcours a commencé comme secrétaire médicale, avant de se poursuivre dans la comptabilité. Cette expérience m’a donné le goût de l’écoute et des relations humaines. En 2022, j’ai intégré l’école Aesculape à Aix-en-Provence pour trois années de formation en naturopathie. Aujourd’hui, je vous accueille à Vacqueyras avec une approche attentive à vos habitudes, à votre rythme de vie et à vos besoins. Ensemble, nous cherchons des ajustements simples et réalistes pour votre quotidien.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/1.svg",
           "isPage": true
+        }
+      },
+      {
+        "id": "about-training-sources",
+        "type": "service_content",
+        "content": {
+          "title": "Une formation à Æsculape, à Aix-en-Provence",
+          "paragraphs": [
+            "J’ai suivi trois années de formation en naturopathie à l’école Æsculape d’Aix-en-Provence, après avoir commencé ce parcours en 2022. Mon profil professionnel présente également mon parcours et mes modalités de consultation.",
+            "Vous pouvez consulter le <a href=\"https://aesculape.eu/devenir-naturopathe/\" target=\"_blank\" rel=\"noopener noreferrer\">cursus de formation de l’école Æsculape</a> et <a href=\"https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras\" target=\"_blank\" rel=\"noopener noreferrer\">mon profil et les avis publiés sur Resalib</a>. La formation en naturopathie est une formation privée ; elle ne confère pas le statut de professionnel de santé."
+          ]
         }
       },
       {
@@ -182,6 +229,13 @@ export const initialSiteContent = {
           "title": "prestations",
           "subtitle": "Des accompagnements personnalisés pour votre bien-être global",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/3.svg"
+        }
+      },
+      {
+        "id": "services-comparison",
+        "type": "service_comparison",
+        "content": {
+          "title": "Séances et tarifs à Vacqueyras"
         }
       },
       {
@@ -223,7 +277,7 @@ export const initialSiteContent = {
           "gradient": "from-green-25 to-stone-25",
           "title": "Réflexologie",
           "subtitle": "Stimulation des zones réflexes pour le bien-être",
-          "description": "Une technique manuelle douce qui stimule des zones réflexes des pieds, des mains ou du visage pour favoriser la détente et l'équilibre naturel du corps.",
+          "description": "Une pratique manuelle de bien-être par des pressions adaptées sur les pieds ou les mains, dans un cadre attentif à votre confort.",
           "benefits": [
             "Détente et réduction du stress",
             "Amélioration de la circulation",
@@ -278,8 +332,8 @@ export const initialSiteContent = {
         "id": "naturo-hero",
         "type": "service_hero",
         "content": {
-          "title": "La naturopathie",
-          "subtitle": "Une approche naturelle et globale pour devenir acteur de votre bien-être, en harmonie avec votre corps et votre environnement.",
+          "title": "Naturopathie à Vacqueyras",
+          "subtitle": "La naturopathie est un accompagnement de bien-être centré sur les habitudes alimentaires, le rythme de vie et la gestion du stress. À Vacqueyras, Alaïs Tavernier propose un bilan de vitalité et des échanges personnalisés, sans diagnostic médical ni prescription.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg"
         }
       },
@@ -289,7 +343,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que la naturopathie ?",
           "paragraphs": [
-            "La naturopathie est une approche de bien-être globale qui aide à soutenir la vitalité par l'alimentation, l'hygiène de vie, la gestion du stress et l'écoute du corps. Elle ne remplace pas un suivi médical, un diagnostic ou un traitement prescrit par un professionnel de santé.",
+            "La naturopathie est un accompagnement de bien-être centré sur les habitudes alimentaires, le rythme de vie et la gestion du stress. À Vacqueyras, Alaïs Tavernier propose un bilan de vitalité et des échanges personnalisés, sans diagnostic médical ni prescription.",
             "Le naturopathe est un <strong>éducateur de santé</strong>. Il accompagne son client à comprendre le fonctionnement de son organisme, à devenir autonome et acteur de son bien-être.",
             "J'accompagne chaque personne à retrouver vitalité et harmonie grâce à une approche naturelle et globale de la santé : alimentation, émotions, rythme de vie et équilibre intérieur.",
             "La naturopathie s'adresse à toute personne souhaitant améliorer son bien-être, retrouver vitalité et équilibre au naturel : enfants, adolescents, adultes.",
@@ -322,16 +376,14 @@ export const initialSiteContent = {
         "id": "naturo-reasons",
         "type": "service_benefits",
         "content": {
-          "title": "Motifs de consultation",
+          "title": "Dans quel cadre envisager une séance ?",
           "benefits": [
-            "Troubles digestifs : ballonnements, constipation, reflux",
-            "Intolérances ou allergies alimentaires",
-            "Rééquilibrage alimentaire",
-            "Perte ou prise de poids",
-            "Fatigue, manque d'énergie : sommeil non réparateur, période de surmenage",
-            "Gestion du stress et des émotions",
-            "Problèmes de peau, cheveux, ongles",
-            "Accompagnement à chaque étape de la vie : troubles du cycle menstruel, SPM, pré-ménopause, ménopause"
+            "Faire le point sur ses habitudes alimentaires",
+            "Prendre du recul sur son rythme de vie",
+            "Échanger sur le repos et les habitudes de sommeil",
+            "Aborder le stress ressenti au quotidien",
+            "Choisir des ajustements réalistes et progressifs",
+            "Construire un accompagnement adapté à son quotidien"
           ]
         }
       },
@@ -352,12 +404,27 @@ export const initialSiteContent = {
             },
             {
               "question": "Combien de temps dure une première consultation ?",
-              "answer": "La première consultation dure environ 1h30. Elle comprend un échange approfondi et un bilan de vitalité pour construire un accompagnement adapté."
+              "answer": "La première consultation dure environ 1h30. Elle comprend un échange approfondi et un bilan de vitalité pour construire un accompagnement adapté.",
+              "priceRef": {
+                "path": "/naturopathie",
+                "index": 0
+              }
             },
             {
               "question": "Quels sujets peut-on aborder en consultation ?",
               "answer": "Les consultations peuvent aborder la digestion, l'alimentation, la fatigue, le stress, le sommeil, la peau, les cycles féminins et les changements de rythme de vie."
             }
+          ]
+        }
+      },
+      {
+        "id": "naturopathy-practice-framework",
+        "type": "service_content",
+        "content": {
+          "title": "Un accompagnement de bien-être dans un cadre clair",
+          "paragraphs": [
+            "Ces séances ne constituent pas un acte médical. En cas de symptôme, de grossesse, de maladie ou de doute sur votre situation, demandez conseil à un professionnel de santé avant de réserver. Aucun résultat thérapeutique n’est garanti.",
+            "Pour connaître le cadre des pratiques non conventionnelles, consultez les <a href=\"https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pratiques-de-soins-non-conventionnelles-soyez-attentif-aux-informations-fournies\" target=\"_blank\" rel=\"noopener noreferrer\">informations de la DGCCRF</a>. Pour le choix d’un format, comparez les <a href=\"/prestations\">prestations et tarifs</a> ou <a href=\"/contact\">contactez le cabinet</a>."
           ]
         }
       },
@@ -378,8 +445,8 @@ export const initialSiteContent = {
         "id": "reflexo-hero",
         "type": "service_hero",
         "content": {
-          "title": "La réflexologie",
-          "subtitle": "Une technique naturelle par la stimulation des zones réflexes pour retrouver équilibre, détente et vitalité.",
+          "title": "Réflexologie à Vacqueyras",
+          "subtitle": "La réflexologie est une pratique manuelle de bien-être fondée sur des pressions adaptées, principalement sur les pieds et les mains. Au cabinet de Vacqueyras, Alaïs Tavernier propose une séance personnalisée, attentive au confort et aux sensations de chacun.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg"
         }
       },
@@ -389,7 +456,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que la réflexologie ?",
           "paragraphs": [
-            "La réflexologie est une pratique manuelle de bien-être qui utilise des pressions sur certaines zones, principalement des pieds et des mains. La séance propose un temps de détente et d’attention aux sensations corporelles.",
+            "La réflexologie est une pratique manuelle de bien-être fondée sur des pressions adaptées, principalement sur les pieds et les mains. Au cabinet de Vacqueyras, Alaïs Tavernier propose une séance personnalisée, attentive au confort et aux sensations de chacun.",
             "Les pressions sont adaptées à votre confort. Les effets ressentis varient d’une personne à l’autre ; aucun résultat thérapeutique n’est garanti.",
             "Cette pratique s'adresse à toute personne souhaitant prendre soin de son bien-être de manière naturelle : enfants, adolescents, adultes.",
             "Chaque séance est personnalisée selon vos besoins et votre état du moment."
@@ -421,16 +488,14 @@ export const initialSiteContent = {
         "id": "reflexo-reasons",
         "type": "service_benefits",
         "content": {
-          "title": "Motifs de consultation",
+          "title": "Dans quel cadre envisager une séance ?",
           "benefits": [
-            "Stress, anxiété, nervosité",
-            "Troubles du sommeil, insomnie",
-            "Fatigue, manque d'énergie",
-            "Douleurs musculaires et articulaires",
-            "Troubles digestifs : ballonnements, constipation",
-            "Maux de tête, migraines",
-            "Troubles hormonaux, cycles irréguliers",
-            "Accompagnement de la grossesse (dès le 4e mois)"
+            "S’accorder un temps de calme",
+            "Choisir une pratique manuelle de bien-être",
+            "Faire une pause dans un quotidien chargé",
+            "Porter attention aux sensations corporelles",
+            "Bénéficier de pressions adaptées à son confort",
+            "Échanger avant la séance sur ses attentes et sa situation"
           ]
         }
       },
@@ -447,7 +512,12 @@ export const initialSiteContent = {
             },
             {
               "question": "Combien de temps dure une séance ?",
-              "answer": "La première séance dure environ 1 heure (incluant l'échange préalable). Les séances suivantes durent environ 45 minutes."
+              "answer": "La première séance dure environ 1 heure (incluant l'échange préalable). Les séances suivantes durent environ 45 minutes.",
+              "priceRef": {
+                "path": "/reflexologie",
+                "index": 0,
+                "kind": "all"
+              }
             },
             {
               "question": "La réflexologie remplace-t-elle un traitement médical ?",
@@ -457,6 +527,17 @@ export const initialSiteContent = {
               "question": "À qui s'adresse la réflexologie ?",
               "answer": "La réflexologie s'adresse à tous : enfants, adolescents, adultes. Elle est adaptée à de nombreux motifs de consultation liés au stress, à la fatigue, aux douleurs ou aux troubles fonctionnels."
             }
+          ]
+        }
+      },
+      {
+        "id": "reflexologie-practice-framework",
+        "type": "service_content",
+        "content": {
+          "title": "Un accompagnement de bien-être dans un cadre clair",
+          "paragraphs": [
+            "Ces séances ne constituent pas un acte médical. En cas de symptôme, de grossesse, de maladie ou de doute sur votre situation, demandez conseil à un professionnel de santé avant de réserver. Aucun résultat thérapeutique n’est garanti.",
+            "Pour connaître le cadre des pratiques non conventionnelles, consultez les <a href=\"https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pratiques-de-soins-non-conventionnelles-soyez-attentif-aux-informations-fournies\" target=\"_blank\" rel=\"noopener noreferrer\">informations de la DGCCRF</a>. Pour le choix d’un format, comparez les <a href=\"/prestations\">prestations et tarifs</a> ou <a href=\"/contact\">contactez le cabinet</a>."
           ]
         }
       },
@@ -477,8 +558,8 @@ export const initialSiteContent = {
         "id": "massage-hero",
         "type": "service_hero",
         "content": {
-          "title": "Massage assis",
-          "subtitle": "Une pause bien-être pratique et efficace pour soulager les tensions, réduire le stress et retrouver de l'énergie, le tout en restant habillé.",
+          "title": "Massage assis à Vacqueyras",
+          "subtitle": "Le massage assis se pratique habillé, sans huile, sur une chaise de massage adaptée. La séance proposée par Alaïs Tavernier à Vacqueyras dure 30 minutes et porte notamment sur le dos, la nuque, les épaules, les bras et les mains.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/2.svg"
         }
       },
@@ -488,7 +569,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Qu'est-ce que le massage assis ?",
           "paragraphs": [
-            "Le massage assis est une technique de détente courte, pratiquée habillé, qui cible principalement le dos, la nuque, les épaules, les bras et les mains. Il vise à relâcher les tensions et à offrir une pause bien-être accessible.",
+            "Le massage assis se pratique habillé, sans huile, sur une chaise de massage adaptée. La séance proposée par Alaïs Tavernier à Vacqueyras dure 30 minutes et porte notamment sur le dos, la nuque, les épaules, les bras et les mains.",
             "Le massage assis est un <strong>enchaînement précis</strong> composé de pressions et d'étirements. Il est pratiqué <strong>habillé et sans huile</strong>, ce qui le rend particulièrement pratique et accessible.",
             "Cette technique permet une <strong>détente immédiate</strong> en ciblant les zones où s'accumulent le plus souvent les tensions : nuque, épaules, dos."
           ]
@@ -519,14 +600,14 @@ export const initialSiteContent = {
         "id": "massage-reasons",
         "type": "service_benefits",
         "content": {
-          "title": "Bienfaits du massage assis",
+          "title": "Le massage assis en pratique",
           "benefits": [
-            "Réduit le stress et les tensions (nuque, dos...)",
-            "Améliore la qualité du sommeil",
-            "Favorise la circulation sanguine et lymphatique",
-            "Stimule l'énergie et la vitalité",
-            "Procure une détente immédiate",
-            "Soulage les douleurs musculaires"
+            "Un format de 30 minutes",
+            "Une séance pratiquée habillé",
+            "Un massage sans huile",
+            "Une attention portée au dos, à la nuque et aux épaules",
+            "Un temps d’échange avant la pratique",
+            "Une pression adaptée à votre confort"
           ]
         }
       },
@@ -543,7 +624,11 @@ export const initialSiteContent = {
             },
             {
               "question": "Combien de temps dure la séance ?",
-              "answer": "La séance de massage assis dure environ 30 minutes. Elle cible les zones de tension les plus fréquentes : dos, nuque, épaules, bras et mains."
+              "answer": "La séance de massage assis dure environ 30 minutes. Elle cible les zones de tension les plus fréquentes : dos, nuque, épaules, bras et mains.",
+              "priceRef": {
+                "path": "/massage-assis",
+                "index": 0
+              }
             },
             {
               "question": "À qui s'adresse le massage assis ?",
@@ -551,8 +636,23 @@ export const initialSiteContent = {
             },
             {
               "question": "Quel est le tarif d'un massage assis ?",
-              "answer": "Le tarif d'une séance complète de massage assis est de 30 euros."
+              "answer": "Le tarif d'une séance complète de massage assis est de 30 euros.",
+              "priceRef": {
+                "path": "/massage-assis",
+                "index": 0
+              }
             }
+          ]
+        }
+      },
+      {
+        "id": "massage-practice-framework",
+        "type": "service_content",
+        "content": {
+          "title": "Un accompagnement de bien-être dans un cadre clair",
+          "paragraphs": [
+            "Ces séances ne constituent pas un acte médical. En cas de symptôme, de grossesse, de maladie ou de doute sur votre situation, demandez conseil à un professionnel de santé avant de réserver. Aucun résultat thérapeutique n’est garanti.",
+            "Pour connaître le cadre des pratiques non conventionnelles, consultez les <a href=\"https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pratiques-de-soins-non-conventionnelles-soyez-attentif-aux-informations-fournies\" target=\"_blank\" rel=\"noopener noreferrer\">informations de la DGCCRF</a>. Pour le choix d’un format, comparez les <a href=\"/prestations\">prestations et tarifs</a> ou <a href=\"/contact\">contactez le cabinet</a>."
           ]
         }
       },
