@@ -168,3 +168,32 @@ test("only the predefined business-profile campaign maps to a finite source cate
   );
   assert.deepEqual(stats.sources, { google_business: 2 });
 });
+
+import { readChoice } from "../src/analytics/events.js";
+test("consent preferences expire at six months and reject malformed or future timestamps", (t) => {
+  const descriptor = Object.getOwnPropertyDescriptor(
+    globalThis,
+    "localStorage",
+  );
+  let raw;
+  Object.defineProperty(globalThis, "localStorage", {
+    configurable: true,
+    value: { getItem: () => raw },
+  });
+  t.after(() => {
+    if (descriptor)
+      Object.defineProperty(globalThis, "localStorage", descriptor);
+    else delete globalThis.localStorage;
+  });
+  const now = Date.UTC(2026, 10, 2),
+    lifetime = 180 * 86400000;
+  raw = JSON.stringify({ value: "accepted", at: now - lifetime + 1 });
+  assert.equal(readChoice(now).value, "accepted");
+  assert.equal(readChoice(now + 1), null);
+  raw = JSON.stringify({ value: "refused", at: now });
+  assert.equal(readChoice(now).value, "refused");
+  raw = JSON.stringify({ value: "accepted", at: now + 1 });
+  assert.equal(readChoice(now), null);
+  raw = "broken-json";
+  assert.equal(readChoice(now), null);
+});

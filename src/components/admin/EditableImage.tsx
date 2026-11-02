@@ -1,6 +1,11 @@
 import React, { Suspense, lazy, useState } from "react";
 import { useEditMode } from "../../contexts/EditModeContext";
-import { imageSource, imageSet, portraitAvifSet } from "../../utils/media";
+import {
+  imageSource,
+  imageSet,
+  portraitAvifSet,
+  imageDimensions,
+} from "../../utils/media";
 const ImageUploadModal = lazy(() => import("./ImageUploadModal"));
 interface Props {
   src: string;
@@ -18,6 +23,7 @@ export default function EditableImage({
   priority = false,
   sizes = "(min-width: 1024px) 50vw, 100vw",
 }: Props) {
+  const dimensions = imageDimensions(src);
   const { isEditMode } = useEditMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
@@ -38,8 +44,8 @@ export default function EditableImage({
             srcSet={imageSet(src)}
             sizes={imageSet(src) ? sizes : undefined}
             alt={alt}
-            width={1200}
-            height={1200}
+            width={dimensions?.width}
+            height={dimensions?.height}
             className={className}
             loading={priority ? "eager" : "lazy"}
             {...{ fetchpriority: priority ? "high" : "auto" }}

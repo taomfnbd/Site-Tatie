@@ -1,28 +1,30 @@
 export const preferenceKey = "tatie-audience-choice-v1";
 const lifetime = 180 * 86400000;
-export function getChoice() {
+export function readChoice(now = Date.now()) {
   try {
     const saved = JSON.parse(localStorage.getItem(preferenceKey));
     return saved &&
       ["accepted", "refused"].includes(saved.value) &&
       Number.isFinite(saved.at) &&
-      Date.now() - saved.at < lifetime &&
-      saved.at <= Date.now()
-      ? saved.value
+      now - saved.at < lifetime &&
+      saved.at <= now
+      ? { value: saved.value, expiresAt: saved.at + lifetime }
       : null;
   } catch {
     return null;
   }
 }
+export function getChoice() {
+  return readChoice()?.value || null;
+}
 export function saveChoice(value) {
+  const at = Date.now();
   try {
-    localStorage.setItem(
-      preferenceKey,
-      JSON.stringify({ value, at: Date.now() }),
-    );
+    localStorage.setItem(preferenceKey, JSON.stringify({ value, at }));
   } catch {
     /* No storage: preference lasts for this page only. */
   }
+  return at + lifetime;
 }
 export function campaignSource(search) {
   const params = new URLSearchParams(search);

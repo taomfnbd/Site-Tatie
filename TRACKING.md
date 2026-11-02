@@ -1,6 +1,6 @@
 # Statistiques du site
 
-Le bouton **Statistiques**, dans la barre de l’administration `/?admin`, affiche les compteurs des 7, 30 ou 90 derniers jours : pages vues, clics vers Resalib, téléphone, email, itinéraire et Instagram, sources et catégories d’écran, détail quotidien et export CSV. Les jours sont en UTC.
+Le bouton **Statistiques**, dans la barre de l’administration `/?admin`, affiche les compteurs des 7, 30 ou 90 derniers jours : pages vues, clics vers Resalib, téléphone, email, Google Maps (fiche et itinéraire) et Instagram, sources et catégories d’écran, détail quotidien et export CSV. Les jours sont en UTC.
 
 ## Ce que les chiffres signifient
 
@@ -14,7 +14,7 @@ Le bouton **Statistiques**, dans la barre de l’administration `/?admin`, affic
 
 ## Protection et conservation
 
-Accord préalable, refus et acceptation de même présentation, choix local pendant six mois, retrait depuis le bouton en bas de page. Pas d’identifiant visiteur, empreinte, géolocalisation ou adresse IP dans les statistiques stockées. Pas de nom, email, numéro de téléphone, données de santé ni texte libre collecté. Ne pas enrichir ce suivi avec des informations de rendez-vous identifiantes.
+Accord préalable, refus et acceptation de même présentation, choix local pendant six mois, retrait depuis le bouton en bas de page. L’expiration du choix et son effacement depuis un autre onglet arrêtent aussi les nouvelles mesures sans attendre un rechargement. Les clics droits ne sont pas comptés comme actions de contact ; les clics du milieu le sont. Pas d’identifiant visiteur, empreinte, géolocalisation ou adresse IP dans les statistiques stockées. Pas de nom, email, numéro de téléphone, données de santé ni texte libre collecté. Ne pas enrichir ce suivi avec des informations de rendez-vous identifiantes.
 
 Les requêtes sont traitées par Netlify, comme les autres requêtes du site : les garanties du prestataire et les éventuels transferts sont décrits dans la politique de confidentialité. Aucune prétention à une exemption ou certification CNIL.
 
