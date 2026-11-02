@@ -20,7 +20,7 @@ const LegalContentSection = ({ content, onUpdate }) => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
@@ -37,7 +37,7 @@ const LegalContentSection = ({ content, onUpdate }) => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-stone-100"

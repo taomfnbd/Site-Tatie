@@ -1,3 +1,4 @@
+import { cleanHTML } from '#content-sanitizer';
 import React, { useState, useRef, useEffect } from 'react';
 import { useEditMode } from '../../contexts/EditModeContext';
 
@@ -12,7 +13,7 @@ interface EditableTextProps {
 const EditableText: React.FC<EditableTextProps> = ({
   value,
   onChange,
-  element = 'div',
+  element = 'span',
   className = '',
   allowHTML = false,
 }) => {
@@ -29,7 +30,7 @@ const EditableText: React.FC<EditableTextProps> = ({
     setIsEditing(false);
     if (editableRef.current) {
       const newValue = allowHTML
-        ? editableRef.current.innerHTML
+        ? cleanHTML(editableRef.current.innerHTML)
         : editableRef.current.innerText;
       if (newValue !== value) {
         onChange(newValue);
@@ -46,7 +47,7 @@ const EditableText: React.FC<EditableTextProps> = ({
       setIsEditing(false);
       if (editableRef.current) {
         if (allowHTML) {
-          editableRef.current.innerHTML = value;
+          editableRef.current.innerHTML = cleanHTML(value);
         } else {
           editableRef.current.innerText = value;
         }
@@ -55,11 +56,11 @@ const EditableText: React.FC<EditableTextProps> = ({
     }
   };
 
-  const Tag = element as keyof JSX.IntrinsicElements;
+  const Tag: React.ElementType = element;
 
   if (!isEditMode) {
     return allowHTML ? (
-      <Tag className={className} dangerouslySetInnerHTML={{ __html: value }} />
+      <Tag className={className} dangerouslySetInnerHTML={{ __html: cleanHTML(value) }} />
     ) : (
       <Tag className={className}>{value}</Tag>
     );
@@ -75,7 +76,7 @@ const EditableText: React.FC<EditableTextProps> = ({
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
-        dangerouslySetInnerHTML={{ __html: localValue }}
+        dangerouslySetInnerHTML={{ __html: cleanHTML(localValue) }}
       />
     );
   }

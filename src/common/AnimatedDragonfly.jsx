@@ -6,9 +6,9 @@ const AnimatedDragonfly = ({ type = 1, className = "", style = {}, variant = "de
   const delay = Math.random() * 3; // 0-3 seconds delay
 
   const dragonflyImages = {
-    1: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924359406-1P.png",
-    2: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924366935-2B.png",
-    3: "https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1761924373768-3B.png"
+    1: "/images/libellule-1.png",
+    2: "/images/libellule-2.png",
+    3: "/images/libellule-3.png"
   };
 
   // Animations plus dynamiques avec plus de mouvement

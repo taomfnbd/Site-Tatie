@@ -1,3 +1,5 @@
+> Document historique : le CMS et le déploiement ont évolué le 2 novembre 2026. Consulter [README.md](README.md) pour le fonctionnement actuel.
+
 # 📋 Guide de Maintenance - Site Alaïs Tavernier
 
 ## 🔄 Maintenance Régulière

@@ -38,7 +38,7 @@ const ServiceContentSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -57,7 +57,7 @@ const ServiceContentSection = ({ content, onUpdate }) => {
         {data.paragraphs.map((paragraph, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.08 }}

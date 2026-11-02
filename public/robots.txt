@@ -1,10 +1,6 @@
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://alais-tavernier-naturopathe.fr/sitemap.xml
-
-# Disallow admin access to crawlers
-Disallow: /admin/
-Disallow: /_netlify/
 Disallow: /api/
+Disallow: /admin
+Disallow: /.netlify/
+Sitemap: https://alais-tavernier-naturopathe.fr/sitemap.xml

@@ -1,67 +1,15 @@
 import React, { Suspense, lazy, useState } from 'react';
 import { useEditMode } from '../../contexts/EditModeContext';
-
+import { imageSource, imageSet } from '../../utils/media';
 const ImageUploadModal = lazy(() => import('./ImageUploadModal'));
-
-interface EditableImageProps {
-  src: string;
-  alt: string;
-  onChange: (src: string, alt?: string) => void;
-  className?: string;
+interface Props { src: string; alt: string; onChange: (src: string, alt?: string) => void; className?: string; priority?: boolean; sizes?: string; }
+export default function EditableImage({ src, alt, onChange, className = '', priority = false, sizes = '(min-width: 1024px) 50vw, 100vw' }: Props) {
+  const { isEditMode } = useEditMode(); const [isModalOpen,setIsModalOpen] = useState(false);
+  return <>
+    <div className={`relative group ${className.includes('h-full') ? 'h-full' : ''} ${className.includes('w-full') ? 'w-full' : ''}`}>
+      <img src={imageSource(src)} srcSet={imageSet(src)} sizes={imageSet(src) ? sizes : undefined} alt={alt} width={1200} height={1200} className={className} loading={priority ? 'eager' : 'lazy'} {...{ fetchpriority: priority ? 'high' : 'auto' }} decoding="async" />
+      {isEditMode && <button type="button" onClick={() => setIsModalOpen(true)} className="absolute bottom-3 right-3 rounded-lg bg-white px-4 py-3 text-stone-800 shadow-lg" aria-label={`Modifier l’image : ${alt}`}>Modifier l’image</button>}
+    </div>
+    {isEditMode && isModalOpen && <Suspense fallback={null}><ImageUploadModal isOpen onClose={() => setIsModalOpen(false)} currentSrc={imageSource(src)} currentAlt={alt} onSave={onChange} /></Suspense>}
+  </>;
 }
-
-const EditableImage: React.FC<EditableImageProps> = ({
-  src,
-  alt,
-  onChange,
-  className = '',
-}) => {
-  const { isEditMode } = useEditMode();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleClick = () => {
-    if (isEditMode) {
-      setIsModalOpen(true);
-    }
-  };
-
-  const handleSave = (newSrc: string, newAlt: string) => {
-    onChange(newSrc, newAlt); // Note: Il faudrait que le composant parent gère le changement d'alt aussi
-  };
-
-  return (
-    <>
-      <div className={`relative group ${className.includes('h-full') ? 'h-full' : ''} ${className.includes('w-full') ? 'w-full' : ''}`}>
-        <img
-          src={src}
-          alt={alt}
-          className={`${className} ${isEditMode ? 'cursor-pointer' : ''}`}
-          onClick={handleClick}
-          loading="lazy"
-        />
-        
-        {isEditMode && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 pointer-events-none">
-            <div className="bg-white text-gray-800 px-4 py-2 rounded-lg text-sm font-medium shadow-lg pointer-events-auto cursor-pointer" onClick={handleClick}>
-              📷 Modifier
-            </div>
-          </div>
-        )}
-      </div>
-
-      {isEditMode && isModalOpen && (
-        <Suspense fallback={null}>
-          <ImageUploadModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            currentSrc={src}
-            currentAlt={alt}
-            onSave={handleSave}
-          />
-        </Suspense>
-      )}
-    </>
-  );
-};
-
-export default EditableImage;

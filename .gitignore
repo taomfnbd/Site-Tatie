@@ -39,3 +39,7 @@ public/admin
 
 # Local Netlify folder
 .netlify
+
+.prerender/
+playwright-report/
+test-results/

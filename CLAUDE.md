@@ -1,158 +1,40 @@
-# Site Tatie - Notes Agent
+# Site Tatie — consignes de maintenance
 
-## Project
+Site React 18 + Vite + Tailwind d’Alaïs Tavernier, naturopathe à Vacqueyras. Dépôt `taomfnbd/Site-Tatie`, branche principale `main`. Node 24 LTS.
 
-React 18 + Vite site for Alaïs Tavernier, naturopathe and massage bien-être practitioner in Vacqueyras.
+## Vérifier avant publication
 
-Repository: `https://github.com/taomfnbd/Site-Tatie.git`
-Default branch: `main`
+Exécuter `npm run check`, `npm run test:e2e` et `npm audit`. Ne pas pousser directement sur main : branche → PR → contrôles et preview Netlify → merge. Le merge déclenche la production. Préserver les modifications locales et ne pas inclure HANDOFF.md ou un fichier d’identifiants dans un commit.
 
-## Commands
+Production : https://alais-tavernier-naturopathe.fr
+Site Netlify : `e9872838-c910-4bf1-9797-eb046ce90f69` (`lucent-cucurucho-5d32b0`). Vérifier cet ID, car d’anciens liens CLI pointaient vers un autre site. L’état réel du deploy Netlify fait foi en cas de statut GitHub bloqué.
 
-- Install: `npm install`
-- Local dev: `npm run dev -- --host 127.0.0.1`
-- Build: `npm run build`
-- Lint: `npm run lint`
-- Preview build: `npm run preview`
+## Routage et rendu
 
-Always run `npm run lint` and `npm run build` before publishing.
+BrowserRouter et pré-rendu HTML intégral au build. Dix routes publiques, dont `/about` et `/confidentialite`, plus une 404. `scripts/prerender.mjs` génère les pages, le sitemap et `version.json` à partir des routes connues et des données. Les anciennes URL en hash sont migrées par main.jsx, en préservant le paramètre admin.
 
-## Routing
+Garder le contenu public visible dès le HTML initial ; ne pas réintroduire une liste de sections vide au premier rendu, une cascade de Suspense au-dessus de la ligne de flottaison ou des animations qui masquent le contenu avant JavaScript. MotionConfig respecte la réduction des mouvements. Les FAQ utilisent details/summary et restent utilisables sans JavaScript.
 
-The app uses `HashRouter` from `react-router-dom`.
+## CMS et sécurité
 
-Current public routes:
+L’accès se fait avec `?admin`. Mot de passe vérifié côté serveur, session HttpOnly/Secure/SameSite=Strict. Aucun secret ne doit utiliser le préfixe VITE_. Ne jamais réintroduire un jeton Bearer de publication dans le client, un mot de passe codé en dur, ou une authentification déduite de sessionStorage.
 
-- `/`
-- `/about`
-- `/prestations`
-- `/naturopathie`
-- `/reflexologie`
-- `/massage-assis`
-- `/contact`
-- `/mentions-legales`
-- `/cgu`
+Préserver ConfirmModal, ToastContainer, l’édition inline et les garde-fous de brouillon/publication. Un brouillon authentifié ne doit jamais remplacer le contenu public d’un visiteur. Vérifier la révision avant toute publication ; rejeter les conflits en 409. Nettoyer le HTML côté serveur et côté rendu. Les règles d’autorisation précèdent tout accès à GitHub et à la médiathèque. Les fonctions ne doivent pas exposer leurs secrets ou les réponses internes GitHub.
 
-Keep `/about` intact. It was added through the CMS workflow and pulled from `origin/main`.
+`ADMIN_PASSWORD_HASH` et `ADMIN_SESSION_SECRET` sont des variables serveur. Les clés GitHub sont réservées aux fonctions. Les photos importées sont converties et stockées dans Netlify Blobs, jamais en base64 dans siteContent. Les uploads supportent JPG, PNG, WebP et AVIF, 5 Mo max.
 
-## CMS
+## Contenu et médias
 
-The inline CMS uses:
+`src/data/siteContent.js` est la source publiée. Header/footer partagent les liens. Le catalogue de prestations alimente les cartes de l’accueil, les tarifs synchronisés et les offres JSON-LD. Les FAQ du graphe proviennent du contenu visible. Utiliser `syncServicePrices` pour toute évolution des tarifs.
 
-- `src/contexts/EditModeContext.tsx`
-- `src/contexts/ContentContext.tsx`
-- `src/components/admin/*`
-- `src/data/siteContent.js`
+Les photos historiques sont désormais disponibles en WebP local, aux tailles 480/800/1200. Le helper media mappe aussi les anciennes URL connues vers ces assets. Le portrait principal est eager et prioritaire ; les images sous le premier écran restent lazy. Le CMS conserve les textes alternatifs. Les libellules décoratives sont locales et ont un alt vide.
 
-Admin mode is controlled by `?admin` before the hash URL. Avoid breaking `HashRouter` behavior when changing admin detection.
+Conserver l’identité sauge/beige. Les fonds d’action utilisent `#5e7056` ou plus sombre avec texte blanc ; ne pas utiliser blanc sur `#95a58d` (contraste insuffisant). Les éléments de navigation et le zoom doivent rester accessibles.
 
-Do not remove the CMS UX components pulled from remote:
+Contact utilise téléphone/Resalib ; pas de formulaire public. Aucun traceur optionnel actif : ne pas ajouter une bannière de consentement sans inventorier les traitements et connecter réellement le choix à leur chargement. Garder la page de confidentialité cohérente avec les usages réels.
 
-- `ConfirmModal.tsx`
-- `ToastContainer.tsx`
-- updated `AdminToolbar.tsx`
-- updated `EditableSection.tsx`
+## Maintenance
 
-## Hero & Images
+Le keep-alive Supabase et les composants de formulaire/cookies inutilisés ont été retirés. Les sauvegardes Supabase sont conservées sans migration de données. Pas de suppression des archives ou de ressources distantes sans besoin établi.
 
-The home hero (`src/components/sections/HeroSection.jsx`) shows a photo of Alaïs:
-
-- Desktop: two-column layout (text left, photo right).
-- Mobile: photo stacked above the text.
-- The photo is CMS-editable via `EditableImage`; default `imageUrl` is also set in
-  `src/data/siteContent.js` (`hero-1` content) so the source matches the render.
-
-Images are hosted on an external GitHub repo, **not** in this project:
-`https://raw.githubusercontent.com/taomfnbd/image2/main/<n>.svg`
-(e.g. `1.svg` = portrait of Alaïs, `3.svg` = prestations header). To change a photo,
-update the URL (or push a new file to that `image2` repo).
-
-The "Mon parcours de vie" home section (`AboutSection.jsx`) is text-only (its photo was
-removed to avoid duplicating the hero portrait).
-
-The dragonfly motif (`StaticDragonfly`, PNGs on an S3 bucket) is decorative only.
-
-## Animations
-
-Scroll-reveal is standardized across the site: section blocks fade in + slide up on
-enter, played once.
-
-- Pattern: `initial={{ opacity: 0, y: 48 }}` / `whileInView={{ opacity: 1, y: 0 }}` /
-  `viewport={{ once: true }}` / `transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}`.
-- Section headers/cards use `y: 48`; small inner list items keep a smaller `y` (8–16)
-  for a finer cascade — do not bump those to 48.
-- Heroes use `animate` (on load), not `whileInView` (they are above the fold).
-- Always keep `viewport={{ once: true }}` on `whileInView` blocks, otherwise the
-  animation replays on every scroll (flicker).
-- `prefers-reduced-motion` is handled globally in `src/index.css`.
-
-## Performance
-
-The public bundle has been optimized with:
-
-- lazy-loaded pages
-- lazy-loaded admin tooling
-- lazy-loaded section components in `SectionManager`
-- deferred cookie banner
-- manual vendor chunks in `vite.config.js`
-
-Keep admin-only UI out of the initial public path where possible.
-
-## SEO and GEO
-
-SEO metadata and structured data live in:
-
-- `src/components/SEOHead.jsx`
-- `src/utils/seo.js`
-- `index.html`
-- `public/sitemap.xml`
-
-`src/utils/seo.js` owns per-route metadata and JSON-LD graph generation. It currently emits LocalBusiness, Person, WebSite, WebPage, BreadcrumbList, Service, ItemList, and FAQPage where relevant.
-
-FAQ content must stay aligned between:
-
-- visible sections in `src/data/siteContent.js`
-- schema data in `src/utils/seo.js`
-
-## FAQ Section
-
-FAQ rendering lives in `src/components/sections/FAQSection.jsx`.
-
-It is an accessible dropdown/accordion:
-
-- first question open by default
-- `aria-expanded`
-- `aria-controls`
-- `role="region"`
-- all answers visible in edit mode for CMS editing
-
-## Publication Safety
-
-**Direct push to `main` is BLOCKED by a hook.** Mandatory workflow:
-
-1. `git pull --ff-only origin main`
-2. Create a branch: `git checkout -b feat/...` or `fix/...`
-3. Resolve any conflicts locally.
-4. Run `npm run lint`.
-5. Run `npm run build`.
-6. Review `git status --short` (do not commit `HANDOFF.md`).
-7. Commit intentionally, then `git push -u origin <branch>`.
-8. `gh pr create` → wait for Netlify preview checks → `gh pr merge <N> --merge --delete-branch`.
-9. The merge to `main` triggers the production deploy automatically.
-
-### Deploy verification
-
-- Production: `https://alais-tavernier-naturopathe.fr` (deploys ~30–60s after merge).
-- **GitHub commit status may stay stuck on `pending` (phantom check) — ignore it.**
-  Source of truth = Netlify: `netlify api listSiteDeploys --data '{"site_id":"e9872838-c910-4bf1-9797-eb046ce90f69","per_page":4}'`
-  → look for `state: ready`, `context: production`, matching `commit_ref`.
-- Netlify site ID: `e9872838-c910-4bf1-9797-eb046ce90f69` (`lucent-cucurucho-5d32b0`).
-  A stale ID `5cdd40b1...` returns `Not Found` — do not use it.
-- CDN cache: after deploy, `curl` may show the old JS hash for a moment. Verify the
-  real **content** via agent-browser with a `?v=<timestamp>` cache-bust, not the hash.
-
-Important: `public/favicon.png` was already deleted locally before the optimization work started, while `index.html` still references `/favicon.png`. Do not stage or publish that deletion unless the favicon strategy is intentionally changed.
-
-## Current Caveat
-
-There may be a safety stash named `codex-local-speed-seo-faq-before-cms-pull` from the pull/reapply workflow. Confirm it is no longer needed before dropping it.
+Un commit accepté par GitHub n’est pas encore une mise en ligne. Le CMS attend la révision de version.json. Ne pas annoncer qu’une erreur a été signalée automatiquement si aucun système de suivi n’est configuré.

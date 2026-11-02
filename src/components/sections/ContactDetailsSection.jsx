@@ -80,14 +80,14 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
          
          {/* Contact Direct */}
          <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="space-y-8 lg:col-span-2" // Pleine largeur si pas de form à côté
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-[#95a58d] to-[#7a8471] rounded-2xl p-8 text-white relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#5e7056] to-[#4e6048] rounded-2xl p-8 text-white relative overflow-hidden">
               <StaticDragonfly type={1} className="absolute bottom-6 right-6 w-16 h-16 opacity-30 filter brightness-0 invert" />
               <EditableText
                 value={data.directContact.title}
@@ -165,7 +165,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
                 href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#95a58d] text-white py-3 rounded-lg font-medium hover:bg-[#7a8471] transition-colors flex items-center justify-center space-x-2"
+                className="w-full bg-[#5e7056] text-white py-3 rounded-lg font-medium hover:bg-[#4e6048] transition-colors flex items-center justify-center space-x-2"
               >
                 <SafeIcon icon={FiCalendar} />
                 <span>Réserver sur Resalib</span>
@@ -178,7 +178,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
       {/* Ligne 2: Horaires, Paiement, Infos */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -241,7 +241,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -280,7 +280,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -321,7 +321,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
         {/* Ligne 3: Instagram + Map */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -366,7 +366,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 48 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -388,7 +388,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
               href="https://maps.google.com/?q=729+route+de+Sarrians,+84190+Vacqueyras"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 bg-[#95a58d] text-white px-6 py-3 rounded-lg hover:bg-[#7a8471] transition-colors"
+              className="inline-flex items-center space-x-2 bg-[#5e7056] text-white px-6 py-3 rounded-lg hover:bg-[#4e6048] transition-colors"
             >
               <SafeIcon icon={FiMapPin} />
               <span>Voir sur Google Maps</span>

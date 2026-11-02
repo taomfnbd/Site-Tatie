@@ -20,14 +20,14 @@ const ServiceHeroSection = ({ content, onUpdate }) => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center lg:text-left relative order-2 lg:order-1"
         >
           <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
@@ -53,7 +53,7 @@ const ServiceHeroSection = ({ content, onUpdate }) => {
           />
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={false}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
@@ -62,9 +62,10 @@ const ServiceHeroSection = ({ content, onUpdate }) => {
           <div className="absolute -inset-4 bg-[#95a58d]/5 rounded-3xl -z-10" />
           <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-stone-100 bg-white flex items-center justify-center">
             <EditableImage
+              priority
               src={data.imageUrl}
-              alt="Service illustration"
-              onChange={(val) => updateField("imageUrl", val)}
+              alt={data.imageAlt || data.title.replace(/<[^>]*>/g, "")}
+              onChange={(imageUrl,imageAlt) => onUpdate({ ...data,imageUrl,imageAlt })}
               className="w-full h-full object-cover"
             />
           </div>

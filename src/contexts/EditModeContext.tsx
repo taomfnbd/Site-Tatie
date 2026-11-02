@@ -1,120 +1,42 @@
-// =====================================================
-// CONTEXTE MODE ÉDITION (comme Webflow/WordPress)
-// =====================================================
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 interface EditModeContextType {
   isEditMode: boolean;
+  isAuthenticated: boolean;
   enableEditMode: () => void;
   disableEditMode: () => void;
-  isAuthenticated: boolean;
-  login: (password: string) => boolean;
-  logout: () => void;
+  login: (password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
 }
-
 const EditModeContext = createContext<EditModeContextType | undefined>(undefined);
-
 export const EditModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-
-  // Vérifier le mot de passe
-  const login = (password: string): boolean => {
-    // @ts-ignore
-    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD;
-    if (!correctPassword) return false;
-    if (password === correctPassword) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('admin_auth', 'true');
-
-      // Activer immédiatement le mode édition si ?admin est présent
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('admin')) {
-        setIsEditMode(true);
-      }
-
-      return true;
-    }
-    return false;
-  };
-
-  const logout = () => {
-    setIsAuthenticated(false);
-    setIsEditMode(false);
-    sessionStorage.removeItem('admin_auth');
-    // Retirer le paramètre ?admin de l'URL
-    const newUrl = window.location.pathname + window.location.hash;
-    window.history.replaceState({}, '', newUrl);
-  };
-
-  const enableEditMode = () => {
-    if (isAuthenticated) {
-      setIsEditMode(true);
-    }
-  };
-
-  const disableEditMode = () => {
-    setIsEditMode(false);
-  };
-
-  // Vérifier l'authentification au chargement
+  const adminRequested = new URLSearchParams(location.search).has('admin');
   useEffect(() => {
-    const authStored = sessionStorage.getItem('admin_auth');
-    if (authStored === 'true') {
-      setIsAuthenticated(true);
-
-      // Si déjà authentifié et ?admin présent, activer le mode édition
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('admin')) {
-        setIsEditMode(true);
-      }
-    }
+    if (!adminRequested) return;
+    let active = true;
+    fetch('/api/admin/session', { credentials: 'same-origin', cache: 'no-store' })
+      .then(r => r.json()).then(data => { if (active) { setIsAuthenticated(data.authenticated === true); setIsEditMode(data.authenticated === true); } }).catch(() => { if (active) setIsAuthenticated(false); });
+    return () => { active = false; };
+  }, [adminRequested]);
+  const login = useCallback(async (password: string) => {
+    const response = await fetch('/api/admin/login', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) });
+    if (response.status === 401) return false;
+    if (!response.ok) throw new Error(response.status === 429 ? 'Trop de tentatives. Réessayez dans une minute.' : 'Connexion indisponible. Réessayez plus tard.');
+    setIsAuthenticated(true); setIsEditMode(true); return true;
   }, []);
-
-  // Détecter ?admin dans l'URL et activer automatiquement le mode édition
-  // Avec HashRouter, ?admin est toujours présent pendant toute la session
-  useEffect(() => {
-    const checkAdminParam = () => {
-      const params = new URLSearchParams(window.location.search);
-      const hasAdminParam = params.has('admin');
-
-      if (hasAdminParam && isAuthenticated) {
-        setIsEditMode(true);
-      } else if (!hasAdminParam) {
-        setIsEditMode(false);
-      }
-    };
-
-    checkAdminParam();
-
-    // Re-vérifier quand l'URL change (pour les cas où on retire ?admin)
-    window.addEventListener('popstate', checkAdminParam);
-    return () => window.removeEventListener('popstate', checkAdminParam);
-  }, [isAuthenticated]);
-
-  return (
-    <EditModeContext.Provider
-      value={{
-        isEditMode,
-        enableEditMode,
-        disableEditMode,
-        isAuthenticated,
-        login,
-        logout,
-      }}
-    >
-      {children}
-    </EditModeContext.Provider>
-  );
+  const logout = useCallback(async () => {
+    const response = await fetch('/api/admin/session', { method: 'DELETE', credentials: 'same-origin' });
+    if (!response.ok) throw new Error('La déconnexion a échoué. Réessayez.');
+    setIsAuthenticated(false); setIsEditMode(false);
+    window.location.assign(window.location.pathname);
+  }, []);
+  return <EditModeContext.Provider value={{ isEditMode, isAuthenticated, login, logout, enableEditMode: () => { if (isAuthenticated) setIsEditMode(true); }, disableEditMode: () => setIsEditMode(false) }}>{children}</EditModeContext.Provider>;
 };
-
-export const useEditMode = () => {
+export function useEditMode() {
   const context = useContext(EditModeContext);
-  if (!context) {
-    throw new Error('useEditMode must be used within EditModeProvider');
-  }
+  if (!context) throw new Error('EditModeProvider manquant');
   return context;
-};
+}

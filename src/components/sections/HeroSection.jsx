@@ -12,8 +12,8 @@ const HeroSection = ({ content, onUpdate }) => {
   const data = {
     firstName: "Alaïs",
     lastName: "Tavernier",
-    profession: "Naturopathe",
-    subtitle: "Massage bien-être",
+    profession: "Naturopathie & détente",
+    subtitle: "Réflexologie · Massage assis",
     description:
       "Éducatrice de la santé, je vous accompagne pour que vous deveniez autonome et acteur de votre bien-être.",
     quote: "La force qui est en chacun de nous est notre plus grand médecin",
@@ -27,7 +27,7 @@ const HeroSection = ({ content, onUpdate }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-stone-25 via-green-25 to-stone-50 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-0 flex items-center justify-center bg-gradient-to-br from-stone-25 via-green-25 to-stone-50 px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-24 sm:w-32 h-24 sm:h-32 bg-[#95a58d] rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-32 sm:w-40 h-32 sm:h-40 bg-green-300 rounded-full blur-3xl"></div>
@@ -37,20 +37,22 @@ const HeroSection = ({ content, onUpdate }) => {
         type={1}
         className="absolute top-24 sm:top-28 lg:top-32 left-4 sm:left-8 lg:left-16 w-12 sm:w-16 lg:w-20 h-12 sm:h-16 lg:h-20 opacity-70 hidden sm:block"
       />
-      <div className="relative max-w-7xl mx-auto py-10 sm:py-12 lg:py-16 w-full">
+      <div className="relative max-w-7xl mx-auto py-9 sm:py-12 lg:py-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
           {/* Photo : au-dessus du texte sur mobile, à droite sur desktop */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative order-1 lg:order-2 mx-auto w-full max-w-sm lg:max-w-none"
+            className="relative order-2 mx-auto w-full max-w-[280px] sm:max-w-sm lg:max-w-none"
           >
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-stone-100">
+            <div className="aspect-[4/5] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-stone-100">
               <EditableImage
+                priority
+                sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, 320px"
                 src={data.imageUrl}
-                alt="Alaïs Tavernier, naturopathe à Vacqueyras"
-                onChange={(val) => updateField("imageUrl", val)}
+                alt={data.imageAlt || "Alaïs Tavernier, naturopathe à Vacqueyras"}
+                onChange={(imageUrl, imageAlt) => onUpdate({ ...data, imageUrl, imageAlt })}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -60,12 +62,13 @@ const HeroSection = ({ content, onUpdate }) => {
 
           {/* Texte */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1 text-center lg:text-left w-full"
+            className="order-1 text-center lg:text-left w-full"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-stone-800 mb-6 sm:mb-8 tracking-wide leading-tight">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#5e7056] mb-4 font-medium">Naturopathe à Vacqueyras · Vaucluse</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light text-stone-800 mb-6 sm:mb-8 tracking-wide leading-tight">
               <EditableText
                 value={data.firstName}
                 onChange={(val) => updateField("firstName", val)}
@@ -100,7 +103,7 @@ const HeroSection = ({ content, onUpdate }) => {
               className="text-base sm:text-lg lg:text-xl text-stone-600 mb-6 sm:mb-8 lg:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
             />
             <motion.blockquote
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mb-8 sm:mb-10 lg:mb-12"
@@ -126,7 +129,7 @@ const HeroSection = ({ content, onUpdate }) => {
                 href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center space-x-2 bg-[#95a58d] text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium hover:bg-[#7a8471] transition-all duration-300 shadow-sm hover:shadow-md"
+                className="flex items-center justify-center space-x-2 bg-[#5e7056] text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium hover:bg-[#4e6048] transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 <SafeIcon icon={FiCalendar} />
                 <span>Prendre rendez-vous</span>

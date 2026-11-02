@@ -1,3 +1,20 @@
+import HomeServicesSection from '../sections/HomeServicesSection';
+import HeroSection from '../sections/HeroSection';
+import AboutSection from '../sections/AboutSection';
+import CTASection from '../sections/CTASection';
+import ServicesListSection from '../sections/ServicesListSection';
+import ServicesHeaderSection from '../sections/ServicesHeaderSection';
+import ServiceCardSection from '../sections/ServiceCardSection';
+import ServiceHeroSection from '../sections/ServiceHeroSection';
+import ServiceContentSection from '../sections/ServiceContentSection';
+import ServiceProcessSection from '../sections/ServiceProcessSection';
+import ServiceProcessCardsSection from '../sections/ServiceProcessCardsSection';
+import ServiceBenefitsSection from '../sections/ServiceBenefitsSection';
+import ServiceCTASection from '../sections/ServiceCTASection';
+import ContactHeroSection from '../sections/ContactHeroSection';
+import ContactDetailsSection from '../sections/ContactDetailsSection';
+import LegalContentSection from '../sections/LegalContentSection';
+import FAQSection from '../sections/FAQSection';
 import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { useContent } from '../../contexts/ContentContext';
 import { useEditMode } from '../../contexts/EditModeContext';
@@ -8,23 +25,23 @@ const SectionLibraryModal = lazy(() => import('./SectionLibraryModal'));
 
 // Mapping des types de sections vers leurs composants React
 const SECTION_COMPONENTS = {
-  'hero': lazy(() => import('../sections/HeroSection')),
-  'about': lazy(() => import('../sections/AboutSection')),
-  'cta': lazy(() => import('../sections/CTASection')),
-  'services_list': lazy(() => import('../sections/ServicesListSection')),
-  'services_header': lazy(() => import('../sections/ServicesHeaderSection')),
-  'service_card': lazy(() => import('../sections/ServiceCardSection')),
-  'service_hero': lazy(() => import('../sections/ServiceHeroSection')),
-  'service_content': lazy(() => import('../sections/ServiceContentSection')),
-  'service_process': lazy(() => import('../sections/ServiceProcessSection')),
-  'service_process_cards': lazy(() => import('../sections/ServiceProcessCardsSection')),
-  'service_benefits': lazy(() => import('../sections/ServiceBenefitsSection')),
-  'service_cta': lazy(() => import('../sections/ServiceCTASection')),
-  'contact_hero': lazy(() => import('../sections/ContactHeroSection')),
-  'contact_form': lazy(() => import('../sections/ContactFormSection')),
-  'contact_details': lazy(() => import('../sections/ContactDetailsSection')),
-  'legal_content': lazy(() => import('../sections/LegalContentSection')),
-  'faq': lazy(() => import('../sections/FAQSection')),
+  home_services: HomeServicesSection,
+  'hero': HeroSection,
+  'about': AboutSection,
+  'cta': CTASection,
+  'services_list': ServicesListSection,
+  'services_header': ServicesHeaderSection,
+  'service_card': ServiceCardSection,
+  'service_hero': ServiceHeroSection,
+  'service_content': ServiceContentSection,
+  'service_process': ServiceProcessSection,
+  'service_process_cards': ServiceProcessCardsSection,
+  'service_benefits': ServiceBenefitsSection,
+  'service_cta': ServiceCTASection,
+  'contact_hero': ContactHeroSection,
+  'contact_details': ContactDetailsSection,
+  'legal_content': LegalContentSection,
+  'faq': FAQSection,
 };
 
 const SectionFallback = () => <div className="min-h-24" aria-hidden="true" />;
@@ -32,7 +49,7 @@ const SectionFallback = () => <div className="min-h-24" aria-hidden="true" />;
 const SectionManager = ({ pageKey, defaultSections = [] }) => {
   const { getPageSections, updatePageSections } = useContent();
   const { isEditMode } = useEditMode();
-  const [sections, setSections] = useState([]);
+  const [sections, setSections] = useState(() => getPageSections(pageKey).length ? getPageSections(pageKey) : defaultSections);
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
   const [insertIndex, setInsertIndex] = useState(null);
 
@@ -44,7 +61,7 @@ const SectionManager = ({ pageKey, defaultSections = [] }) => {
     } else if (defaultSections.length > 0) {
       // Initialiser avec les sections par défaut si rien de sauvegardé
       setSections(defaultSections);
-      updatePageSections(pageKey, defaultSections);
+
     }
   }, [pageKey, getPageSections, updatePageSections]); // defaultSections retiré des dépendances pour éviter boucle infinie si objet littéral
 

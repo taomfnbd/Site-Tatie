@@ -59,7 +59,7 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -84,7 +84,7 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
