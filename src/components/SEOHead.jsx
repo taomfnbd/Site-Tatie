@@ -1,30 +1,26 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useContent } from '../contexts/ContentContext';
-import { updatePageSEO, getStructuredData, seoConfig } from '../utils/seo';
-
-const SEOHead = () => {
-  const location = useLocation();
-  const path = location.pathname.replace(/\/+$/, "") || "/";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useContent } from "../contexts/ContentContext";
+import { updatePageSEO, getStructuredData, getPageSEO } from "../utils/seo";
+export default function SEOHead() {
+  const path = useLocation().pathname.replace(/\/+$/, "") || "/";
   const { globalContent, pagesContent } = useContent();
-
   useEffect(() => {
-    const pageConfig = seoConfig[path] || seoConfig['/404'];
-    updatePageSEO(pageConfig);
-
-    let structuredDataScript = document.getElementById('structured-data');
-
-    if (!structuredDataScript) {
-      structuredDataScript = document.createElement('script');
-      structuredDataScript.id = 'structured-data';
-      structuredDataScript.type = 'application/ld+json';
-      document.head.appendChild(structuredDataScript);
+    const content = {
+      ...globalContent,
+      pages: Object.fromEntries(
+        Object.entries(pagesContent).map(([key, page]) => [key, page.sections]),
+      ),
+    };
+    updatePageSEO(getPageSEO(path, content));
+    let script = document.getElementById("structured-data");
+    if (!script) {
+      script = document.createElement("script");
+      script.id = "structured-data";
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
     }
-
-    structuredDataScript.textContent = JSON.stringify(getStructuredData(path, { ...globalContent, pages: Object.fromEntries(Object.entries(pagesContent).map(([key,page]) => [key,page.sections])) }));
+    script.textContent = JSON.stringify(getStructuredData(path, content));
   }, [path, globalContent, pagesContent]);
-
-  return null; // Ce composant ne rend rien visuellement
-};
-
-export default SEOHead;
+  return null;
+}

@@ -39,7 +39,7 @@ const HeroSection = ({ content, onUpdate }) => {
       />
       <div className="relative max-w-7xl mx-auto py-9 sm:py-12 lg:py-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
-          {/* Photo : au-dessus du texte sur mobile, à droite sur desktop */}
+          {/* Le texte et le rendez-vous précèdent la photo sur mobile. */}
           <motion.div
             initial={false}
             animate={{ opacity: 1, scale: 1 }}
@@ -51,8 +51,12 @@ const HeroSection = ({ content, onUpdate }) => {
                 priority
                 sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, 320px"
                 src={data.imageUrl}
-                alt={data.imageAlt || "Alaïs Tavernier, naturopathe à Vacqueyras"}
-                onChange={(imageUrl, imageAlt) => onUpdate({ ...data, imageUrl, imageAlt })}
+                alt={
+                  data.imageAlt || "Alaïs Tavernier, naturopathe à Vacqueyras"
+                }
+                onChange={(imageUrl, imageAlt) =>
+                  onUpdate({ ...data, imageUrl, imageAlt })
+                }
                 className="w-full h-full object-cover"
               />
             </div>
@@ -67,7 +71,9 @@ const HeroSection = ({ content, onUpdate }) => {
             transition={{ duration: 0.8 }}
             className="order-1 text-center lg:text-left w-full"
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-[#5e7056] mb-4 font-medium">Naturopathe à Vacqueyras · Vaucluse</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#5e7056] mb-4 font-medium">
+              Votre cabinet de bien-être dans le Vaucluse
+            </p>
             <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light text-stone-800 mb-6 sm:mb-8 tracking-wide leading-tight">
               <EditableText
                 value={data.firstName}
@@ -81,14 +87,14 @@ const HeroSection = ({ content, onUpdate }) => {
                 element="span"
                 className="text-[#6b7563] font-normal inline"
               />
-            </h1>
-            <div className="mb-6 sm:mb-8 lg:mb-10">
               <EditableText
                 value={data.profession}
                 onChange={(val) => updateField("profession", val)}
-                element="p"
-                className="text-lg sm:text-xl lg:text-2xl text-stone-600 mb-2 sm:mb-3 font-light"
+                element="span"
+                className="block mt-4 text-xl sm:text-2xl text-stone-700 font-light tracking-normal"
               />
+            </h1>
+            <div className="mb-6 sm:mb-8 lg:mb-10">
               <EditableText
                 value={data.subtitle}
                 onChange={(val) => updateField("subtitle", val)}
@@ -102,28 +108,32 @@ const HeroSection = ({ content, onUpdate }) => {
               element="p"
               className="text-base sm:text-lg lg:text-xl text-stone-600 mb-6 sm:mb-8 lg:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
             />
-            <motion.blockquote
-              initial={false}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mb-8 sm:mb-10 lg:mb-12"
-            >
-              <EditableText
-                value={`"${data.quote}"`}
-                onChange={(val) => updateField("quote", val.replace(/"/g, ""))}
-                element="p"
-                className="text-base sm:text-lg lg:text-xl text-[#6b7563] font-light italic"
-              />
-              <p className="text-sm sm:text-base text-stone-500 mt-2 sm:mt-3 font-light">
-                —{" "}
+            {data.showQuote !== false && (
+              <motion.blockquote
+                initial={false}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mb-8 sm:mb-10 lg:mb-12"
+              >
                 <EditableText
-                  value={data.quoteAuthor}
-                  onChange={(val) => updateField("quoteAuthor", val)}
-                  element="span"
-                  className="inline"
+                  value={`"${data.quote}"`}
+                  onChange={(val) =>
+                    updateField("quote", val.replace(/"/g, ""))
+                  }
+                  element="p"
+                  className="text-base sm:text-lg lg:text-xl text-[#6b7563] font-light italic"
                 />
-              </p>
-            </motion.blockquote>
+                <p className="text-sm sm:text-base text-stone-500 mt-2 sm:mt-3 font-light">
+                  —{" "}
+                  <EditableText
+                    value={data.quoteAuthor}
+                    onChange={(val) => updateField("quoteAuthor", val)}
+                    element="span"
+                    className="inline"
+                  />
+                </p>
+              </motion.blockquote>
+            )}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center lg:justify-start">
               <a
                 href="https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras"
