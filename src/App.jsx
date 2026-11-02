@@ -24,7 +24,10 @@ const AdminLoginModal = lazy(()=>import('./components/admin/AdminLoginModal'));
 function AdminDetector() {
   const { isAuthenticated,isEditMode,enableEditMode }=useEditMode(); const location=useLocation(); const [dismissed,setDismissed]=useState(false);
   const requested=new URLSearchParams(location.search).has('admin');
+  const [mounted,setMounted]=useState(false);
+  useEffect(()=>setMounted(true),[]);
   useEffect(()=>setDismissed(false),[requested]);
+  if (!mounted) return null;
   return <Suspense fallback={null}>{isEditMode && <AdminToolbar/>}{requested && isAuthenticated && !isEditMode && <button onClick={enableEditMode} className="fixed bottom-4 right-4 z-50 bg-stone-900 text-white rounded-full px-5 py-3 shadow-lg">Revenir à l’édition</button>}{requested && !isAuthenticated && !dismissed && <AdminLoginModal isOpen onClose={()=>setDismissed(true)}/>}</Suspense>;
 }
 export default function App() {
