@@ -5,76 +5,61 @@ import { routePageKeys, breadcrumbItems } from "./business.js";
 export const SITE_URL = "https://alais-tavernier-naturopathe.fr";
 export const SITE_NAME = "Alaïs Tavernier - Naturopathe";
 export const DEFAULT_IMAGE = `${SITE_URL}/images/photo-1-1200.webp`;
+export const IMAGE_ALT = "Alaïs Tavernier, naturopathe à Vacqueyras";
 
 export const seoConfig = {
   "/": {
     title: "Naturopathe à Vacqueyras | Alaïs Tavernier",
     description:
       "Naturopathe à Vacqueyras, Alaïs Tavernier propose naturopathie, réflexologie et massage assis. Consultez les tarifs et réservez votre séance au cabinet.",
-    keywords:
-      "naturopathe Vacqueyras, naturopathie Vaucluse, bilan de vitalité, gestion du stress, massage assis Vacqueyras",
     canonicalUrl: `${SITE_URL}/`,
   },
   "/about": {
-    title: "À propos | Alaïs Tavernier Naturopathe",
+    title: "Alaïs Tavernier, naturopathe à Vacqueyras | Parcours",
     description:
-      "Découvrez le parcours d’Alaïs Tavernier, naturopathe et praticienne en massage bien-être à Vacqueyras.",
-    keywords:
-      "Alaïs Tavernier, naturopathe Vacqueyras, parcours naturopathe, bien-être Vaucluse",
+      "Alaïs Tavernier, naturopathe à Vacqueyras : parcours, formation de trois ans à Æsculape et approche personnalisée. Découvrez la praticienne avant votre visite.",
     canonicalUrl: `${SITE_URL}/about`,
   },
   "/prestations": {
-    title: "Naturopathie, réflexologie & massage | Vacqueyras",
+    title: "Tarifs naturopathe à Vacqueyras | Alaïs Tavernier",
     description:
       "Naturopathie, réflexologie et massage assis à Vacqueyras : découvrez le déroulement, la durée et les tarifs des séances avec Alaïs Tavernier.",
-    keywords:
-      "prestations naturopathe, tarifs naturopathie, massage assis, consultation naturopathe Vaucluse",
     canonicalUrl: `${SITE_URL}/prestations`,
   },
   "/naturopathie": {
     title: "Naturopathie à Vacqueyras | Bilan de vitalité",
     description:
       "Consultation de naturopathie à Vacqueyras : bilan de vitalité, conseils alimentaires, hygiène de vie, stress, sommeil et accompagnement personnalisé.",
-    keywords:
-      "naturopathie Vacqueyras, bilan de vitalité, troubles digestifs, gestion stress, rééquilibrage alimentaire",
     canonicalUrl: `${SITE_URL}/naturopathie`,
   },
   "/reflexologie": {
-    title: "Réflexologie à Vacqueyras | Séance de détente naturelle",
+    title: "Réflexologie à Vacqueyras | Alaïs Tavernier",
     description:
       "Réflexologie à Vacqueyras avec Alaïs Tavernier : déroulement, séance de 1h à 60 €, suivi de 45 min à 50 €. Réservez un temps de détente au cabinet.",
-    keywords:
-      "réflexologie Vacqueyras, réflexologie plantaire, détente naturelle, gestion stress, troubles du sommeil, bien-être Vaucluse",
     canonicalUrl: `${SITE_URL}/reflexologie`,
   },
   "/massage-assis": {
     title: "Massage assis à Vacqueyras | Séance détente 30 min",
     description:
       "Massage assis habillé à Vacqueyras : séance de 30 minutes pour relâcher dos, nuque, épaules, bras et mains. Tarif : 30 euros.",
-    keywords:
-      "massage assis Vacqueyras, massage habillé, détente, tensions dos nuque, relaxation Vaucluse",
     canonicalUrl: `${SITE_URL}/massage-assis`,
   },
   "/contact": {
-    title: "Contact & rendez-vous | Alaïs Tavernier Vacqueyras",
+    title: "Naturopathe à Vacqueyras : contact, accès et rendez-vous",
     description:
-      "Contactez Alaïs Tavernier, naturopathe à Vacqueyras. Téléphone : 07 81 66 09 29. Rendez-vous en ligne via Resalib.",
-    keywords:
-      "contact naturopathe Vacqueyras, rendez-vous naturopathe, horaires consultation, téléphone naturopathe",
+      "Cabinet de naturopathie à Vacqueyras : adresse, horaires et itinéraire depuis les environs. Appelez Alaïs Tavernier ou réservez votre séance sur Resalib.",
     canonicalUrl: `${SITE_URL}/contact`,
   },
   "/mentions-legales": {
     title: "Mentions légales | Alaïs Tavernier Naturopathe",
     description:
       "Mentions légales du site Alaïs Tavernier Naturopathe : éditeur, hébergeur, activité, responsabilité et données personnelles.",
-    keywords: "mentions légales, naturopathe Vacqueyras",
     canonicalUrl: `${SITE_URL}/mentions-legales`,
   },
   "/cgu": {
     title: "Conditions générales d’utilisation | Alaïs Tavernier",
     description:
       "Conditions générales d’utilisation du site Alaïs Tavernier Naturopathe : accès, contenu, responsabilité, propriété intellectuelle et contact.",
-    keywords: "CGU, conditions générales, naturopathe Vacqueyras",
     canonicalUrl: `${SITE_URL}/cgu`,
   },
 };
@@ -98,50 +83,51 @@ export function getPageSEO(path, content = initialSiteContent) {
   };
 }
 
+// One definition for static HTML and client navigation keeps social previews consistent.
+export function getPageMeta(pageData, preview = false) {
+  const { title, description, canonicalUrl, noindex } = pageData;
+  const meta = (name, content, attribute = "name") => ({
+    name,
+    content,
+    attribute,
+  });
+  return [
+    meta("description", description),
+    meta(
+      "robots",
+      noindex || preview
+        ? "noindex,follow"
+        : "index,follow,max-image-preview:large",
+    ),
+    meta("author", "Alaïs Tavernier"),
+    meta("og:title", title, "property"),
+    meta("og:description", description, "property"),
+    meta("og:url", canonicalUrl, "property"),
+    meta("og:type", "website", "property"),
+    meta("og:image", DEFAULT_IMAGE, "property"),
+    meta("og:image:alt", IMAGE_ALT, "property"),
+    meta("og:image:width", "1200", "property"),
+    meta("og:image:height", "1600", "property"),
+    meta("og:image:type", "image/webp", "property"),
+    meta("og:locale", "fr_FR", "property"),
+    meta("og:site_name", SITE_NAME, "property"),
+    meta("twitter:card", "summary_large_image"),
+    meta("twitter:title", title),
+    meta("twitter:description", description),
+    meta("twitter:image", DEFAULT_IMAGE),
+    meta("twitter:image:alt", IMAGE_ALT),
+  ];
+}
 export const updatePageSEO = (pageData) => {
-  const { title, description, keywords, canonicalUrl, noindex } = pageData;
-
-  if (title) {
-    document.title = title;
-  }
-
-  updateMetaTag("description", description);
-  updateMetaTag("keywords", keywords);
-  updateMetaTag(
-    "robots",
-    noindex || (typeof __IS_PREVIEW__ !== "undefined" && __IS_PREVIEW__)
-      ? "noindex,follow"
-      : "index,follow,max-image-preview:large",
-  );
-  updateMetaTag("author", "Alaïs Tavernier");
-  updateMetaTag("geo.region", "FR-84");
-  updateMetaTag("geo.placename", "Vacqueyras");
-
-  updateMetaTag("og:title", title, "property");
-  updateMetaTag("og:description", description, "property");
-  updateMetaTag("og:url", canonicalUrl || window.location.href, "property");
-  updateMetaTag("og:type", "website", "property");
-  updateMetaTag("og:image", DEFAULT_IMAGE, "property");
-  updateMetaTag(
-    "og:image:alt",
-    "Alaïs Tavernier, naturopathe et praticienne en massage bien-être à Vacqueyras",
-    "property",
-  );
-  updateMetaTag("og:locale", "fr_FR", "property");
-  updateMetaTag("og:site_name", SITE_NAME, "property");
-
-  updateMetaTag("twitter:card", "summary_large_image", "name");
-  updateMetaTag("twitter:title", title, "name");
-  updateMetaTag("twitter:description", description, "name");
-  updateMetaTag("twitter:image", DEFAULT_IMAGE, "name");
-  updateMetaTag(
-    "twitter:image:alt",
-    "Alaïs Tavernier, naturopathe et praticienne en massage bien-être à Vacqueyras",
-    "name",
-  );
-
-  updateCanonicalUrl(canonicalUrl);
-  updateAlternateUrl(canonicalUrl);
+  document.title = pageData.title;
+  for (const { name, content, attribute } of getPageMeta(
+    pageData,
+    typeof __IS_PREVIEW__ !== "undefined" && __IS_PREVIEW__,
+  ))
+    updateMetaTag(name, content, attribute);
+  // Google does not use meta keywords; avoid implying a ranking benefit.
+  document.querySelector('meta[name="keywords"]')?.remove();
+  updateCanonicalUrl(pageData.canonicalUrl);
 };
 
 const updateMetaTag = (name, content, attribute = "name") => {
@@ -170,23 +156,6 @@ const updateCanonicalUrl = (url) => {
   }
 
   canonical.setAttribute("href", url);
-};
-
-const updateAlternateUrl = (url) => {
-  if (!url) return;
-
-  let alternate = document.querySelector(
-    'link[rel="alternate"][hreflang="fr-FR"]',
-  );
-
-  if (!alternate) {
-    alternate = document.createElement("link");
-    alternate.setAttribute("rel", "alternate");
-    alternate.setAttribute("hreflang", "fr-FR");
-    document.head.appendChild(alternate);
-  }
-
-  alternate.setAttribute("href", url);
 };
 
 seoConfig["/confidentialite"] = {
@@ -348,6 +317,17 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
       inLanguage: "fr-FR",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       publisher: { "@id": `${SITE_URL}/#localbusiness` },
+      breadcrumb: { "@id": `${seo.canonicalUrl}#breadcrumb` },
+      mainEntity: {
+        "@id":
+          path === "/about"
+            ? `${SITE_URL}/#person`
+            : services.some(
+                  (service) => service.offers[0]?.url === `${SITE_URL}${path}`,
+                )
+              ? `${SITE_URL}${path}#service`
+              : `${SITE_URL}/#localbusiness`,
+      },
       about: {
         "@id":
           path === "/about"

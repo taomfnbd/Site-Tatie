@@ -99,3 +99,50 @@ test("service breadcrumb includes its catalogue parent and linked practitioner i
     "+33781660929",
   );
 });
+
+import { getPageMeta } from "../src/utils/seo.js";
+test("static and browser metadata share descriptions, social URLs, image details and indexation policy", () => {
+  for (const route of publicRoutes) {
+    const seo = getPageSEO(route);
+    const tags = getPageMeta(seo);
+    const find = (name) => tags.find((tag) => tag.name === name)?.content;
+    assert.equal(find("description"), seo.description);
+    assert.equal(find("og:description"), seo.description);
+    assert.equal(find("twitter:description"), seo.description);
+    assert.equal(find("og:url"), seo.canonicalUrl);
+    assert.equal(find("og:title"), seo.title);
+    assert.equal(find("twitter:image:alt"), find("og:image:alt"));
+    assert.equal(find("og:image:width"), "1200");
+    assert.equal(find("og:image:height"), "1600");
+    assert.equal(
+      new Set(tags.map((tag) => `${tag.attribute}:${tag.name}`)).size,
+      tags.length,
+    );
+    assert.ok(!tags.some((tag) => tag.name === "keywords"));
+    assert.match(find("robots"), /^index,/);
+    assert.match(
+      getPageMeta(seo, true).find((tag) => tag.name === "robots").content,
+      /^noindex,/,
+    );
+  }
+  assert.match(
+    getPageMeta(getPageSEO("/404")).find((tag) => tag.name === "robots")
+      .content,
+    /^noindex,/,
+  );
+});
+test("page entities and breadcrumb references resolve within each schema graph", () => {
+  for (const route of publicRoutes) {
+    const graph = getStructuredData(route)["@graph"];
+    const page = graph.find((node) =>
+      ["WebPage", "AboutPage", "ContactPage"].includes(node["@type"]),
+    );
+    assert.ok(graph.some((node) => node["@id"] === page.breadcrumb["@id"]));
+    assert.ok(graph.some((node) => node["@id"] === page.mainEntity["@id"]));
+    if (["/naturopathie", "/reflexologie", "/massage-assis"].includes(route))
+      assert.equal(
+        page.mainEntity["@id"],
+        `https://alais-tavernier-naturopathe.fr${route}#service`,
+      );
+  }
+});

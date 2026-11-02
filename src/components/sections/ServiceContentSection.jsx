@@ -68,7 +68,7 @@ const ServiceContentSection = ({ content, onUpdate }) => {
               onChange={(val) => updateParagraph(index, val)}
               element="p"
               allowHTML={true}
-              className="text-base sm:text-lg text-stone-600 leading-relaxed font-light text-center"
+              className="text-base sm:text-lg text-stone-600 leading-relaxed font-light text-center [&_a]:underline [&_a]:underline-offset-4 [&_a]:text-[#5e7056]"
             />
             {isEditMode && (
               <button
