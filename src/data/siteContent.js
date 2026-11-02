@@ -57,7 +57,44 @@ export const initialSiteContent = {
     },
     "legal": {
       "copyright": "© 2026 Alaïs Tavernier - Naturopathe. Tous droits réservés."
-    }
+    },
+    "schedule": [
+      {
+        "day": "Lundi",
+        "hours": "9h00 – 17h00",
+        "note": "dernier RDV 17h"
+      },
+      {
+        "day": "Mardi",
+        "hours": "Fermé",
+        "note": ""
+      },
+      {
+        "day": "Mercredi",
+        "hours": "Fermé",
+        "note": ""
+      },
+      {
+        "day": "Jeudi",
+        "hours": "9h00 – 17h00",
+        "note": "dernier RDV 17h"
+      },
+      {
+        "day": "Vendredi",
+        "hours": "Fermé",
+        "note": ""
+      },
+      {
+        "day": "Samedi",
+        "hours": "9h00 – 12h00",
+        "note": "dernier RDV 12h"
+      },
+      {
+        "day": "Dimanche",
+        "hours": "Fermé",
+        "note": ""
+      }
+    ]
   },
   "pages": {
     "home": [

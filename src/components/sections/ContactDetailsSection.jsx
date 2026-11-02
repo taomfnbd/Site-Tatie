@@ -2,10 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import StaticDragonfly from '../../common/StaticDragonfly';
 import EditableText from '../admin/EditableText';
+import { useContent } from '../../contexts/ContentContext';
+import { phoneHref } from '../../utils/business';
 import SafeIcon from '../../common/SafeIcon';
 import { FiPhone, FiMapPin, FiCalendar, FiInfo, FiInstagram, FiExternalLink } from 'react-icons/fi';
 
 const ContactDetailsSection = ({ content, onUpdate }) => {
+  const { globalContent, updateGlobalContent } = useContent();
   const data = {
     directContact: {
       title: 'Contact direct',
@@ -57,7 +60,13 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
     ...content
   };
 
+  data.directContact = { ...data.directContact, phone: globalContent.footer.contact.phone, address: globalContent.footer.contact.address };
+  if (globalContent.footer.schedule) data.schedule = { ...data.schedule, days: globalContent.footer.schedule };
   const updateField = (path, value) => {
+    if (path === 'directContact.phone' || path === 'directContact.address') {
+      updateGlobalContent('footer', { ...globalContent.footer, contact: { ...globalContent.footer.contact, [path.split('.')[1]]: value } });
+    }
+    if (path === 'schedule.days') updateGlobalContent('footer', { ...globalContent.footer, schedule: value });
     // Helper pour nested update
     const newData = JSON.parse(JSON.stringify(data));
     const parts = path.split('.');
@@ -105,7 +114,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
                       element="p"
                       className="text-green-100 text-sm font-light"
                     />
-                    <a href="tel:0781660929" className="text-lg font-medium hover:text-green-100 transition-colors">
+                    <a href={phoneHref(data.directContact.phone)} className="text-lg font-medium hover:text-green-100 transition-colors">
                       <EditableText
                         value={data.directContact.phone}
                         onChange={(val) => updateField('directContact.phone', val)}
@@ -136,7 +145,7 @@ const ContactDetailsSection = ({ content, onUpdate }) => {
               </div>
               <div className="mt-8 pt-8 border-t border-white/20">
                 <a
-                  href="tel:0781660929"
+                  href={phoneHref(data.directContact.phone)}
                   className="w-full bg-white text-[#6b7563] py-3 rounded-lg font-medium hover:bg-stone-100 transition-colors flex items-center justify-center space-x-2"
                 >
                   <SafeIcon icon={FiPhone} />
