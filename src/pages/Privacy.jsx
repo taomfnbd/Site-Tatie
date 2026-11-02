@@ -1,14 +1,75 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 export default function Privacy() {
-  return <article className="max-w-3xl mx-auto px-5 py-14 sm:py-20 prose prose-stone prose-a:text-[#5e7056]">
-    <h1>Confidentialité et données personnelles</h1>
-    <p>Dernière mise à jour : 2 novembre 2026.</p>
-    <h2>Qui est responsable de vos données ?</h2><p>Alaïs Tavernier, 729 route de Sarrians, 84190 Vacqueyras. Pour toute question ou pour exercer vos droits : <a href="mailto:alais.tavernier@gmail.com">alais.tavernier@gmail.com</a>.</p>
-    <h2>Consulter ce site</h2><p>Le site ne charge pas de traceur publicitaire ni d’outil de mesure d’audience côté navigateur. Les données techniques nécessaires à l’hébergement et à la sécurité, telles que l’adresse IP et les informations de requête, peuvent être traitées par l’hébergeur Netlify. Aucun compte visiteur n’est nécessaire.</p>
-    <h2>Prendre contact ou rendez-vous</h2><p>Vous pouvez joindre Alaïs par téléphone ou prendre rendez-vous sur Resalib. Ce site ne propose pas de formulaire de contact. Si vous écrivez par email, vos coordonnées et le contenu du message servent à répondre à votre demande, dans le cadre des échanges préalables à une prestation ou de la relation client. Évitez d’envoyer des informations médicales détaillées par email.</p><p>Resalib est un service externe disposant de sa propre politique de confidentialité. Les liens vers Instagram et Google Maps ouvrent également des services externes : ces sites ne sont pas intégrés à la page et ne sont contactés que si vous suivez leurs liens.</p>
-    <h2>Stockage et sécurité</h2><p>La navigation publique ne nécessite pas de cookie de consentement. L’administration utilise un cookie de session sécurisé, nécessaire à la connexion, valable au maximum quatre heures, et un brouillon conservé sur l’appareil de l’administratrice. Ces éléments ne servent pas à suivre les visiteurs.</p><p>Les échanges de contact sont conservés le temps nécessaire à leur traitement et au suivi de la relation, sous réserve des obligations légales de conservation applicables. Les données techniques d’hébergement sont gérées selon les conditions et durées de conservation du prestataire. Vous pouvez demander des précisions à Alaïs avant de communiquer vos informations.</p>
-    <h2>Vos droits</h2><p>Selon votre situation, vous pouvez demander l’accès, la rectification, l’effacement ou la limitation de vos données, vous opposer à leur traitement et demander leur portabilité lorsque ce droit s’applique. Adressez votre demande à l’email indiqué ci-dessus. Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener noreferrer">CNIL</a>.</p>
-    <p><Link to="/mentions-legales">Consulter les mentions légales</Link></p>
-  </article>;
+  return (
+    <article className="max-w-3xl mx-auto px-5 py-14 sm:py-20 prose prose-stone prose-a:text-[#5e7056]">
+      <h1>Confidentialité et données personnelles</h1>
+      <p>Dernière mise à jour : 2 novembre 2026.</p>
+      <h2>Qui est responsable de vos données ?</h2>
+      <p>
+        Alaïs Tavernier, 729 route de Sarrians, 84190 Vacqueyras. Pour toute
+        question ou pour exercer vos droits :{" "}
+        <a href="mailto:alais.tavernier@gmail.com">alais.tavernier@gmail.com</a>
+        .
+      </p>
+      <h2>Consulter ce site</h2>
+      <p>
+        Le site ne charge pas de traceur publicitaire ni d’outil de mesure
+        d’audience côté navigateur. Les données techniques nécessaires à
+        l’hébergement et à la sécurité, telles que l’adresse IP et les
+        informations de requête, peuvent être traitées par l’hébergeur Netlify.
+        Aucun compte visiteur n’est nécessaire.
+      </p>
+      <h2>Prendre contact ou rendez-vous</h2>
+      <p>
+        Vous pouvez joindre Alaïs par téléphone ou prendre rendez-vous sur
+        Resalib. Ce site ne propose pas de formulaire de contact. Si vous
+        écrivez par email, vos coordonnées et le contenu du message servent à
+        répondre à votre demande, dans le cadre des échanges préalables à une
+        prestation ou de la relation client. Évitez d’envoyer des informations
+        médicales détaillées par email.
+      </p>
+      <p>
+        Resalib est un service externe disposant de sa propre politique de
+        confidentialité. Les liens vers Instagram et Google Maps ouvrent
+        également des services externes : ces sites ne sont pas intégrés à la
+        page et ne sont contactés que si vous suivez leurs liens.
+      </p>
+      <h2>Stockage et sécurité</h2>
+      <p>
+        La navigation publique ne nécessite pas de cookie de consentement.
+        L’administration utilise un cookie de session sécurisé, nécessaire à la
+        connexion, valable au maximum quatre heures, et un brouillon conservé
+        sur l’appareil de l’administratrice. Ces éléments ne servent pas à
+        suivre les visiteurs.
+      </p>
+      <p>
+        Les échanges de contact sont conservés le temps nécessaire à leur
+        traitement et au suivi de la relation, sous réserve des obligations
+        légales de conservation applicables. Les données techniques
+        d’hébergement sont gérées selon les conditions et durées de conservation
+        du prestataire. Vous pouvez demander des précisions à Alaïs avant de
+        communiquer vos informations.
+      </p>
+      <h2>Vos droits</h2>
+      <p>
+        Selon votre situation, vous pouvez demander l’accès, la rectification,
+        l’effacement ou la limitation de vos données, vous opposer à leur
+        traitement et demander leur portabilité lorsque ce droit s’applique.
+        Adressez votre demande à l’email indiqué ci-dessus. Vous pouvez
+        également introduire une réclamation auprès de la{" "}
+        <a
+          href="https://www.cnil.fr/fr/plaintes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          CNIL
+        </a>
+        .
+      </p>
+      <p>
+        <Link to="/mentions-legales">Consulter les mentions légales</Link>
+      </p>
+    </article>
+  );
 }
