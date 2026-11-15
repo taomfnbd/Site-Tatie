@@ -17,7 +17,7 @@ export const seoConfig = {
   "/": {
     title: "Naturopathe à Vacqueyras | Alaïs Tavernier",
     description:
-      "Naturopathe à Vacqueyras, Alaïs Tavernier propose naturopathie, réflexologie et massage assis. Consultez les tarifs et réservez votre séance au cabinet.",
+      "Naturopathe à Vacqueyras, Alaïs Tavernier propose naturopathie, réflexologie, massage assis et fleurs de Bach. Consultez les tarifs et réservez au cabinet.",
     canonicalUrl: `${SITE_URL}/`,
   },
   "/about": {
@@ -29,7 +29,7 @@ export const seoConfig = {
   "/prestations": {
     title: "Tarifs naturopathe à Vacqueyras | Alaïs Tavernier",
     description:
-      "Naturopathie, réflexologie et massage assis à Vacqueyras : découvrez le déroulement, la durée et les tarifs des séances avec Alaïs Tavernier.",
+      "Naturopathie, réflexologie, massage assis et fleurs de Bach à Vacqueyras : déroulement, durée et tarifs des séances avec Alaïs Tavernier.",
     canonicalUrl: `${SITE_URL}/prestations`,
   },
   "/naturopathie": {
@@ -49,6 +49,12 @@ export const seoConfig = {
     description:
       "Massage assis habillé à Vacqueyras : séance de 30 minutes pour relâcher dos, nuque, épaules, bras et mains. Tarif : 30 euros.",
     canonicalUrl: `${SITE_URL}/massage-assis`,
+  },
+  "/fleurs-de-bach": {
+    title: "Fleurs de Bach à Vacqueyras | Alaïs Tavernier",
+    description:
+      "Conseil en fleurs de Bach à Vacqueyras avec Alaïs Tavernier : une séance de 1h30 pour composer un mélange personnalisé adapté à vos émotions du moment.",
+    canonicalUrl: `${SITE_URL}/fleurs-de-bach`,
   },
   "/contact": {
     title: "Naturopathe à Vacqueyras : contact, accès et rendez-vous",
@@ -217,7 +223,8 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
     "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
     "@id": `${SITE_URL}/#localbusiness`,
     name: `${profile.name} - Naturopathe`,
-    description: "Naturopathie, réflexologie et massage assis à Vacqueyras.",
+    description:
+      "Naturopathie, réflexologie, massage assis et fleurs de Bach à Vacqueyras.",
     url: SITE_URL,
     telephone: profile.telephone,
     image: DEFAULT_IMAGE,

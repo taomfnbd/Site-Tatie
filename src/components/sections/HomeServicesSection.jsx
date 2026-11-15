@@ -24,11 +24,11 @@ export default function HomeServicesSection({ content = {}, onUpdate }) {
             className="font-editorial text-4xl sm:text-5xl font-light text-stone-800"
           />
           <p className="text-stone-600 leading-relaxed mt-4">
-            Trois façons de prendre un temps pour vous, selon vos besoins et vos
+            Quatre façons de prendre un temps pour vous, selon vos besoins et vos
             envies.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {cards.map((section, index) => {
             const c = section.content;
             return (
@@ -50,9 +50,12 @@ export default function HomeServicesSection({ content = {}, onUpdate }) {
                   <Link
                     to={
                       c.linkUrl ||
-                      ["/naturopathie", "/reflexologie", "/massage-assis"][
-                        index
-                      ]
+                      [
+                        "/naturopathie",
+                        "/reflexologie",
+                        "/massage-assis",
+                        "/fleurs-de-bach",
+                      ][index]
                     }
                     className="inline-flex min-h-11 items-center gap-3 text-[#5e7056] font-medium mt-2"
                   >

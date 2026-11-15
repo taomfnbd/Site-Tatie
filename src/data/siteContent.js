@@ -30,6 +30,10 @@ export const initialSiteContent = {
         "href": "/massage-assis"
       },
       {
+        "name": "Fleurs de Bach",
+        "href": "/fleurs-de-bach"
+      },
+      {
         "name": "Contact",
         "href": "/contact"
       }
@@ -137,7 +141,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Préparer votre première visite",
           "paragraphs": [
-            "Vous recherchez un échange sur vos habitudes de vie ou un temps de détente corporelle ? La <a href=\"/naturopathie\">première consultation de naturopathie</a> repose sur un bilan de vitalité. La <a href=\"/reflexologie\">réflexologie</a> et le <a href=\"/massage-assis\">massage assis habillé</a> proposent deux formats de pratique manuelle de bien-être.",
+            "Vous recherchez un échange sur vos habitudes de vie ou un temps de détente corporelle ? La <a href=\"/naturopathie\">première consultation de naturopathie</a> repose sur un bilan de vitalité. La <a href=\"/reflexologie\">réflexologie</a> et le <a href=\"/massage-assis\">massage assis habillé</a> proposent deux formats de pratique manuelle de bien-être. Les <a href=\"/fleurs-de-bach\">fleurs de Bach</a> accompagnent, elles, vos émotions du moment.",
             "Pour faire connaissance, découvrez <a href=\"/about\">mon parcours de formation en naturopathie</a>. Retrouvez ensuite <a href=\"/contact\">les horaires, les coordonnées et l’itinéraire du cabinet à Vacqueyras</a> pour organiser votre rendez-vous."
           ]
         }
@@ -155,7 +159,7 @@ export const initialSiteContent = {
             },
             {
               "question": "Quelles prestations sont proposées à Vacqueyras ?",
-              "answer": "Alaïs Tavernier propose des consultations de naturopathie, des séances de réflexologie et du massage assis habillé. Les durées et les tarifs sont présentés sur la page Prestations."
+              "answer": "Alaïs Tavernier propose des consultations de naturopathie, des séances de réflexologie, du massage assis habillé et des séances de conseil en fleurs de Bach. Les durées et les tarifs sont présentés sur la page Prestations."
             },
             {
               "question": "Quels sont les tarifs des séances à Vacqueyras ?",
@@ -336,6 +340,32 @@ export const initialSiteContent = {
           ],
           "linkUrl": "/massage-assis",
           "linkText": "Déroulement du massage assis"
+        }
+      },
+      {
+        "id": "service-bach-flowers-1",
+        "type": "service_card",
+        "content": {
+          "iconType": "sun",
+          "gradient": "from-green-25 to-stone-25",
+          "title": "Fleurs de Bach",
+          "subtitle": "Un mélange personnalisé pour accompagner vos émotions",
+          "description": "Une séance d’écoute pour faire le point sur vos émotions du moment et composer un mélange de fleurs de Bach adapté à votre situation.",
+          "benefits": [
+            "Un temps d’écoute consacré à vos émotions",
+            "Un choix parmi les 38 fleurs du Dr Bach",
+            "Un mélange personnalisé",
+            "Des conseils d’utilisation adaptés"
+          ],
+          "prices": [
+            {
+              "type": "Séance",
+              "duration": "1h30",
+              "price": "65€"
+            }
+          ],
+          "linkUrl": "/fleurs-de-bach",
+          "linkText": "Déroulement d’une séance fleurs de Bach"
         }
       }
     ],
@@ -716,6 +746,125 @@ export const initialSiteContent = {
           "serviceName": "Massage assis",
           "duration": "30 minutes",
           "price": "30€"
+        }
+      }
+    ],
+    "fleurs-de-bach": [
+      {
+        "id": "bach-hero",
+        "type": "service_hero",
+        "content": {
+          "title": "Fleurs de Bach à Vacqueyras",
+          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, Alaïs Tavernier, conseillère en fleurs de Bach, vous accompagne dans le choix d’un mélange personnalisé, adapté à vos émotions du moment.",
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
+          "imageAlt": "Alaïs Tavernier échange avec une personne au cabinet"
+        }
+      },
+      {
+        "id": "bach-about",
+        "type": "service_content",
+        "content": {
+          "title": "Que sont les fleurs de Bach ?",
+          "paragraphs": [
+            "Le Dr Edward Bach, médecin anglais, a répertorié 38 fleurs et arbres. Chaque élixir est associé à un état émotionnel précis : la peur, le doute, l’impatience, la tristesse, le découragement ou encore le besoin de tout contrôler.",
+            "Il a réparti ces états en sept grandes familles : la peur, l’incertitude, le manque d’intérêt pour le présent, la solitude, l’hypersensibilité aux influences extérieures, le découragement et le souci excessif d’autrui.",
+            "Le principe est simple : plutôt que de s’intéresser à un symptôme, on part de ce que vous ressentez au moment présent pour choisir les fleurs qui y correspondent.",
+            "Les effets ressentis varient d’une personne à l’autre ; aucun résultat thérapeutique n’est garanti."
+          ]
+        }
+      },
+      {
+        "id": "bach-process",
+        "type": "service_process",
+        "content": {
+          "title": "Comment se déroule la séance ?",
+          "steps": [
+            {
+              "title": "Séance de conseil en fleurs de Bach",
+              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier les fleurs qui vous correspondent. Elles sont ensuite réunies dans un mélange personnalisé, accompagné de conseils d’utilisation.",
+              "price": "65€",
+              "duration": "1h30"
+            }
+          ]
+        }
+      },
+      {
+        "id": "bach-reasons",
+        "type": "service_benefits",
+        "content": {
+          "title": "Dans quel cadre envisager les fleurs de Bach ?",
+          "benefits": [
+            "Traverser une période de stress ou de changement",
+            "Être accompagné face à des peurs ou des appréhensions",
+            "Retrouver confiance quand le doute s’installe",
+            "Prendre du recul face à l’impatience ou à l’irritabilité",
+            "Traverser un moment de tristesse ou de découragement",
+            "Mieux comprendre et accueillir ses émotions"
+          ]
+        }
+      },
+      {
+        "id": "bach-other-services",
+        "type": "service_content",
+        "content": {
+          "title": "Fleurs de Bach, naturopathie ou réflexologie : quel format choisir ?",
+          "paragraphs": [
+            "La séance de fleurs de Bach est centrée sur vos émotions. Si votre attente porte aussi sur vos habitudes de vie, découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a>. Pour un temps de détente corporelle, consultez la <a href=\"/reflexologie\">réflexologie</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>.",
+            "Si vous hésitez sur le format adapté à votre situation, <a href=\"/contact\">contactez le cabinet</a> avant de réserver. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>."
+          ]
+        }
+      },
+      {
+        "id": "bach-faq",
+        "type": "faq",
+        "content": {
+          "title": "Questions fréquentes sur les fleurs de Bach",
+          "intro": "Des réponses pour savoir si les fleurs de Bach correspondent à votre besoin avant de prendre rendez-vous.",
+          "items": [
+            {
+              "question": "Combien de temps dure une séance ?",
+              "answer": "La séance dure environ 1h30, échange compris.",
+              "priceRef": {
+                "path": "/fleurs-de-bach",
+                "index": 0,
+                "kind": "all"
+              }
+            },
+            {
+              "question": "Combien de fleurs contient un mélange ?",
+              "answer": "Un mélange réunit généralement jusqu’à six ou sept fleurs, choisies selon les émotions identifiées pendant l’échange."
+            },
+            {
+              "question": "Les fleurs de Bach remplacent-elles un traitement médical ?",
+              "answer": "Non. Les fleurs de Bach sont une approche complémentaire de bien-être. Elles ne posent pas de diagnostic, ne constituent pas un traitement et ne remplacent jamais une consultation médicale."
+            },
+            {
+              "question": "À qui s’adressent les fleurs de Bach ?",
+              "answer": "Elles s’adressent aux enfants, aux adolescents comme aux adultes. Les élixirs sont généralement conservés dans une petite quantité d’alcool : signalez lors de l’échange une grossesse, un allaitement, l’âge de l’enfant ou toute raison d’éviter l’alcool."
+            }
+          ]
+        }
+      },
+      {
+        "id": "bach-practice-framework",
+        "type": "service_content",
+        "content": {
+          "title": "Un accompagnement de bien-être dans un cadre clair",
+          "paragraphs": [
+            "Ces séances ne constituent pas un acte médical. En cas de symptôme, de grossesse, de maladie ou de doute sur votre situation, demandez conseil à un professionnel de santé avant de réserver. Aucun résultat thérapeutique n’est garanti.",
+            "Pour connaître le cadre des pratiques non conventionnelles, consultez les <a href=\"https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pratiques-de-soins-non-conventionnelles-soyez-attentif-aux-informations-fournies\" target=\"_blank\" rel=\"noopener noreferrer\">informations de la DGCCRF</a>. Pour le choix d’un format, comparez les <a href=\"/prestations\">prestations et tarifs</a> ou <a href=\"/contact\">contactez le cabinet</a>."
+          ]
+        }
+      },
+      {
+        "id": "bach-cta",
+        "type": "service_cta",
+        "content": {
+          "title": "Envie de faire le point sur vos émotions ?",
+          "showPriceBox": true,
+          "serviceName": "Séance fleurs de Bach",
+          "duration": "1h30",
+          "price": "65€"
         }
       }
     ],

@@ -16,6 +16,7 @@ import Services from "./pages/Services";
 import Naturopathy from "./pages/Naturopathy";
 import Reflexologie from "./pages/Reflexologie";
 import Massage from "./pages/Massage";
+import FleursDeBach from "./pages/FleursDeBach";
 import Contact from "./pages/Contact";
 import LegalNotice from "./pages/LegalNotice";
 import TermsOfService from "./pages/TermsOfService";
@@ -78,6 +79,7 @@ export default function App() {
                   <Route path="/naturopathie" element={<Naturopathy />} />
                   <Route path="/reflexologie" element={<Reflexologie />} />
                   <Route path="/massage-assis" element={<Massage />} />
+                  <Route path="/fleurs-de-bach" element={<FleursDeBach />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/mentions-legales" element={<LegalNotice />} />
                   <Route path="/cgu" element={<TermsOfService />} />

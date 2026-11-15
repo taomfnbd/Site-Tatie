@@ -139,7 +139,14 @@ test("page entities and breadcrumb references resolve within each schema graph",
     );
     assert.ok(graph.some((node) => node["@id"] === page.breadcrumb["@id"]));
     assert.ok(graph.some((node) => node["@id"] === page.mainEntity["@id"]));
-    if (["/naturopathie", "/reflexologie", "/massage-assis"].includes(route))
+    if (
+      [
+        "/naturopathie",
+        "/reflexologie",
+        "/massage-assis",
+        "/fleurs-de-bach",
+      ].includes(route)
+    )
       assert.equal(
         page.mainEntity["@id"],
         `https://alais-tavernier-naturopathe.fr${route}#service`,

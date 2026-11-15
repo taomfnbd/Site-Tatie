@@ -12,6 +12,7 @@ export const publicRoutes = [
   "/naturopathie",
   "/reflexologie",
   "/massage-assis",
+  "/fleurs-de-bach",
   "/contact",
   "/mentions-legales",
   "/cgu",
@@ -24,6 +25,7 @@ export const routePageKeys = {
   "/naturopathie": "naturopathy",
   "/reflexologie": "reflexologie",
   "/massage-assis": "massage",
+  "/fleurs-de-bach": "fleurs-de-bach",
   "/contact": "contact",
   "/mentions-legales": "legal-notice",
   "/cgu": "terms-of-service",
@@ -36,6 +38,7 @@ export function breadcrumbItems(path) {
     "/naturopathie": "Naturopathie",
     "/reflexologie": "Réflexologie",
     "/massage-assis": "Massage assis",
+    "/fleurs-de-bach": "Fleurs de Bach",
     "/contact": "Contact",
     "/mentions-legales": "Mentions légales",
     "/cgu": "CGU",
@@ -44,7 +47,12 @@ export function breadcrumbItems(path) {
   if (!labels[path]) return [{ name: "Accueil", path: "/" }];
   return [
     { name: "Accueil", path: "/" },
-    ...(["/naturopathie", "/reflexologie", "/massage-assis"].includes(path)
+    ...([
+      "/naturopathie",
+      "/reflexologie",
+      "/massage-assis",
+      "/fleurs-de-bach",
+    ].includes(path)
       ? [{ name: "Prestations", path: "/prestations" }]
       : []),
     { name: labels[path], path },

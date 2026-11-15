@@ -6,6 +6,7 @@ export const paths = [
   "/naturopathie",
   "/reflexologie",
   "/massage-assis",
+  "/fleurs-de-bach",
   "/contact",
   "/mentions-legales",
   "/cgu",

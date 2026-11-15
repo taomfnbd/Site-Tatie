@@ -27,6 +27,7 @@ const pageKeys = [
   "naturopathy",
   "reflexologie",
   "massage",
+  "fleurs-de-bach",
   "contact",
   "legal-notice",
   "terms-of-service",

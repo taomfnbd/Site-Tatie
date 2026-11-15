@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SafeIcon from '../../common/SafeIcon';
 import EditableText from '../admin/EditableText';
-import { FiFeather, FiHeart, FiClock, FiCreditCard, FiStar } from 'react-icons/fi';
+import { FiFeather, FiHeart, FiClock, FiCreditCard, FiStar, FiSun } from 'react-icons/fi';
 
 // Mapping pour choisir l'icône
 const ICONS = {
   'leaf': FiFeather,
   'heart': FiHeart,
   'star': FiStar,
+  'sun': FiSun,
 };
 
 const ServiceCardSection = ({ content, onUpdate }) => {
   const data = {
-    iconType: 'leaf', // 'leaf' | 'heart' | 'star'
+    iconType: 'leaf', // 'leaf' | 'heart' | 'star' | 'sun'
     gradient: 'from-green-25 to-stone-25', // ou 'from-stone-25 to-green-25'
     title: 'Naturopathie',
     subtitle: 'Bilan de vitalité et conseils personnalisés',
