@@ -53,7 +53,7 @@ export const seoConfig = {
   "/fleurs-de-bach": {
     title: "Fleurs de Bach à Vacqueyras | Alaïs Tavernier",
     description:
-      "Conseil en fleurs de Bach à Vacqueyras avec Alaïs Tavernier : une séance de 1h30 pour composer un mélange personnalisé adapté à vos émotions du moment.",
+      "Conseil en fleurs de Bach à Vacqueyras avec Alaïs Tavernier : une séance de 1h30 pour choisir les fleurs adaptées à vos émotions du moment.",
     canonicalUrl: `${SITE_URL}/fleurs-de-bach`,
   },
   "/contact": {

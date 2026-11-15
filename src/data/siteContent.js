@@ -349,13 +349,13 @@ export const initialSiteContent = {
           "iconType": "sun",
           "gradient": "from-green-25 to-stone-25",
           "title": "Fleurs de Bach",
-          "subtitle": "Un mélange personnalisé pour accompagner vos émotions",
-          "description": "Une séance d’écoute pour faire le point sur vos émotions du moment et composer un mélange de fleurs de Bach adapté à votre situation.",
+          "subtitle": "Des fleurs choisies pour accompagner vos émotions",
+          "description": "Une séance d’écoute pour faire le point sur vos émotions du moment et choisir les fleurs de Bach adaptées à votre situation.",
           "benefits": [
             "Un temps d’écoute consacré à vos émotions",
             "Un choix parmi les 38 fleurs du Dr Bach",
-            "Un mélange personnalisé",
-            "Des conseils d’utilisation adaptés"
+            "Une approche douce et naturelle",
+            "Une séance adaptée à votre situation"
           ],
           "prices": [
             {
@@ -755,7 +755,7 @@ export const initialSiteContent = {
         "type": "service_hero",
         "content": {
           "title": "Fleurs de Bach à Vacqueyras",
-          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, Alaïs Tavernier, conseillère en fleurs de Bach, vous accompagne dans le choix d’un mélange personnalisé, adapté à vos émotions du moment.",
+          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, Alaïs Tavernier, conseillère en fleurs de Bach, vous accompagne dans le choix des fleurs adaptées à vos émotions du moment.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
           "imageAlt": "Alaïs Tavernier échange avec une personne au cabinet"
         }
@@ -781,7 +781,7 @@ export const initialSiteContent = {
           "steps": [
             {
               "title": "Séance de conseil en fleurs de Bach",
-              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier les fleurs qui vous correspondent. Elles sont ensuite réunies dans un mélange personnalisé, accompagné de conseils d’utilisation.",
+              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier, parmi les 38 fleurs du Dr Bach, celles qui vous correspondent.",
               "price": "65€",
               "duration": "1h30"
             }
@@ -831,16 +831,12 @@ export const initialSiteContent = {
               }
             },
             {
-              "question": "Combien de fleurs contient un mélange ?",
-              "answer": "Un mélange réunit généralement jusqu’à six ou sept fleurs, choisies selon les émotions identifiées pendant l’échange."
-            },
-            {
               "question": "Les fleurs de Bach remplacent-elles un traitement médical ?",
               "answer": "Non. Les fleurs de Bach sont une approche complémentaire de bien-être. Elles ne posent pas de diagnostic, ne constituent pas un traitement et ne remplacent jamais une consultation médicale."
             },
             {
               "question": "À qui s’adressent les fleurs de Bach ?",
-              "answer": "Elles s’adressent aux enfants, aux adolescents comme aux adultes. Les élixirs sont généralement conservés dans une petite quantité d’alcool : signalez lors de l’échange une grossesse, un allaitement, l’âge de l’enfant ou toute raison d’éviter l’alcool."
+              "answer": "Elles s’adressent aux enfants, aux adolescents comme aux adultes. Les élixirs de fleurs de Bach sont généralement conservés dans une petite quantité d’alcool : signalez lors de l’échange une grossesse, un allaitement, l’âge de l’enfant ou toute raison d’éviter l’alcool."
             }
           ]
         }
