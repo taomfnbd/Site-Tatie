@@ -4,7 +4,7 @@ Site React 18 + Vite + Tailwind d’Alaïs Tavernier, naturopathe à Vacqueyras.
 
 ## Vérifier avant publication
 
-Exécuter `npm run check`, `npm run test:e2e` et `npm audit`. Ne pas pousser directement sur main : branche → PR → contrôles et preview Netlify → merge. Le merge déclenche la production. Préserver les modifications locales et ne pas inclure HANDOFF.md ou un fichier d’identifiants dans un commit.
+Exécuter `npm run check`, `npm run test:e2e` et `npm audit`. Si Playwright ne trouve pas Chromium, lancer `npx playwright install chromium`. Ne pas pousser directement sur main : branche → PR → contrôles et preview Netlify → merge. Le merge déclenche la production. Préserver les modifications locales et ne pas inclure HANDOFF.md ou un fichier d’identifiants dans un commit.
 
 Production : https://alais-tavernier-naturopathe.fr
 Site Netlify : `e9872838-c910-4bf1-9797-eb046ce90f69` (`lucent-cucurucho-5d32b0`). Vérifier cet ID, car d’anciens liens CLI pointaient vers un autre site. L’état réel du deploy Netlify fait foi en cas de statut GitHub bloqué.
@@ -12,6 +12,8 @@ Site Netlify : `e9872838-c910-4bf1-9797-eb046ce90f69` (`lucent-cucurucho-5d32b0`
 ## Routage et rendu
 
 BrowserRouter et pré-rendu HTML intégral au build. Onze routes publiques, dont `/about`, `/fleurs-de-bach` et `/confidentialite`, plus une 404. `scripts/prerender.mjs` génère les pages, le sitemap, `llms.txt` (résumé pour les assistants IA, via `src/utils/llms.js`) et `version.json` à partir des routes connues et des données. Les anciennes URL en hash sont migrées par main.jsx, en préservant le paramètre admin.
+
+Ajouter une page publique, c’est mettre à jour ensemble `src/App.jsx`, `src/utils/business.js` (publicRoutes, routePageKeys, fil d’Ariane), `netlify/lib/content.mjs` (pageKeys), `netlify/lib/analytics.mjs`, `src/components/Audience.jsx` et `tests/seo.test.mjs`. Pour une prestation, ajouter aussi la carte dans `pages.services` et le lien de secours de `HomeServicesSection.jsx`.
 
 Garder le contenu public visible dès le HTML initial ; ne pas réintroduire une liste de sections vide au premier rendu, une cascade de Suspense au-dessus de la ligne de flottaison ou des animations qui masquent le contenu avant JavaScript. MotionConfig respecte la réduction des mouvements. Les FAQ utilisent details/summary et restent utilisables sans JavaScript.
 
@@ -25,11 +27,13 @@ Préserver ConfirmModal, ToastContainer, l’édition inline et les garde-fous d
 
 ## Contenu et médias
 
-`src/data/siteContent.js` est la source publiée. Header/footer partagent les liens. Le catalogue de prestations alimente les cartes de l’accueil, les tarifs synchronisés et les offres JSON-LD. Les FAQ du graphe proviennent du contenu visible. Utiliser `syncServicePrices` pour toute évolution des tarifs.
+`src/data/siteContent.js` est la source publiée. Header/footer partagent les liens. Le catalogue de prestations alimente les cartes de l’accueil, les tarifs synchronisés et les offres JSON-LD. Les FAQ du graphe proviennent du contenu visible. Utiliser `syncServicePrices` pour toute évolution des tarifs. La meta description des pages de prestation est générée à partir des tarifs de leur carte (`getPageSEO`) : ne pas la coder en dur. Les prestations possibles en visio sont listées dans `remoteServices` (`src/utils/seo.js`) ; ce tableau élargit `areaServed` à la France, ajoute le canal visio au JSON-LD et alimente `llms.txt`. Ne pas y ajouter une prestation tant qu’Alaïs ne l’a pas confirmée en visio.
 
 Les photos historiques sont disponibles en WebP local, aux tailles 480/800/1200. Le portrait dispose aussi de variantes AVIF. Préserver `imageDimensions` dans le helper média : dimensions réelles des photos connues, aucune dimension inventée pour un nouvel upload. Le helper media mappe aussi les anciennes URL connues vers ces assets. Le portrait principal est eager et prioritaire ; les images sous le premier écran restent lazy. Le CMS conserve les textes alternatifs. Les libellules décoratives sont locales et ont un alt vide.
 
 Conserver l’identité sauge/beige. Les fonds d’action utilisent `#5e7056` ou plus sombre avec texte blanc ; ne pas utiliser blanc sur `#95a58d` (contraste insuffisant). Les éléments de navigation et le zoom doivent rester accessibles.
+
+Fleurs de Bach (`/fleurs-de-bach`) : première séance de 1 h 30 à 65 €, suivi de 1 h à 55 €, au cabinet ou en visio. Alaïs exerce en tant que naturopathe et se forme auprès de l’école Les Fleurs de Soleil ; elle n’a pas encore de certificat de conseillère, donc ne pas en mentionner avant qu’elle l’ait obtenu. Elle ne vend pas de flacons : le client les commande lui-même. Ne pas inventer de protocole (mélange, nombre de fleurs, flacon fourni) qu’elle n’a pas décrit. La visio passe par Resalib ; son activation reste de son ressort.
 
 Contact utilise téléphone/Resalib ; pas de formulaire public. Garder la page de confidentialité cohérente avec les usages réels.
 
