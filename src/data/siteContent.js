@@ -438,7 +438,7 @@ export const initialSiteContent = {
           "paragraphs": [
             "Avant la rencontre, vous pouvez noter vos questions, les habitudes que vous souhaitez faire évoluer et ce qui vous semble difficile à mettre en place au quotidien. Il n’est pas nécessaire de transmettre des informations médicales par email pour réserver.",
             "Le bilan de vitalité est un entretien sur votre quotidien ; ce n’est ni un examen médical ni un diagnostic. Le suivi sert à revenir sur les ajustements discutés ensemble et à les adapter à vos possibilités.",
-            "Pour connaître la praticienne, consultez <a href=\"/about\">mon parcours et ma formation à Æsculape</a>. Si vous cherchez plutôt un temps de détente manuelle, découvrez la <a href=\"/reflexologie\">réflexologie au cabinet</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>."
+            "Pour connaître la praticienne, consultez <a href=\"/about\">mon parcours et ma formation à Æsculape</a>. Si vous cherchez plutôt un temps de détente manuelle, découvrez la <a href=\"/reflexologie\">réflexologie au cabinet</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>. Pour un accompagnement centré sur vos émotions, découvrez aussi les <a href=\"/fleurs-de-bach\">séances de conseil en fleurs de Bach</a>."
           ]
         }
       },
@@ -563,7 +563,7 @@ export const initialSiteContent = {
           "paragraphs": [
             "La réflexologie proposée au cabinet repose sur des pressions adaptées, principalement sur les pieds et les mains. La réflexologie plantaire concerne le travail sur les pieds ; elle se distingue du massage assis, centré notamment sur le dos, la nuque et les épaules.",
             "Vous pouvez exprimer vos préférences et signaler toute gêne avant et pendant la séance. Si vous hésitez sur le format adapté à votre situation, contactez le cabinet avant de réserver.",
-            "Comparez avec le <a href=\"/massage-assis\">déroulement du massage assis</a>, ou découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a> si votre attente porte sur vos habitudes de vie. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>."
+            "Comparez avec le <a href=\"/massage-assis\">déroulement du massage assis</a>, ou découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a> si votre attente porte sur vos habitudes de vie. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>. Si votre attente porte plutôt sur vos émotions, découvrez les <a href=\"/fleurs-de-bach\">fleurs de Bach au cabinet</a>."
           ]
         }
       },
@@ -687,7 +687,7 @@ export const initialSiteContent = {
           "title": "Préparer votre séance de massage assis",
           "paragraphs": [
             "Le massage se pratique habillé et sans huile. Choisissez une tenue dans laquelle vous êtes à l’aise et indiquez vos attentes au début de la rencontre. Les pressions sont adaptées à votre confort ; signalez toute gêne pendant la pratique.",
-            "Ce format centré sur le dos, la nuque, les épaules, les bras et les mains est différent de la <a href=\"/reflexologie\">réflexologie pratiquée principalement sur les pieds et les mains</a>. Pour un échange consacré à vos habitudes de vie, consultez plutôt la page <a href=\"/naturopathie\">naturopathie et bilan de vitalité</a>.",
+            "Ce format centré sur le dos, la nuque, les épaules, les bras et les mains est différent de la <a href=\"/reflexologie\">réflexologie pratiquée principalement sur les pieds et les mains</a>. Pour un échange consacré à vos habitudes de vie, consultez plutôt la page <a href=\"/naturopathie\">naturopathie et bilan de vitalité</a>. Pour un accompagnement centré sur vos émotions, découvrez les <a href=\"/fleurs-de-bach\">séances de fleurs de Bach</a>.",
             "Pour préparer votre venue, retrouvez <a href=\"/contact\">l’adresse, les horaires et l’itinéraire du cabinet à Vacqueyras</a>, ainsi que <a href=\"/about\">mon parcours de praticienne</a>."
           ]
         }
