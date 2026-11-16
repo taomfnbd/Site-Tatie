@@ -14,6 +14,7 @@ Les recherches publiques du 2 novembre 2026 montrent des annuaires et des pratic
 | `/naturopathie` | consultation naturopathie, bilan de vitalité Vacqueyras | Expliquer la première séance, le suivi, les limites et la préparation |
 | `/reflexologie` | réflexologie Vacqueyras, réflexologie plantaire | Décrire la pratique, les tarifs et la différence avec le massage assis |
 | `/massage-assis` | massage assis Vacqueyras | Expliquer la séance habillée et sans huile, sa durée et sa préparation |
+| `/fleurs-de-bach` | fleurs de Bach Vaucluse, fleurs de Bach Vacqueyras, fleurs de Bach en visio | Présenter les 38 fleurs, la séance au cabinet ou en visio, les tarifs et le cadre ; Alaïs est en formation (Les Fleurs de Soleil), ne pas la dire certifiée |
 | `/prestations` | tarifs naturopathe Vacqueyras | Comparer les formats, prix et durées avec une seule source tarifaire |
 | `/about` | Alaïs Tavernier, parcours naturopathe | Rendre la praticienne et sa formation vérifiables |
 | `/contact` | adresse, horaires, accès, rendez-vous | Préparer une venue au cabinet depuis les communes voisines |

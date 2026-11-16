@@ -208,3 +208,27 @@ test("editable coordinates drive maps, structured address, telephone and profile
   );
   assert.equal(getBusinessProfile(content).address.postalCode, undefined);
 });
+
+import { buildLlmsTxt } from "../src/utils/llms.js";
+test("video-call services widen their area and the AI summary follows editable prices", () => {
+  const graph = getStructuredData("/fleurs-de-bach")["@graph"];
+  const service = graph.find((n) => n["@type"] === "Service");
+  assert.ok(service.areaServed.some((a) => a.name === "France"));
+  assert.equal(service.availableChannel["@type"], "ServiceChannel");
+  const local = getStructuredData("/reflexologie")["@graph"].find(
+    (n) => n["@type"] === "Service",
+  );
+  assert.ok(!local.areaServed.some((a) => a.name === "France"));
+  assert.equal(local.availableChannel, undefined);
+  const data = structuredClone(initialSiteContent);
+  data.pages.services.find(
+    (s) => s.content.linkUrl === "/fleurs-de-bach",
+  ).content.prices[0].price = "70€";
+  const summary = buildLlmsTxt(data);
+  assert.match(
+    summary,
+    /Fleurs de Bach\]\(https:\/\/alais-tavernier-naturopathe\.fr\/fleurs-de-bach\)/,
+  );
+  assert.match(summary, /Première séance 1h30 : 70 €/);
+  assert.match(summary, /au cabinet ou en visio/);
+});

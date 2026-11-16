@@ -11,7 +11,7 @@ Site Netlify : `e9872838-c910-4bf1-9797-eb046ce90f69` (`lucent-cucurucho-5d32b0`
 
 ## Routage et rendu
 
-BrowserRouter et pré-rendu HTML intégral au build. Dix routes publiques, dont `/about` et `/confidentialite`, plus une 404. `scripts/prerender.mjs` génère les pages, le sitemap et `version.json` à partir des routes connues et des données. Les anciennes URL en hash sont migrées par main.jsx, en préservant le paramètre admin.
+BrowserRouter et pré-rendu HTML intégral au build. Onze routes publiques, dont `/about`, `/fleurs-de-bach` et `/confidentialite`, plus une 404. `scripts/prerender.mjs` génère les pages, le sitemap, `llms.txt` (résumé pour les assistants IA, via `src/utils/llms.js`) et `version.json` à partir des routes connues et des données. Les anciennes URL en hash sont migrées par main.jsx, en préservant le paramètre admin.
 
 Garder le contenu public visible dès le HTML initial ; ne pas réintroduire une liste de sections vide au premier rendu, une cascade de Suspense au-dessus de la ligne de flottaison ou des animations qui masquent le contenu avant JavaScript. MotionConfig respecte la réduction des mouvements. Les FAQ utilisent details/summary et restent utilisables sans JavaScript.
 

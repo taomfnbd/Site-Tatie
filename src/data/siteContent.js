@@ -209,7 +209,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Une formation à Æsculape, à Aix-en-Provence",
           "paragraphs": [
-            "J’ai suivi trois années de formation en naturopathie à l’école Æsculape d’Aix-en-Provence, après avoir commencé ce parcours en 2022. Mon profil professionnel présente également mon parcours et mes modalités de consultation.",
+            "J’ai suivi trois années de formation en naturopathie à l’école Æsculape d’Aix-en-Provence, après avoir commencé ce parcours en 2022. Je me forme actuellement aux <a href=\"/fleurs-de-bach\">fleurs de Bach</a> auprès de l’école Les Fleurs de Soleil. Mon profil professionnel présente également mon parcours et mes modalités de consultation.",
             "Vous pouvez consulter le <a href=\"https://aesculape.eu/devenir-naturopathe/\" target=\"_blank\" rel=\"noopener noreferrer\">cursus de formation de l’école Æsculape</a> et <a href=\"https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras\" target=\"_blank\" rel=\"noopener noreferrer\">mon profil et les avis publiés sur Resalib</a>. La formation en naturopathie est une formation privée ; elle ne confère pas le statut de professionnel de santé."
           ]
         }
@@ -762,7 +762,7 @@ export const initialSiteContent = {
           "title": "Fleurs de Bach dans le Vaucluse et en visio",
           "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, dans le Vaucluse, ou en visio, Alaïs Tavernier, naturopathe en formation aux fleurs de Bach auprès de l’école Les Fleurs de Soleil, vous accompagne dans le choix des fleurs adaptées à vos émotions du moment.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
-          "imageAlt": "Alaïs Tavernier échange avec une personne au cabinet"
+          "imageAlt": "Alaïs Tavernier en séance d’échange avec une personne au cabinet de Vacqueyras"
         }
       },
       {
@@ -772,9 +772,26 @@ export const initialSiteContent = {
           "title": "Que sont les fleurs de Bach ?",
           "paragraphs": [
             "Le Dr Edward Bach, médecin anglais, a répertorié 38 fleurs et arbres. Chaque élixir est associé à un état émotionnel précis : la peur, le doute, l’impatience, la tristesse, le découragement ou encore le besoin de tout contrôler.",
-            "Il a réparti ces états en sept grandes familles : la peur, l’incertitude, le manque d’intérêt pour le présent, la solitude, l’hypersensibilité aux influences extérieures, le découragement et le souci excessif d’autrui.",
+            "Il a réparti ces états en sept grandes familles, détaillées ci-dessous avec les fleurs qui leur correspondent.",
             "Le principe est simple : plutôt que de s’intéresser à un symptôme, on part de ce que vous ressentez au moment présent pour choisir les fleurs qui y correspondent.",
             "Les effets ressentis varient d’une personne à l’autre ; aucun résultat thérapeutique n’est garanti."
+          ]
+        }
+      },
+      {
+        "id": "bach-38-flowers",
+        "type": "service_content",
+        "content": {
+          "title": "Les 38 fleurs de Bach et leurs 7 familles d’émotions",
+          "paragraphs": [
+            "<strong>La peur</strong> (5 fleurs) : Rock Rose, Mimulus, Cherry Plum, Aspen et Red Chestnut.",
+            "<strong>L’incertitude</strong> (6 fleurs) : Cerato, Scleranthus, Gentian, Gorse, Hornbeam et Wild Oat.",
+            "<strong>Le manque d’intérêt pour le présent</strong> (7 fleurs) : Clematis, Honeysuckle, Wild Rose, Olive, White Chestnut, Mustard et Chestnut Bud.",
+            "<strong>La solitude</strong> (3 fleurs) : Water Violet, Impatiens et Heather.",
+            "<strong>L’hypersensibilité aux influences et aux idées des autres</strong> (4 fleurs) : Agrimony, Centaury, Walnut et Holly.",
+            "<strong>Le découragement et le désespoir</strong> (8 fleurs) : Larch, Pine, Elm, Sweet Chestnut, Star of Bethlehem, Willow, Oak et Crab Apple.",
+            "<strong>Le souci excessif du bien-être d’autrui</strong> (5 fleurs) : Chicory, Vervain, Vine, Beech et Rock Water.",
+            "Pendant la séance, ces familles servent de repère : on part de ce que vous vivez pour retenir les quelques fleurs qui correspondent le mieux à votre situation du moment."
           ]
         }
       },
@@ -805,7 +822,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Une séance de fleurs de Bach dans le Vaucluse",
           "paragraphs": [
-            "Le cabinet se trouve à Vacqueyras, au cœur du Vaucluse, à proximité de Carpentras, d’Orange, de Beaumes-de-Venise, de Gigondas et de Sarrians. Vous y êtes reçu sur rendez-vous pour une séance de conseil en fleurs de Bach.",
+            "Le cabinet se trouve à Vacqueyras, au cœur du Vaucluse, à proximité de Carpentras, d’Orange, de Vaison-la-Romaine, de Beaumes-de-Venise, de Gigondas, de Violès et de Sarrians. Vous y êtes reçu sur rendez-vous pour une séance de conseil en fleurs de Bach.",
             "Vous habitez plus loin dans le Vaucluse ou ailleurs en France, ou vous préférez rester chez vous ? La même séance se fait en visio, avec le même temps d’échange. Retrouvez <a href=\"/contact\">l’adresse et l’itinéraire du cabinet</a>."
           ]
         }
@@ -844,6 +861,19 @@ export const initialSiteContent = {
           "intro": "Des réponses pour savoir si les fleurs de Bach correspondent à votre besoin avant de prendre rendez-vous.",
           "items": [
             {
+              "question": "Qu’est-ce que les fleurs de Bach ?",
+              "answer": "Les fleurs de Bach sont 38 élixirs floraux mis au point par le Dr Edward Bach, médecin anglais, dans les années 1930. Chacun est associé à un état émotionnel (peur, doute, impatience, tristesse…). Elles relèvent du bien-être et ne remplacent pas un traitement médical."
+            },
+            {
+              "question": "Quel est le prix d’une séance de fleurs de Bach dans le Vaucluse ?",
+              "answer": "Les tarifs sont présentés sur la page Prestations.",
+              "priceRef": {
+                "path": "/fleurs-de-bach",
+                "index": 0,
+                "kind": "all"
+              }
+            },
+            {
               "question": "Combien de temps dure une séance de fleurs de Bach ?",
               "answer": "La première séance dure environ 1h30, échange compris. Les séances de suivi durent environ 1h. La durée est la même au cabinet et en visio."
             },
@@ -858,6 +888,10 @@ export const initialSiteContent = {
             {
               "question": "Où faire une séance de fleurs de Bach dans le Vaucluse ?",
               "answer": "Alaïs Tavernier, naturopathe, reçoit sur rendez-vous à Vacqueyras, près de Carpentras et d’Orange. Les séances sont aussi possibles en visio, partout en France."
+            },
+            {
+              "question": "Qu’est-ce que le Remède de secours (Rescue) ?",
+              "answer": "Le Remède de secours, souvent appelé Rescue, est un mélange de cinq fleurs composé par le Dr Bach : Rock Rose, Impatiens, Clematis, Star of Bethlehem et Cherry Plum. Il est associé aux moments de stress soudain. La séance permet, elle, de choisir des fleurs adaptées à votre situation personnelle."
             },
             {
               "question": "Les fleurs de Bach remplacent-elles un traitement médical ?",

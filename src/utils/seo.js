@@ -13,6 +13,9 @@ export const SITE_NAME = "Alaïs Tavernier - Naturopathe";
 export const DEFAULT_IMAGE = `${SITE_URL}/images/photo-1-1200.webp`;
 export const IMAGE_ALT = "Alaïs Tavernier, naturopathe à Vacqueyras";
 
+// Services also offered by video call (areaServed widens to France).
+export const remoteServices = ["/fleurs-de-bach"];
+
 export const seoConfig = {
   "/": {
     title: "Naturopathe à Vacqueyras | Alaïs Tavernier",
@@ -204,7 +207,23 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
       name: data.title,
       description: plain(data.description),
       provider: { "@id": `${SITE_URL}/#localbusiness` },
-      areaServed: { "@type": "City", name: "Vacqueyras" },
+      areaServed: [
+        { "@type": "City", name: "Vacqueyras" },
+        { "@type": "AdministrativeArea", name: "Vaucluse" },
+        ...(remoteServices.includes(data.linkUrl)
+          ? [{ "@type": "Country", name: "France" }]
+          : []),
+      ],
+      ...(remoteServices.includes(data.linkUrl)
+        ? {
+            availableChannel: {
+              "@type": "ServiceChannel",
+              name: "Séance en visio",
+              serviceUrl: bookingUrl,
+              availableLanguage: "fr",
+            },
+          }
+        : {}),
       offers: (data.prices || []).map((price) => ({
         "@type": "Offer",
         name: price.type,
@@ -231,6 +250,7 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
     logo: `${SITE_URL}/images/libellule-3.png`,
     priceRange: `${Math.min(...prices)}€–${Math.max(...prices)}€`,
     address: profile.address,
+    areaServed: { "@type": "AdministrativeArea", name: "Vaucluse" },
     founder: { "@id": `${SITE_URL}/#person` },
     hasMap: profile.mapsUrl,
     sameAs: [googleMapsUrl, profile.instagramUrl, bookingUrl],
@@ -282,6 +302,7 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
       url: `${SITE_URL}/about`,
       image: DEFAULT_IMAGE,
       worksFor: { "@id": `${SITE_URL}/#localbusiness` },
+      knowsAbout: cards.map((card) => card.content.title),
       sameAs: business.sameAs,
       alumniOf: {
         "@type": "EducationalOrganization",
