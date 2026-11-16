@@ -30,6 +30,10 @@ export const initialSiteContent = {
         "href": "/massage-assis"
       },
       {
+        "name": "Fleurs de Bach",
+        "href": "/fleurs-de-bach"
+      },
+      {
         "name": "Contact",
         "href": "/contact"
       }
@@ -137,7 +141,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Préparer votre première visite",
           "paragraphs": [
-            "Vous recherchez un échange sur vos habitudes de vie ou un temps de détente corporelle ? La <a href=\"/naturopathie\">première consultation de naturopathie</a> repose sur un bilan de vitalité. La <a href=\"/reflexologie\">réflexologie</a> et le <a href=\"/massage-assis\">massage assis habillé</a> proposent deux formats de pratique manuelle de bien-être.",
+            "Vous recherchez un échange sur vos habitudes de vie ou un temps de détente corporelle ? La <a href=\"/naturopathie\">première consultation de naturopathie</a> repose sur un bilan de vitalité. La <a href=\"/reflexologie\">réflexologie</a> et le <a href=\"/massage-assis\">massage assis habillé</a> proposent deux formats de pratique manuelle de bien-être. Les <a href=\"/fleurs-de-bach\">fleurs de Bach</a> accompagnent, elles, vos émotions du moment.",
             "Pour faire connaissance, découvrez <a href=\"/about\">mon parcours de formation en naturopathie</a>. Retrouvez ensuite <a href=\"/contact\">les horaires, les coordonnées et l’itinéraire du cabinet à Vacqueyras</a> pour organiser votre rendez-vous."
           ]
         }
@@ -155,7 +159,7 @@ export const initialSiteContent = {
             },
             {
               "question": "Quelles prestations sont proposées à Vacqueyras ?",
-              "answer": "Alaïs Tavernier propose des consultations de naturopathie, des séances de réflexologie et du massage assis habillé. Les durées et les tarifs sont présentés sur la page Prestations."
+              "answer": "Alaïs Tavernier propose des consultations de naturopathie, des séances de réflexologie, du massage assis habillé et des séances de conseil en fleurs de Bach. Les durées et les tarifs sont présentés sur la page Prestations."
             },
             {
               "question": "Quels sont les tarifs des séances à Vacqueyras ?",
@@ -205,7 +209,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Une formation à Æsculape, à Aix-en-Provence",
           "paragraphs": [
-            "J’ai suivi trois années de formation en naturopathie à l’école Æsculape d’Aix-en-Provence, après avoir commencé ce parcours en 2022. Mon profil professionnel présente également mon parcours et mes modalités de consultation.",
+            "J’ai suivi trois années de formation en naturopathie à l’école Æsculape d’Aix-en-Provence, après avoir commencé ce parcours en 2022. Je me forme actuellement aux <a href=\"/fleurs-de-bach\">fleurs de Bach</a> auprès de l’école Les Fleurs de Soleil. Mon profil professionnel présente également mon parcours et mes modalités de consultation.",
             "Vous pouvez consulter le <a href=\"https://aesculape.eu/devenir-naturopathe/\" target=\"_blank\" rel=\"noopener noreferrer\">cursus de formation de l’école Æsculape</a> et <a href=\"https://www.resalib.fr/praticien/115675-alais-tavernier-naturopathe-vacqueyras\" target=\"_blank\" rel=\"noopener noreferrer\">mon profil et les avis publiés sur Resalib</a>. La formation en naturopathie est une formation privée ; elle ne confère pas le statut de professionnel de santé."
           ]
         }
@@ -337,6 +341,37 @@ export const initialSiteContent = {
           "linkUrl": "/massage-assis",
           "linkText": "Déroulement du massage assis"
         }
+      },
+      {
+        "id": "service-bach-flowers-1",
+        "type": "service_card",
+        "content": {
+          "iconType": "sun",
+          "gradient": "from-green-25 to-stone-25",
+          "title": "Fleurs de Bach",
+          "subtitle": "Des fleurs choisies pour accompagner vos émotions",
+          "description": "Une séance d’écoute, au cabinet ou en visio, pour faire le point sur vos émotions du moment et choisir les fleurs de Bach adaptées à votre situation.",
+          "benefits": [
+            "Un temps d’écoute consacré à vos émotions",
+            "Un choix parmi les 38 fleurs du Dr Bach",
+            "Une approche douce et naturelle",
+            "Une séance au cabinet ou en visio, depuis chez vous"
+          ],
+          "prices": [
+            {
+              "type": "Première séance",
+              "duration": "1h30",
+              "price": "65€"
+            },
+            {
+              "type": "Séance de suivi",
+              "duration": "1h",
+              "price": "55€"
+            }
+          ],
+          "linkUrl": "/fleurs-de-bach",
+          "linkText": "Déroulement d’une séance fleurs de Bach"
+        }
       }
     ],
     "naturopathy": [
@@ -408,7 +443,7 @@ export const initialSiteContent = {
           "paragraphs": [
             "Avant la rencontre, vous pouvez noter vos questions, les habitudes que vous souhaitez faire évoluer et ce qui vous semble difficile à mettre en place au quotidien. Il n’est pas nécessaire de transmettre des informations médicales par email pour réserver.",
             "Le bilan de vitalité est un entretien sur votre quotidien ; ce n’est ni un examen médical ni un diagnostic. Le suivi sert à revenir sur les ajustements discutés ensemble et à les adapter à vos possibilités.",
-            "Pour connaître la praticienne, consultez <a href=\"/about\">mon parcours et ma formation à Æsculape</a>. Si vous cherchez plutôt un temps de détente manuelle, découvrez la <a href=\"/reflexologie\">réflexologie au cabinet</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>."
+            "Pour connaître la praticienne, consultez <a href=\"/about\">mon parcours et ma formation à Æsculape</a>. Si vous cherchez plutôt un temps de détente manuelle, découvrez la <a href=\"/reflexologie\">réflexologie au cabinet</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>. Pour un accompagnement centré sur vos émotions, découvrez aussi les <a href=\"/fleurs-de-bach\">séances de conseil en fleurs de Bach</a>."
           ]
         }
       },
@@ -533,7 +568,7 @@ export const initialSiteContent = {
           "paragraphs": [
             "La réflexologie proposée au cabinet repose sur des pressions adaptées, principalement sur les pieds et les mains. La réflexologie plantaire concerne le travail sur les pieds ; elle se distingue du massage assis, centré notamment sur le dos, la nuque et les épaules.",
             "Vous pouvez exprimer vos préférences et signaler toute gêne avant et pendant la séance. Si vous hésitez sur le format adapté à votre situation, contactez le cabinet avant de réserver.",
-            "Comparez avec le <a href=\"/massage-assis\">déroulement du massage assis</a>, ou découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a> si votre attente porte sur vos habitudes de vie. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>."
+            "Comparez avec le <a href=\"/massage-assis\">déroulement du massage assis</a>, ou découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a> si votre attente porte sur vos habitudes de vie. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>. Si votre attente porte plutôt sur vos émotions, découvrez les <a href=\"/fleurs-de-bach\">fleurs de Bach au cabinet</a>."
           ]
         }
       },
@@ -657,7 +692,7 @@ export const initialSiteContent = {
           "title": "Préparer votre séance de massage assis",
           "paragraphs": [
             "Le massage se pratique habillé et sans huile. Choisissez une tenue dans laquelle vous êtes à l’aise et indiquez vos attentes au début de la rencontre. Les pressions sont adaptées à votre confort ; signalez toute gêne pendant la pratique.",
-            "Ce format centré sur le dos, la nuque, les épaules, les bras et les mains est différent de la <a href=\"/reflexologie\">réflexologie pratiquée principalement sur les pieds et les mains</a>. Pour un échange consacré à vos habitudes de vie, consultez plutôt la page <a href=\"/naturopathie\">naturopathie et bilan de vitalité</a>.",
+            "Ce format centré sur le dos, la nuque, les épaules, les bras et les mains est différent de la <a href=\"/reflexologie\">réflexologie pratiquée principalement sur les pieds et les mains</a>. Pour un échange consacré à vos habitudes de vie, consultez plutôt la page <a href=\"/naturopathie\">naturopathie et bilan de vitalité</a>. Pour un accompagnement centré sur vos émotions, découvrez les <a href=\"/fleurs-de-bach\">séances de fleurs de Bach</a>.",
             "Pour préparer votre venue, retrouvez <a href=\"/contact\">l’adresse, les horaires et l’itinéraire du cabinet à Vacqueyras</a>, ainsi que <a href=\"/about\">mon parcours de praticienne</a>."
           ]
         }
@@ -716,6 +751,179 @@ export const initialSiteContent = {
           "serviceName": "Massage assis",
           "duration": "30 minutes",
           "price": "30€"
+        }
+      }
+    ],
+    "fleurs-de-bach": [
+      {
+        "id": "bach-hero",
+        "type": "service_hero",
+        "content": {
+          "title": "Fleurs de Bach dans le Vaucluse et en visio",
+          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, dans le Vaucluse, ou en visio, Alaïs Tavernier, naturopathe en formation aux fleurs de Bach auprès de l’école Les Fleurs de Soleil, vous accompagne dans le choix des fleurs adaptées à vos émotions du moment.",
+          "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
+          "imageAlt": "Alaïs Tavernier en séance d’échange avec une personne au cabinet de Vacqueyras"
+        }
+      },
+      {
+        "id": "bach-about",
+        "type": "service_content",
+        "content": {
+          "title": "Que sont les fleurs de Bach ?",
+          "paragraphs": [
+            "Le Dr Edward Bach, médecin anglais, a répertorié 38 fleurs et arbres. Chaque élixir est associé à un état émotionnel précis : la peur, le doute, l’impatience, la tristesse, le découragement ou encore le besoin de tout contrôler.",
+            "Il a réparti ces états en sept grandes familles, détaillées ci-dessous avec les fleurs qui leur correspondent.",
+            "Le principe est simple : plutôt que de s’intéresser à un symptôme, on part de ce que vous ressentez au moment présent pour choisir les fleurs qui y correspondent.",
+            "Les effets ressentis varient d’une personne à l’autre ; aucun résultat thérapeutique n’est garanti."
+          ]
+        }
+      },
+      {
+        "id": "bach-38-flowers",
+        "type": "service_content",
+        "content": {
+          "title": "Les 38 fleurs de Bach et leurs 7 familles d’émotions",
+          "paragraphs": [
+            "<strong>La peur</strong> (5 fleurs) : Rock Rose, Mimulus, Cherry Plum, Aspen et Red Chestnut.",
+            "<strong>L’incertitude</strong> (6 fleurs) : Cerato, Scleranthus, Gentian, Gorse, Hornbeam et Wild Oat.",
+            "<strong>Le manque d’intérêt pour le présent</strong> (7 fleurs) : Clematis, Honeysuckle, Wild Rose, Olive, White Chestnut, Mustard et Chestnut Bud.",
+            "<strong>La solitude</strong> (3 fleurs) : Water Violet, Impatiens et Heather.",
+            "<strong>L’hypersensibilité aux influences et aux idées des autres</strong> (4 fleurs) : Agrimony, Centaury, Walnut et Holly.",
+            "<strong>Le découragement et le désespoir</strong> (8 fleurs) : Larch, Pine, Elm, Sweet Chestnut, Star of Bethlehem, Willow, Oak et Crab Apple.",
+            "<strong>Le souci excessif du bien-être d’autrui</strong> (5 fleurs) : Chicory, Vervain, Vine, Beech et Rock Water.",
+            "Pendant la séance, ces familles servent de repère : on part de ce que vous vivez pour retenir les quelques fleurs qui correspondent le mieux à votre situation du moment."
+          ]
+        }
+      },
+      {
+        "id": "bach-process",
+        "type": "service_process",
+        "content": {
+          "title": "Comment se déroule la séance ?",
+          "steps": [
+            {
+              "title": "Première séance",
+              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier, parmi les 38 fleurs du Dr Bach, celles qui vous correspondent. La séance se déroule au cabinet de Vacqueyras ou en visio, selon votre préférence. À la fin de la séance, les fleurs retenues vous sont indiquées : vous les commandez ensuite de votre côté.",
+              "price": "65€",
+              "duration": "1h30"
+            },
+            {
+              "title": "Séance de suivi",
+              "description": "La séance de suivi permet de faire le point sur l’évolution de vos émotions depuis la première séance et d’ajuster le choix des fleurs si besoin. Elle se déroule elle aussi au cabinet ou en visio.",
+              "price": "55€",
+              "duration": "1h"
+            }
+          ]
+        }
+      },
+      {
+        "id": "bach-vaucluse",
+        "type": "service_content",
+        "content": {
+          "title": "Une séance de fleurs de Bach dans le Vaucluse",
+          "paragraphs": [
+            "Le cabinet se trouve à Vacqueyras, au cœur du Vaucluse, à proximité de Carpentras, d’Orange, de Vaison-la-Romaine, de Beaumes-de-Venise, de Gigondas, de Violès et de Sarrians. Vous y êtes reçu sur rendez-vous pour une séance de conseil en fleurs de Bach.",
+            "Vous habitez plus loin dans le Vaucluse ou ailleurs en France, ou vous préférez rester chez vous ? La même séance se fait en visio, avec le même temps d’échange. Retrouvez <a href=\"/contact\">l’adresse et l’itinéraire du cabinet</a>."
+          ]
+        }
+      },
+      {
+        "id": "bach-reasons",
+        "type": "service_benefits",
+        "content": {
+          "title": "Dans quel cadre envisager les fleurs de Bach ?",
+          "benefits": [
+            "Traverser une période de stress ou de changement",
+            "Être accompagné face à des peurs ou des appréhensions",
+            "Retrouver confiance quand le doute s’installe",
+            "Prendre du recul face à l’impatience ou à l’irritabilité",
+            "Traverser un moment de tristesse ou de découragement",
+            "Mieux comprendre et accueillir ses émotions"
+          ]
+        }
+      },
+      {
+        "id": "bach-other-services",
+        "type": "service_content",
+        "content": {
+          "title": "Fleurs de Bach, naturopathie ou réflexologie : quel format choisir ?",
+          "paragraphs": [
+            "La séance de fleurs de Bach est centrée sur vos émotions et peut se faire en visio. Si votre attente porte aussi sur vos habitudes de vie, découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a>. Pour un temps de détente corporelle, consultez la <a href=\"/reflexologie\">réflexologie</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>.",
+            "Si vous hésitez sur le format adapté à votre situation, <a href=\"/contact\">contactez le cabinet</a> avant de réserver. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>."
+          ]
+        }
+      },
+      {
+        "id": "bach-faq",
+        "type": "faq",
+        "content": {
+          "title": "Questions fréquentes sur les fleurs de Bach",
+          "intro": "Des réponses pour savoir si les fleurs de Bach correspondent à votre besoin avant de prendre rendez-vous.",
+          "items": [
+            {
+              "question": "Qu’est-ce que les fleurs de Bach ?",
+              "answer": "Les fleurs de Bach sont 38 élixirs floraux mis au point par le Dr Edward Bach, médecin anglais, dans les années 1930. Chacun est associé à un état émotionnel (peur, doute, impatience, tristesse…). Elles relèvent du bien-être et ne remplacent pas un traitement médical."
+            },
+            {
+              "question": "Quel est le prix d’une séance de fleurs de Bach dans le Vaucluse ?",
+              "answer": "Les tarifs sont présentés sur la page Prestations.",
+              "priceRef": {
+                "path": "/fleurs-de-bach",
+                "index": 0,
+                "kind": "all"
+              }
+            },
+            {
+              "question": "Combien de temps dure une séance de fleurs de Bach ?",
+              "answer": "La première séance dure environ 1h30, échange compris. Les séances de suivi durent environ 1h. La durée est la même au cabinet et en visio."
+            },
+            {
+              "question": "Peut-on faire une séance de fleurs de Bach en visio ?",
+              "answer": "Oui. La séance peut se dérouler en visio, depuis chez vous, avec le même temps d’échange qu’au cabinet. Précisez-le au moment de prendre rendez-vous."
+            },
+            {
+              "question": "Les fleurs sont-elles fournies pendant la séance ?",
+              "answer": "Non. Les fleurs choisies ensemble vous sont indiquées à la fin de la séance et vous les commandez de votre côté, que la séance ait lieu au cabinet ou en visio."
+            },
+            {
+              "question": "Où faire une séance de fleurs de Bach dans le Vaucluse ?",
+              "answer": "Alaïs Tavernier, naturopathe, reçoit sur rendez-vous à Vacqueyras, près de Carpentras et d’Orange. Les séances sont aussi possibles en visio, partout en France."
+            },
+            {
+              "question": "Qu’est-ce que le Remède de secours (Rescue) ?",
+              "answer": "Le Remède de secours, souvent appelé Rescue, est un mélange de cinq fleurs composé par le Dr Bach : Rock Rose, Impatiens, Clematis, Star of Bethlehem et Cherry Plum. Il est associé aux moments de stress soudain. La séance permet, elle, de choisir des fleurs adaptées à votre situation personnelle."
+            },
+            {
+              "question": "Les fleurs de Bach remplacent-elles un traitement médical ?",
+              "answer": "Non. Les fleurs de Bach sont une approche complémentaire de bien-être. Elles ne posent pas de diagnostic, ne constituent pas un traitement et ne remplacent jamais une consultation médicale."
+            },
+            {
+              "question": "À qui s’adressent les fleurs de Bach ?",
+              "answer": "Elles s’adressent aux enfants, aux adolescents comme aux adultes. Les élixirs de fleurs de Bach sont généralement conservés dans une petite quantité d’alcool : signalez lors de l’échange une grossesse, un allaitement, l’âge de l’enfant ou toute raison d’éviter l’alcool."
+            }
+          ]
+        }
+      },
+      {
+        "id": "bach-practice-framework",
+        "type": "service_content",
+        "content": {
+          "title": "Un accompagnement de bien-être dans un cadre clair",
+          "paragraphs": [
+            "Ces séances ne constituent pas un acte médical. En cas de symptôme, de grossesse, de maladie ou de doute sur votre situation, demandez conseil à un professionnel de santé avant de réserver. Aucun résultat thérapeutique n’est garanti.",
+            "Pour connaître le cadre des pratiques non conventionnelles, consultez les <a href=\"https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pratiques-de-soins-non-conventionnelles-soyez-attentif-aux-informations-fournies\" target=\"_blank\" rel=\"noopener noreferrer\">informations de la DGCCRF</a>. Pour le choix d’un format, comparez les <a href=\"/prestations\">prestations et tarifs</a> ou <a href=\"/contact\">contactez le cabinet</a>."
+          ]
+        }
+      },
+      {
+        "id": "bach-cta",
+        "type": "service_cta",
+        "content": {
+          "title": "Envie de faire le point sur vos émotions ?",
+          "showPriceBox": true,
+          "serviceName": "Séance fleurs de Bach",
+          "duration": "1h30",
+          "price": "65€"
         }
       }
     ],

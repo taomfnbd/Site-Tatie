@@ -13,11 +13,14 @@ export const SITE_NAME = "Alaïs Tavernier - Naturopathe";
 export const DEFAULT_IMAGE = `${SITE_URL}/images/photo-1-1200.webp`;
 export const IMAGE_ALT = "Alaïs Tavernier, naturopathe à Vacqueyras";
 
+// Services also offered by video call (areaServed widens to France).
+export const remoteServices = ["/fleurs-de-bach"];
+
 export const seoConfig = {
   "/": {
     title: "Naturopathe à Vacqueyras | Alaïs Tavernier",
     description:
-      "Naturopathe à Vacqueyras, Alaïs Tavernier propose naturopathie, réflexologie et massage assis. Consultez les tarifs et réservez votre séance au cabinet.",
+      "Naturopathe à Vacqueyras, Alaïs Tavernier propose naturopathie, réflexologie, massage assis et fleurs de Bach. Consultez les tarifs et réservez au cabinet.",
     canonicalUrl: `${SITE_URL}/`,
   },
   "/about": {
@@ -29,7 +32,7 @@ export const seoConfig = {
   "/prestations": {
     title: "Tarifs naturopathe à Vacqueyras | Alaïs Tavernier",
     description:
-      "Naturopathie, réflexologie et massage assis à Vacqueyras : découvrez le déroulement, la durée et les tarifs des séances avec Alaïs Tavernier.",
+      "Naturopathie, réflexologie, massage assis et fleurs de Bach à Vacqueyras : déroulement, durée et tarifs des séances avec Alaïs Tavernier.",
     canonicalUrl: `${SITE_URL}/prestations`,
   },
   "/naturopathie": {
@@ -49,6 +52,12 @@ export const seoConfig = {
     description:
       "Massage assis habillé à Vacqueyras : séance de 30 minutes pour relâcher dos, nuque, épaules, bras et mains. Tarif : 30 euros.",
     canonicalUrl: `${SITE_URL}/massage-assis`,
+  },
+  "/fleurs-de-bach": {
+    title: "Fleurs de Bach dans le Vaucluse et en visio | Alaïs Tavernier",
+    description:
+      "Conseil en fleurs de Bach dans le Vaucluse, à Vacqueyras ou en visio, avec Alaïs Tavernier : une séance de 1h30 pour choisir les fleurs adaptées à vos émotions du moment.",
+    canonicalUrl: `${SITE_URL}/fleurs-de-bach`,
   },
   "/contact": {
     title: "Naturopathe à Vacqueyras : contact, accès et rendez-vous",
@@ -85,7 +94,7 @@ export function getPageSEO(path, content = initialSiteContent) {
     .join(", ");
   return {
     ...config,
-    description: `${card.title} à Vacqueyras avec Alaïs Tavernier : ${prices}. Découvrez la séance et réservez au cabinet.`,
+    description: `${card.title} à Vacqueyras (Vaucluse) avec Alaïs Tavernier : ${prices}. Découvrez la séance et réservez en ligne.`,
   };
 }
 
@@ -198,7 +207,23 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
       name: data.title,
       description: plain(data.description),
       provider: { "@id": `${SITE_URL}/#localbusiness` },
-      areaServed: { "@type": "City", name: "Vacqueyras" },
+      areaServed: [
+        { "@type": "City", name: "Vacqueyras" },
+        { "@type": "AdministrativeArea", name: "Vaucluse" },
+        ...(remoteServices.includes(data.linkUrl)
+          ? [{ "@type": "Country", name: "France" }]
+          : []),
+      ],
+      ...(remoteServices.includes(data.linkUrl)
+        ? {
+            availableChannel: {
+              "@type": "ServiceChannel",
+              name: "Séance en visio",
+              serviceUrl: bookingUrl,
+              availableLanguage: "fr",
+            },
+          }
+        : {}),
       offers: (data.prices || []).map((price) => ({
         "@type": "Offer",
         name: price.type,
@@ -217,13 +242,15 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
     "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
     "@id": `${SITE_URL}/#localbusiness`,
     name: `${profile.name} - Naturopathe`,
-    description: "Naturopathie, réflexologie et massage assis à Vacqueyras.",
+    description:
+      "Naturopathie, réflexologie, massage assis et fleurs de Bach à Vacqueyras.",
     url: SITE_URL,
     telephone: profile.telephone,
     image: DEFAULT_IMAGE,
     logo: `${SITE_URL}/images/libellule-3.png`,
     priceRange: `${Math.min(...prices)}€–${Math.max(...prices)}€`,
     address: profile.address,
+    areaServed: { "@type": "AdministrativeArea", name: "Vaucluse" },
     founder: { "@id": `${SITE_URL}/#person` },
     hasMap: profile.mapsUrl,
     sameAs: [googleMapsUrl, profile.instagramUrl, bookingUrl],
@@ -275,6 +302,7 @@ export function getStructuredData(path = "/", content = initialSiteContent) {
       url: `${SITE_URL}/about`,
       image: DEFAULT_IMAGE,
       worksFor: { "@id": `${SITE_URL}/#localbusiness` },
+      knowsAbout: cards.map((card) => card.content.title),
       sameAs: business.sameAs,
       alumniOf: {
         "@type": "EducationalOrganization",

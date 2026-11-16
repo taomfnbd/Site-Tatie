@@ -9,6 +9,7 @@ import {
   SITE_URL,
   getPageMeta,
 } from "../src/utils/seo.js";
+import { buildLlmsTxt } from "../src/utils/llms.js";
 const { render } = await import(
   pathToFileURL(resolve(".prerender/entry-server.js")).href
 );
@@ -64,6 +65,7 @@ await writeFile(
   "dist/sitemap.xml",
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${publicRoutes.map((route) => `<url><loc>${SITE_URL}${route}</loc><lastmod>${date}</lastmod></url>`).join("")}</urlset>\n`,
 );
+await writeFile("dist/llms.txt", buildLlmsTxt());
 console.log(`Pré-rendu : ${publicRoutes.length} pages + page 404.`);
 
 if (isPreview)

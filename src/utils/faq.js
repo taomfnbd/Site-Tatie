@@ -25,7 +25,7 @@ export function resolveFAQItems(section, site) {
           ...item,
           answer:
             parts.join(" ; ") +
-            ". Les séances se réservent au cabinet de Vacqueyras.",
+            ". Les séances se réservent en ligne sur Resalib ou par téléphone.",
         }
       : item;
   });

@@ -75,7 +75,9 @@ const ServiceProcessSection = ({ content, onUpdate }) => {
         <div className="w-12 h-[2px] bg-[#95a58d]/40 mx-auto mt-4" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      <div
+        className={`grid grid-cols-1 gap-6 lg:gap-8 ${data.steps.length === 1 ? "max-w-xl mx-auto" : "md:grid-cols-2"}`}
+      >
         {data.steps.map((step, index) => {
           const hasPrice = step.price && step.price.trim() !== "";
           const hasDuration = step.duration && step.duration.trim() !== "";

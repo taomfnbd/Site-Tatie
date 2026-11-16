@@ -16,6 +16,7 @@ const paths = new Set([
   "/naturopathie",
   "/reflexologie",
   "/massage-assis",
+  "/fleurs-de-bach",
   "/contact",
   "/mentions-legales",
   "/cgu",
