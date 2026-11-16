@@ -359,9 +359,14 @@ export const initialSiteContent = {
           ],
           "prices": [
             {
-              "type": "Séance au cabinet ou en visio",
+              "type": "Première séance",
               "duration": "1h30",
               "price": "65€"
+            },
+            {
+              "type": "Séance de suivi",
+              "duration": "1h",
+              "price": "55€"
             }
           ],
           "linkUrl": "/fleurs-de-bach",
@@ -780,10 +785,16 @@ export const initialSiteContent = {
           "title": "Comment se déroule la séance ?",
           "steps": [
             {
-              "title": "Séance de conseil en fleurs de Bach",
+              "title": "Première séance",
               "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier, parmi les 38 fleurs du Dr Bach, celles qui vous correspondent. La séance se déroule au cabinet de Vacqueyras ou en visio, selon votre préférence. À la fin de la séance, les fleurs retenues vous sont indiquées : vous les commandez ensuite de votre côté.",
               "price": "65€",
               "duration": "1h30"
+            },
+            {
+              "title": "Séance de suivi",
+              "description": "La séance de suivi permet de faire le point sur l’évolution de vos émotions depuis la première séance et d’ajuster le choix des fleurs si besoin. Elle se déroule elle aussi au cabinet ou en visio.",
+              "price": "55€",
+              "duration": "1h"
             }
           ]
         }
@@ -833,8 +844,8 @@ export const initialSiteContent = {
           "intro": "Des réponses pour savoir si les fleurs de Bach correspondent à votre besoin avant de prendre rendez-vous.",
           "items": [
             {
-              "question": "Combien de temps dure une séance ?",
-              "answer": "La séance dure environ 1h30, échange compris, au cabinet comme en visio."
+              "question": "Combien de temps dure une séance de fleurs de Bach ?",
+              "answer": "La première séance dure environ 1h30, échange compris. Les séances de suivi durent environ 1h. La durée est la même au cabinet et en visio."
             },
             {
               "question": "Peut-on faire une séance de fleurs de Bach en visio ?",
