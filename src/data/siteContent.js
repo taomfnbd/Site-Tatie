@@ -350,16 +350,16 @@ export const initialSiteContent = {
           "gradient": "from-green-25 to-stone-25",
           "title": "Fleurs de Bach",
           "subtitle": "Des fleurs choisies pour accompagner vos émotions",
-          "description": "Une séance d’écoute pour faire le point sur vos émotions du moment et choisir les fleurs de Bach adaptées à votre situation.",
+          "description": "Une séance d’écoute, au cabinet ou en visio, pour faire le point sur vos émotions du moment et choisir les fleurs de Bach adaptées à votre situation.",
           "benefits": [
             "Un temps d’écoute consacré à vos émotions",
             "Un choix parmi les 38 fleurs du Dr Bach",
             "Une approche douce et naturelle",
-            "Une séance adaptée à votre situation"
+            "Une séance au cabinet ou en visio, depuis chez vous"
           ],
           "prices": [
             {
-              "type": "Séance",
+              "type": "Séance au cabinet ou en visio",
               "duration": "1h30",
               "price": "65€"
             }
@@ -754,8 +754,8 @@ export const initialSiteContent = {
         "id": "bach-hero",
         "type": "service_hero",
         "content": {
-          "title": "Fleurs de Bach à Vacqueyras",
-          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, Alaïs Tavernier, conseillère en fleurs de Bach, vous accompagne dans le choix des fleurs adaptées à vos émotions du moment.",
+          "title": "Fleurs de Bach à Vacqueyras et en visio",
+          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras ou en visio, Alaïs Tavernier, conseillère en fleurs de Bach, vous accompagne dans le choix des fleurs adaptées à vos émotions du moment.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
           "imageAlt": "Alaïs Tavernier échange avec une personne au cabinet"
         }
@@ -781,7 +781,7 @@ export const initialSiteContent = {
           "steps": [
             {
               "title": "Séance de conseil en fleurs de Bach",
-              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier, parmi les 38 fleurs du Dr Bach, celles qui vous correspondent.",
+              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier, parmi les 38 fleurs du Dr Bach, celles qui vous correspondent. La séance se déroule au cabinet de Vacqueyras ou en visio, selon votre préférence.",
               "price": "65€",
               "duration": "1h30"
             }
@@ -809,7 +809,7 @@ export const initialSiteContent = {
         "content": {
           "title": "Fleurs de Bach, naturopathie ou réflexologie : quel format choisir ?",
           "paragraphs": [
-            "La séance de fleurs de Bach est centrée sur vos émotions. Si votre attente porte aussi sur vos habitudes de vie, découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a>. Pour un temps de détente corporelle, consultez la <a href=\"/reflexologie\">réflexologie</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>.",
+            "La séance de fleurs de Bach est centrée sur vos émotions et peut se faire en visio. Si votre attente porte aussi sur vos habitudes de vie, découvrez le <a href=\"/naturopathie\">bilan de vitalité en naturopathie</a>. Pour un temps de détente corporelle, consultez la <a href=\"/reflexologie\">réflexologie</a> ou le <a href=\"/massage-assis\">massage assis habillé</a>.",
             "Si vous hésitez sur le format adapté à votre situation, <a href=\"/contact\">contactez le cabinet</a> avant de réserver. Retrouvez aussi <a href=\"/about\">le parcours de votre praticienne</a>."
           ]
         }
@@ -823,12 +823,11 @@ export const initialSiteContent = {
           "items": [
             {
               "question": "Combien de temps dure une séance ?",
-              "answer": "La séance dure environ 1h30, échange compris.",
-              "priceRef": {
-                "path": "/fleurs-de-bach",
-                "index": 0,
-                "kind": "all"
-              }
+              "answer": "La séance dure environ 1h30, échange compris, au cabinet comme en visio."
+            },
+            {
+              "question": "Peut-on faire une séance de fleurs de Bach en visio ?",
+              "answer": "Oui. La séance peut se dérouler en visio, depuis chez vous, avec le même temps d’échange qu’au cabinet. Précisez-le au moment de prendre rendez-vous."
             },
             {
               "question": "Les fleurs de Bach remplacent-elles un traitement médical ?",
