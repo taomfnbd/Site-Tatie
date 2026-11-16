@@ -755,7 +755,7 @@ export const initialSiteContent = {
         "type": "service_hero",
         "content": {
           "title": "Fleurs de Bach dans le Vaucluse et en visio",
-          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, dans le Vaucluse, ou en visio, Alaïs Tavernier, conseillère en fleurs de Bach, vous accompagne dans le choix des fleurs adaptées à vos émotions du moment.",
+          "subtitle": "Les fleurs de Bach sont des élixirs floraux mis au point par le Dr Edward Bach dans les années 1930. Au cabinet de Vacqueyras, dans le Vaucluse, ou en visio, Alaïs Tavernier, naturopathe en formation aux fleurs de Bach auprès de l’école Les Fleurs de Soleil, vous accompagne dans le choix des fleurs adaptées à vos émotions du moment.",
           "imageUrl": "https://raw.githubusercontent.com/taomfnbd/image2/main/4.svg",
           "imageAlt": "Alaïs Tavernier échange avec une personne au cabinet"
         }
@@ -781,7 +781,7 @@ export const initialSiteContent = {
           "steps": [
             {
               "title": "Séance de conseil en fleurs de Bach",
-              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier, parmi les 38 fleurs du Dr Bach, celles qui vous correspondent. La séance se déroule au cabinet de Vacqueyras ou en visio, selon votre préférence.",
+              "description": "Un échange approfondi sur votre situation et vos émotions du moment permet d’identifier, parmi les 38 fleurs du Dr Bach, celles qui vous correspondent. La séance se déroule au cabinet de Vacqueyras ou en visio, selon votre préférence. À la fin de la séance, les fleurs retenues vous sont indiquées : vous les commandez ensuite de votre côté.",
               "price": "65€",
               "duration": "1h30"
             }
@@ -792,7 +792,7 @@ export const initialSiteContent = {
         "id": "bach-vaucluse",
         "type": "service_content",
         "content": {
-          "title": "Une conseillère en fleurs de Bach dans le Vaucluse",
+          "title": "Une séance de fleurs de Bach dans le Vaucluse",
           "paragraphs": [
             "Le cabinet se trouve à Vacqueyras, au cœur du Vaucluse, à proximité de Carpentras, d’Orange, de Beaumes-de-Venise, de Gigondas et de Sarrians. Vous y êtes reçu sur rendez-vous pour une séance de conseil en fleurs de Bach.",
             "Vous habitez plus loin dans le Vaucluse ou ailleurs en France, ou vous préférez rester chez vous ? La même séance se fait en visio, avec le même temps d’échange. Retrouvez <a href=\"/contact\">l’adresse et l’itinéraire du cabinet</a>."
@@ -841,8 +841,12 @@ export const initialSiteContent = {
               "answer": "Oui. La séance peut se dérouler en visio, depuis chez vous, avec le même temps d’échange qu’au cabinet. Précisez-le au moment de prendre rendez-vous."
             },
             {
+              "question": "Les fleurs sont-elles fournies pendant la séance ?",
+              "answer": "Non. Les fleurs choisies ensemble vous sont indiquées à la fin de la séance et vous les commandez de votre côté, que la séance ait lieu au cabinet ou en visio."
+            },
+            {
               "question": "Où faire une séance de fleurs de Bach dans le Vaucluse ?",
-              "answer": "Alaïs Tavernier, conseillère en fleurs de Bach, reçoit sur rendez-vous à Vacqueyras, près de Carpentras et d’Orange. Les séances sont aussi possibles en visio, partout en France."
+              "answer": "Alaïs Tavernier, naturopathe, reçoit sur rendez-vous à Vacqueyras, près de Carpentras et d’Orange. Les séances sont aussi possibles en visio, partout en France."
             },
             {
               "question": "Les fleurs de Bach remplacent-elles un traitement médical ?",
